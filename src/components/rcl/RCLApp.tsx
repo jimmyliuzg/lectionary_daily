@@ -1,97 +1,139 @@
 import React, { useState, useEffect } from 'react';
 import { TodayView } from './TodayView';
 import { RCLSidebar } from './RCLSidebar';
+import { BibleBrowser } from './BibleBrowser';
+import { ChapterView } from './ChapterView';
+import bibleData from '../../data/bible-bsb.json';
 
-type View = 'today' | 'bible' | 'search' | 'calendar';
+type View = 'today' | 'bible' | 'chapter-view' | 'search' | 'calendar';
 
 export function RCLApp() {
-    const [currentView, setCurrentView] = useState<View>('today');
-    const [sidebarOpen, setSidebarOpen] = useState(false);
-    const [isDark, setIsDark] = useState(false);
-    const [isOfflineReady, setIsOfflineReady] = useState(false);
+  const [currentView, setCurrentView] = useState<View>('today');
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [isDark, setIsDark] = useState(false);
+  const [isOfflineReady, setIsOfflineReady] = useState(false);
 
-    // Initialize dark mode from localStorage or system preference
-    useEffect(() => {
-        const savedTheme = localStorage.getItem('rcl-theme');
-        if (savedTheme === 'dark') {
-            setIsDark(true);
-            document.body.classList.add('dark');
-        } else if (savedTheme === 'light') {
-            setIsDark(false);
-            document.body.classList.remove('dark');
-        } else if (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            setIsDark(true);
-            document.body.classList.add('dark');
-        }
+  // Bible Navigation State
+  const [selectedBookId, setSelectedBookId] = useState<string>('');
+  const [selectedChapter, setSelectedChapter] = useState<number>(1);
 
-        // Check offline readiness
-        const offlineStatus = localStorage.getItem('rcl-offline-ready');
-        setIsOfflineReady(offlineStatus === 'true');
-    }, []);
+  // Initialize dark mode from localStorage or system preference
+  useEffect(() => {
+    const savedTheme = localStorage.getItem('rcl-theme');
+    if (savedTheme === 'dark') {
+      setIsDark(true);
+      document.body.classList.add('dark');
+    } else if (savedTheme === 'light') {
+      setIsDark(false);
+      document.body.classList.remove('dark');
+    } else if (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      setIsDark(true);
+      document.body.classList.add('dark');
+    }
 
-    const toggleDarkMode = () => {
-        const newDark = !isDark;
-        setIsDark(newDark);
+    // Check offline readiness
+    const offlineStatus = localStorage.getItem('rcl-offline-ready');
+    setIsOfflineReady(offlineStatus === 'true');
+  }, []);
 
-        if (newDark) {
-            document.body.classList.add('dark');
-            localStorage.setItem('rcl-theme', 'dark');
-        } else {
-            document.body.classList.remove('dark');
-            localStorage.setItem('rcl-theme', 'light');
-        }
-    };
+  const toggleDarkMode = () => {
+    const newDark = !isDark;
+    setIsDark(newDark);
 
-    const handleReferenceClick = (ref: string) => {
-        // Navigate to Bible view and load reference
-        console.log('Navigate to reference:', ref);
-        setCurrentView('bible');
-        // TODO: Pass reference to BibleBrowser
-    };
+    if (newDark) {
+      document.body.classList.add('dark');
+      localStorage.setItem('rcl-theme', 'dark');
+    } else {
+      document.body.classList.remove('dark');
+      localStorage.setItem('rcl-theme', 'light');
+    }
+  };
 
-    const renderView = () => {
-        switch (currentView) {
-            case 'today':
-                return <TodayView onReferenceClick={handleReferenceClick} />;
-            case 'bible':
-                return <PlaceholderView title="Bible Browser" description="Full Bible navigation coming in Phase 2" />;
-            case 'search':
-                return <PlaceholderView title="Search" description="Bible search coming in Phase 3" />;
-            case 'calendar':
-                return <PlaceholderView title="Calendar" description="Calendar picker coming in Phase 3" />;
-            default:
-                return <TodayView onReferenceClick={handleReferenceClick} />;
-        }
-    };
+  const handleReferenceClick = (ref: string) => {
+    // Parse reference (simple implementation for now)
+    // Expected format: Book.Chapter.Verse or "Book Chapter:Verse"
+    // For now, let's just log it. Real parsing needed later.
+    console.log('Navigate to reference:', ref);
 
-    return (
-        <div className="rcl-app">
-            {/* Hamburger menu button (mobile) */}
-            <button
-                className="menu-btn"
-                onClick={() => setSidebarOpen(true)}
-                aria-label="Open menu"
-            >
-                <MenuIcon />
-            </button>
+    // Example: JHN.3.16 -> Book: JHN, Chapter: 3
+    const parts = ref.split('.');
+    if (parts.length >= 2) {
+      const book = parts[0];
+      const chapter = parseInt(parts[1], 10);
+      handleBibleNavigate(book, chapter);
+    } else {
+      // Fallback to plain bible view
+      setCurrentView('bible');
+    }
+  };
 
-            {/* Sidebar */}
-            <RCLSidebar
-                currentView={currentView}
-                onViewChange={setCurrentView}
-                isOpen={sidebarOpen}
-                onClose={() => setSidebarOpen(false)}
-                isDark={isDark}
-                onToggleDark={toggleDarkMode}
-                isOfflineReady={isOfflineReady}
-            />
+  const handleBibleNavigate = (bookId: string, chapter: number) => {
+    setSelectedBookId(bookId);
+    setSelectedChapter(chapter);
+    setCurrentView('chapter-view');
+  };
 
-            {/* Main content */}
-            <div className="rcl-main">
-                {renderView()}
-            </div>
+  const renderView = () => {
+    switch (currentView) {
+      case 'today':
+        return <TodayView onReferenceClick={handleReferenceClick} />;
+      case 'bible':
+        return (
+          // @ts-ignore - casting for dev time flexibility with imported json
+          <BibleBrowser
+            onNavigate={handleBibleNavigate}
+            bibleData={bibleData as any}
+            initialBookId={selectedBookId}
+          />
+        );
+      case 'chapter-view':
+        return (
+          // @ts-ignore
+          <ChapterView
+            bookId={selectedBookId}
+            chapter={selectedChapter}
+            bibleData={bibleData as any}
+            onNavigate={handleBibleNavigate}
+            onBack={() => setCurrentView('bible')}
+          />
+        );
+      case 'search':
+        return <PlaceholderView title="Search" description="Bible search coming in Phase 3" />;
+      case 'calendar':
+        return <PlaceholderView title="Calendar" description="Calendar picker coming in Phase 3" />;
+      default:
+        return <TodayView onReferenceClick={handleReferenceClick} />;
+    }
+  };
 
-            <style>{`
+  return (
+    <div className="rcl-app">
+      {/* Hamburger menu button (mobile) */}
+      <button
+        className="menu-btn"
+        onClick={() => setSidebarOpen(true)}
+        aria-label="Open menu"
+      >
+        <MenuIcon />
+      </button>
+
+      {/* Sidebar */}
+      <RCLSidebar
+        currentView={currentView}
+        onViewChange={setCurrentView}
+        isOpen={sidebarOpen}
+        onClose={() => setSidebarOpen(false)}
+        isDark={isDark}
+        onToggleDark={toggleDarkMode}
+        isOfflineReady={isOfflineReady}
+      />
+
+      {/* Main content */}
+      <div className="rcl-main">
+        {renderView()}
+      </div>
+
+      <style>{`
         .rcl-app {
           min-height: 100vh;
           display: flex;
@@ -151,20 +193,20 @@ export function RCLApp() {
           box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
       `}</style>
-        </div>
-    );
+    </div>
+  );
 }
 
 // Placeholder view for features coming in later phases
 function PlaceholderView({ title, description }: { title: string; description: string }) {
-    return (
-        <div className="placeholder-view">
-            <div className="placeholder-content">
-                <h1>{title}</h1>
-                <p>{description}</p>
-            </div>
+  return (
+    <div className="placeholder-view">
+      <div className="placeholder-content">
+        <h1>{title}</h1>
+        <p>{description}</p>
+      </div>
 
-            <style>{`
+      <style>{`
         .placeholder-view {
           min-height: 100vh;
           display: flex;
@@ -201,19 +243,19 @@ function PlaceholderView({ title, description }: { title: string; description: s
           color: #999999;
         }
       `}</style>
-        </div>
-    );
+    </div>
+  );
 }
 
 // Menu icon
 function MenuIcon() {
-    return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <line x1="3" y1="12" x2="21" y2="12" />
-            <line x1="3" y1="6" x2="21" y2="6" />
-            <line x1="3" y1="18" x2="21" y2="18" />
-        </svg>
-    );
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="3" y1="12" x2="21" y2="12" />
+      <line x1="3" y1="6" x2="21" y2="6" />
+      <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  );
 }
 
 export default RCLApp;

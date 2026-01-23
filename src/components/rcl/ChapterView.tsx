@@ -1,0 +1,92 @@
+import React from 'react';
+
+// Reusing types roughly, but simpler for display
+interface Verse {
+    uvid: number;
+    ref: string;
+    book: string;
+    chapter: number;
+    verse: number;
+    text: string;
+}
+
+interface ChapterViewProps {
+    bookId: string;
+    chapter: number;
+    bibleData: { verses: Verse[] };
+    onNavigate: (bookId: string, chapter: number) => void;
+    onBack: () => void;
+}
+
+export const ChapterView: React.FC<ChapterViewProps> = ({
+    bookId,
+    chapter,
+    bibleData,
+    onNavigate,
+    onBack
+}) => {
+    // Filter verses for this chapter
+    // Note: in a real app this would be an indexed database query
+    const verses = bibleData.verses.filter(
+        v => v.ref.startsWith(`${bookId}.${chapter}.`)
+    );
+
+    // Determine current book name from the first verse or lookup (simplified for now)
+    const bookName = verses.length > 0 ? verses[0].book : bookId;
+
+    return (
+        <div className="flex flex-col h-full bg-rcl-cream dark:bg-rcl-night text-rcl-ink dark:text-gray-100 transition-colors duration-300">
+
+            {/* Header */}
+            <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800 bg-rcl-cream dark:bg-rcl-night sticky top-0 z-10">
+                <button
+                    onClick={onBack}
+                    className="text-rcl-gold font-serif hover:underline"
+                >
+                    ← {bookName}
+                </button>
+                <h2 className="text-xl font-serif font-bold">Chapter {chapter}</h2>
+                <div className="w-16"></div> {/* Spacer for alignment */}
+            </div>
+
+            {/* Content */}
+            <div className="flex-1 overflow-y-auto p-4 max-w-2xl mx-auto w-full font-serif leading-relaxed text-lg">
+                {verses.length > 0 ? (
+                    <div className="space-y-4">
+                        {verses.map((verse) => (
+                            <span key={verse.uvid}>
+                                <sup className="text-xs text-gray-400 mr-1 select-none">{verse.verse}</sup>
+                                <span className="hover:bg-rcl-parchment dark:hover:bg-gray-800 rounded transition-colors duration-200">
+                                    {verse.text}
+                                </span>
+                                {' '}
+                            </span>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="text-center py-20 text-gray-500">
+                        <p>Content for {bookName} {chapter} not available in this sample.</p>
+                        <p className="text-sm mt-2">(This is a dev preview with limited data)</p>
+                    </div>
+                )}
+
+                {/* Navigation Footer */}
+                <div className="flex justify-between mt-12 pt-8 border-t border-gray-100 dark:border-gray-800">
+                    <button
+                        onClick={() => onNavigate(bookId, Math.max(1, chapter - 1))} // Naive prev logic
+                        className={`px-4 py-2 rounded hover:bg-rcl-parchment dark:hover:bg-gray-800 text-rcl-gold transition-colors ${chapter <= 1 ? 'invisible' : ''}`}
+                    >
+                        ← Previous
+                    </button>
+                    <button
+                        onClick={() => onNavigate(bookId, chapter + 1)} // Naive next logic
+                        className="px-4 py-2 rounded hover:bg-rcl-parchment dark:hover:bg-gray-800 text-rcl-gold transition-colors"
+                    >
+                        Next →
+                    </button>
+                </div>
+                <div className="h-20"></div> {/* Bottom padding */}
+            </div>
+        </div>
+    );
+};
