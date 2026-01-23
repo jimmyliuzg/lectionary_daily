@@ -6,8 +6,13 @@ import {
   formatDateKey,
   type DayReading
 } from './lib/lectionary';
-import { getVersesByParsedReference, type Verse } from '../../lib/rcl/db';
+import { getVersesByParsedReference, getBlocksByParsedReference, type Verse, type ScriptureBlock } from '../../lib/rcl/db';
 import { parseReference } from './lib/references';
+
+interface ReadingContent {
+  verses?: Verse[];
+  blocks?: ScriptureBlock[];
+}
 
 interface TodayViewProps {
   onReferenceClick?: (ref: string) => void;
@@ -21,7 +26,7 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange }: Today
   const touchStartX = useRef<number>(0);
   const touchEndX = useRef<number>(0);
 
-  const [readingVerses, setReadingVerses] = useState<Record<string, Verse[]>>({});
+  const [readingContent, setReadingContent] = useState<Record<string, ReadingContent>>({});
   const [isLoadingReadings, setIsLoadingReadings] = useState(true);
 
   // Load readings and their verses for current date
@@ -32,21 +37,26 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange }: Today
       setReadings(dayReadings);
 
       if (dayReadings) {
-        const versesMap: Record<string, Verse[]> = {};
+        const contentMap: Record<string, ReadingContent> = {};
 
         await Promise.all(dayReadings.readings.map(async (reading) => {
           const parsed = parseReference(reading.reference);
           if (parsed) {
             try {
-              const verses = await getVersesByParsedReference(parsed);
-              versesMap[reading.reference] = verses;
+              const blocks = await getBlocksByParsedReference(parsed);
+              if (blocks && blocks.length > 0) {
+                contentMap[reading.reference] = { blocks };
+              } else {
+                const verses = await getVersesByParsedReference(parsed);
+                contentMap[reading.reference] = { verses };
+              }
             } catch (e) {
-              console.error(`Failed to load verses for ${reading.reference}:`, e);
+              console.error(`Failed to load content for ${reading.reference}:`, e);
             }
           }
         }));
 
-        setReadingVerses(versesMap);
+        setReadingContent(contentMap);
       }
       setIsLoadingReadings(false);
     };
@@ -155,7 +165,8 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange }: Today
               key={`${reading.type}-${index}`}
               type={reading.type}
               reference={reading.reference}
-              verses={readingVerses[reading.reference]}
+              verses={readingContent[reading.reference]?.verses}
+              blocks={readingContent[reading.reference]?.blocks}
               onReferenceClick={onReferenceClick}
             />
           ))

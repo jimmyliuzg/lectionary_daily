@@ -8,11 +8,19 @@ interface Verse {
   text: string;
 }
 
+export interface ScriptureBlock {
+  type: 'paragraph' | 'heading' | 'poetry';
+  text: string;
+  verse?: number;
+  indent?: number;
+}
+
 interface ScriptureRendererProps {
   reference: string;
   type: string;
   text?: string;
   verses?: Verse[];
+  blocks?: ScriptureBlock[];
   onReferenceClick?: (ref: string) => void;
 }
 
@@ -21,6 +29,7 @@ export function ScriptureRenderer({
   type,
   text,
   verses,
+  blocks,
   onReferenceClick
 }: ScriptureRendererProps) {
   const handleRefClick = (e: React.MouseEvent, ref: string) => {
@@ -29,6 +38,38 @@ export function ScriptureRenderer({
   };
 
   const renderContent = () => {
+    // Priority 1: Structured Blocks (Rich Layout)
+    if (blocks && blocks.length > 0) {
+      return (
+        <div className="blocks-container">
+          {blocks.map((block, i) => {
+            const content = renderTextWithReferences(block.text, handleRefClick);
+
+            if (block.type === 'heading') {
+              return <h4 key={i} className="section-heading">{content}</h4>;
+            }
+
+            if (block.type === 'poetry') {
+              return (
+                <div key={i} className="poetry-line" style={{ paddingLeft: `${(block.indent || 0) * 0.5}rem` }}>
+                  {block.verse && <span className="verse-number">{block.verse}</span>}
+                  <span className="line-text">{content}</span>
+                </div>
+              );
+            }
+
+            return (
+              <p key={i} className="prose-paragraph">
+                {block.verse && <span className="verse-number">{block.verse}</span>}
+                {content}
+              </p>
+            );
+          })}
+        </div>
+      );
+    }
+
+    // Priority 2: Standard Verses (Fallback)
     if (verses && verses.length > 0) {
       return (
         <p className="verse-block">
@@ -104,6 +145,38 @@ export function ScriptureRenderer({
           color: var(--rcl-text);
         }
 
+        .blocks-container {
+          display: flex;
+          flex-direction: column;
+          gap: 1.25rem;
+        }
+
+        .section-heading {
+          font-family: 'Newsreader', Georgia, serif;
+          font-size: 1.1rem;
+          font-weight: 700;
+          font-style: italic;
+          color: var(--rcl-primary);
+          margin: 1.5rem 0 0.5rem 0;
+          opacity: 0.9;
+        }
+
+        .prose-paragraph {
+          margin: 0;
+          text-indent: 0;
+        }
+
+        .poetry-line {
+          margin: 0;
+          line-height: 1.6;
+          text-indent: -1.5em;
+          padding-left: 1.5em; /* Base padding for hanging indent */
+        }
+
+        .line-text {
+          display: inline;
+        }
+
         .verse-block {
           margin: 0;
         }
@@ -115,7 +188,7 @@ export function ScriptureRenderer({
           color: var(--rcl-secondary);
           opacity: 0.8;
           vertical-align: super;
-          margin-right: 0.35em;
+          margin-right: 0.45em;
           margin-left: 0.1em;
           user-select: none;
         }
@@ -154,13 +227,20 @@ function renderTextWithReferences(
   text: string,
   onRefClick: (e: React.MouseEvent, ref: string) => void
 ): React.ReactNode {
-  // Simple reference pattern for cross-references
+  // Regex patterns
   const refPattern = /\b([1-3]?\s?[A-Z][a-z]+(?:\s+of\s+[A-Z][a-z]+)?)\s+(\d+):(\d+)(?:-(\d+))?\b/g;
+  const verseNumPattern = /(\d+)\u202f/g;
 
   const parts: React.ReactNode[] = [];
   let lastIndex = 0;
-  let match;
 
+  // We need to match both patterns. For simplicity, let's do a multi-pass or a combined regex.
+  // Given they don't overlap (One starts with Book names, other with digits), we can do it sequentially or use a replace-like logic.
+
+  // Let's use a simpler approach: process text into parts and then sub-process parts for verse numbers.
+
+  // First pass: References
+  let match;
   while ((match = refPattern.exec(text)) !== null) {
     if (match.index > lastIndex) {
       parts.push(text.slice(lastIndex, match.index));
@@ -169,7 +249,7 @@ function renderTextWithReferences(
     const fullRef = match[0];
     parts.push(
       <a
-        key={match.index}
+        key={`ref-${match.index}`}
         className="scripture-link"
         href="#"
         onClick={(e) => onRefClick(e, fullRef)}
@@ -185,13 +265,37 @@ function renderTextWithReferences(
     parts.push(text.slice(lastIndex));
   }
 
-  if (parts.length === 1 && typeof parts[0] === 'string') {
-    return parts[0].split('\n\n').map((para, i) => (
-      <p key={i} style={{ marginBottom: '1.25em' }}>{para}</p>
-    ));
-  }
+  // Second pass: Verse numbers inside the text parts
+  return parts.flatMap((part, i) => {
+    if (typeof part !== 'string') return [part];
 
-  return parts;
+    const subParts: React.ReactNode[] = [];
+    let subLastIndex = 0;
+    let vMatch;
+
+    // Reset regex state
+    verseNumPattern.lastIndex = 0;
+
+    while ((vMatch = verseNumPattern.exec(part)) !== null) {
+      if (vMatch.index > subLastIndex) {
+        subParts.push(part.slice(subLastIndex, vMatch.index));
+      }
+
+      subParts.push(
+        <span key={`v-${i}-${vMatch.index}`} className="verse-number">
+          {vMatch[1]}
+        </span>
+      );
+
+      subLastIndex = vMatch.index + vMatch[0].length;
+    }
+
+    if (subLastIndex < part.length) {
+      subParts.push(part.slice(subLastIndex));
+    }
+
+    return subParts;
+  });
 }
 
 

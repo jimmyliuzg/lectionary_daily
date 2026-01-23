@@ -7,6 +7,7 @@ import { SearchView } from './SearchView';
 import { CalendarView } from './CalendarView';
 import { isHydrated, hydrateBible } from '../../lib/rcl/db';
 import bibleData from '../../data/bible-bsb.json';
+import bibleStructured from '../../data/bible-structured.json';
 
 type View = 'today' | 'bible' | 'chapter-view' | 'search' | 'calendar';
 
@@ -43,7 +44,7 @@ export function RCLApp() {
       if (!hydrated) {
         // Start hydration in background
         // @ts-ignore
-        hydrateBible(bibleData as any).then(() => {
+        hydrateBible(bibleData as any, bibleStructured as any).then(() => {
           setIsOfflineReady(true);
           localStorage.setItem('rcl-offline-ready', 'true');
         });

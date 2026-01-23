@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getVersesForChapter, type Verse } from '../../lib/rcl/db';
+import { getVersesForChapter, getStructuredChapter, type Verse, type ScriptureBlock } from '../../lib/rcl/db';
+import { ScriptureRenderer } from './ScriptureRenderer';
 
 interface ChapterViewProps {
     bookId: string;
@@ -17,24 +18,33 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
     onBack
 }) => {
     const [verses, setVerses] = useState<Verse[]>([]);
+    const [blocks, setBlocks] = useState<ScriptureBlock[] | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const loadVerses = async () => {
+        const loadContent = async () => {
             setIsLoading(true);
             try {
-                const dbVerses = await getVersesForChapter(`${bookId}.${chapter}`);
-                if (dbVerses && dbVerses.length > 0) {
-                    setVerses(dbVerses);
+                // Try structured first
+                const structuredBlocks = await getStructuredChapter(bookId, chapter);
+                if (structuredBlocks) {
+                    setBlocks(structuredBlocks);
                 } else {
-                    // Fallback to prop data
-                    const filtered = bibleData.verses.filter(
-                        (v: Verse) => v.ref.startsWith(`${bookId}.${chapter}.`)
-                    );
-                    setVerses(filtered);
+                    setBlocks(null);
+                    const dbVerses = await getVersesForChapter(`${bookId}.${chapter}`);
+                    if (dbVerses && dbVerses.length > 0) {
+                        setVerses(dbVerses);
+                    } else {
+                        // Fallback to prop data
+                        const filtered = bibleData.verses.filter(
+                            (v: Verse) => v.ref.startsWith(`${bookId}.${chapter}.`)
+                        );
+                        setVerses(filtered);
+                    }
                 }
             } catch (e) {
                 console.error('Failed to load from DB:', e);
+                setBlocks(null);
                 const filtered = bibleData.verses.filter(
                     (v: Verse) => v.ref.startsWith(`${bookId}.${chapter}.`)
                 );
@@ -43,10 +53,10 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                 setIsLoading(false);
             }
         };
-        loadVerses();
+        loadContent();
     }, [bookId, chapter, bibleData]);
 
-    const bookName = verses.length > 0 ? verses[0].book : bookId;
+    const bookName = verses.length > 0 ? verses[0].book : (blocks ? bookId : 'Bible');
 
     return (
         <div className="flex flex-col h-full bg-rcl-cream dark:bg-rcl-night text-rcl-ink dark:text-gray-100 transition-colors duration-300">
@@ -64,23 +74,18 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
             </div>
 
             {/* Content */}
-            <div className="flex-1 overflow-y-auto p-4 max-w-2xl mx-auto w-full font-serif leading-relaxed text-lg">
+            <div className="flex-1 overflow-y-auto p-4 max-w-2xl mx-auto w-full">
                 {isLoading ? (
                     <div className="text-center py-20 text-gray-400">Loading chapter...</div>
-                ) : verses.length > 0 ? (
-                    <div className="space-y-4">
-                        {verses.map((verse) => (
-                            <span key={verse.uvid}>
-                                <sup className="text-xs text-gray-400 mr-1 select-none">{verse.verse}</sup>
-                                <span className="hover:bg-rcl-parchment dark:hover:bg-gray-800 rounded transition-colors duration-200">
-                                    {verse.text}
-                                </span>
-                                {' '}
-                            </span>
-                        ))}
-                    </div>
+                ) : (blocks || verses.length > 0) ? (
+                    <ScriptureRenderer
+                        reference={`${bookName} ${chapter}`}
+                        type="Chapter Reading"
+                        verses={blocks ? undefined : verses}
+                        blocks={blocks || undefined}
+                    />
                 ) : (
-                    <div className="text-center py-20 text-gray-500">
+                    <div className="text-center py-20 text-gray-500 font-serif">
                         <p>Content for {bookName} {chapter} not available.</p>
                     </div>
                 )}
@@ -88,14 +93,14 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                 {/* Navigation Footer */}
                 <div className="flex justify-between mt-12 pt-8 border-t border-gray-100 dark:border-gray-800">
                     <button
-                        onClick={() => onNavigate(bookId, Math.max(1, chapter - 1))} // Naive prev logic
-                        className={`px-4 py-2 rounded hover:bg-rcl-parchment dark:hover:bg-gray-800 text-rcl-gold transition-colors ${chapter <= 1 ? 'invisible' : ''}`}
+                        onClick={() => onNavigate(bookId, Math.max(1, chapter - 1))}
+                        className={`px-4 py-2 rounded hover:bg-rcl-parchment dark:hover:bg-gray-800 text-rcl-gold transition-colors font-serif ${chapter <= 1 ? 'invisible' : ''}`}
                     >
                         ← Previous
                     </button>
                     <button
-                        onClick={() => onNavigate(bookId, chapter + 1)} // Naive next logic
-                        className="px-4 py-2 rounded hover:bg-rcl-parchment dark:hover:bg-gray-800 text-rcl-gold transition-colors"
+                        onClick={() => onNavigate(bookId, chapter + 1)}
+                        className="px-4 py-2 rounded hover:bg-rcl-parchment dark:hover:bg-gray-800 text-rcl-gold transition-colors font-serif"
                     >
                         Next →
                     </button>

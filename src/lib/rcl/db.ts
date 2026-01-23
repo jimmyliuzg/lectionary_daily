@@ -9,6 +9,13 @@ export interface Verse {
     text: string;
 }
 
+export interface ScriptureBlock {
+    type: 'paragraph' | 'heading' | 'poetry';
+    text: string;
+    verse?: number;
+    indent?: number;
+}
+
 export interface Book {
     id: string;
     name: string;
@@ -17,7 +24,7 @@ export interface Book {
 }
 
 const DB_NAME = 'rcl-bible-db';
-const DB_VERSION = 1;
+const DB_VERSION = 2; // Incremented version
 
 export async function initDB(): Promise<IDBPDatabase> {
     return openDB(DB_NAME, DB_VERSION, {
@@ -30,6 +37,10 @@ export async function initDB(): Promise<IDBPDatabase> {
 
             if (!db.objectStoreNames.contains('books')) {
                 db.createObjectStore('books', { keyPath: 'id' });
+            }
+
+            if (!db.objectStoreNames.contains('chapters')) {
+                db.createObjectStore('chapters', { keyPath: 'id' });
             }
 
             if (!db.objectStoreNames.contains('metadata')) {
@@ -45,15 +56,15 @@ export async function isHydrated(): Promise<boolean> {
     return status === 'complete';
 }
 
-export async function hydrateBible(data: { verses: Verse[], books: Book[] }) {
+export async function hydrateBible(data: { verses: Verse[], books: Book[] }, structuredData?: any) {
     const db = await initDB();
 
     console.log('Starting Bible hydration into IndexedDB...');
 
-    // Clear existing data (optional, but good for fresh starts)
-    const tx = db.transaction(['verses', 'books', 'metadata'], 'readwrite');
+    const tx = db.transaction(['verses', 'books', 'chapters', 'metadata'], 'readwrite');
     await tx.objectStore('verses').clear();
     await tx.objectStore('books').clear();
+    await tx.objectStore('chapters').clear();
 
     // Batch insert verses
     const verseStore = tx.objectStore('verses');
@@ -65,6 +76,21 @@ export async function hydrateBible(data: { verses: Verse[], books: Book[] }) {
     const bookStore = tx.objectStore('books');
     for (const book of data.books) {
         bookStore.put(book);
+    }
+
+    // Insert structured chapters
+    if (structuredData) {
+        const chapterStore = tx.objectStore('chapters');
+        for (const [bookId, chapters] of Object.entries(structuredData)) {
+            for (const [chapterNum, blocks] of Object.entries(chapters as any)) {
+                chapterStore.put({
+                    id: `${bookId}_${chapterNum}`,
+                    bookId,
+                    chapterNum: parseInt(chapterNum),
+                    blocks
+                });
+            }
+        }
     }
 
     await tx.objectStore('metadata').put('complete', 'hydrationStatus');
@@ -81,15 +107,70 @@ export async function getVersesForChapter(chapterRef: string): Promise<Verse[]> 
     return db.getAllFromIndex('verses', 'ref', range);
 }
 
-export async function getVersesByParsedReference(parsed: { bookId: string, chapter: number, startVerse?: number, endVerse?: number }): Promise<Verse[]> {
-    const chapterVerses = await getVersesForChapter(`${parsed.bookId}.${parsed.chapter}`);
+export async function getStructuredChapter(bookId: string, chapterNum: number): Promise<ScriptureBlock[] | null> {
+    const db = await initDB();
+    const chapter = await db.get('chapters', `${bookId}_${chapterNum}`);
+    return chapter ? chapter.blocks : null;
+}
 
-    if (parsed.startVerse === undefined) {
-        return chapterVerses;
+export async function getBlocksByParsedReference(parsed: { bookId: string, chapter: number, endChapter?: number, startVerse?: number, endVerse?: number }): Promise<ScriptureBlock[] | null> {
+    const startChapter = parsed.chapter;
+    const endChapter = parsed.endChapter || startChapter;
+    const startVerse = parsed.startVerse;
+    const endVerse = parsed.endVerse;
+
+    const allFilteredBlocks: ScriptureBlock[] = [];
+
+    for (let c = startChapter; c <= endChapter; c++) {
+        const blocks = await getStructuredChapter(parsed.bookId, c);
+        if (!blocks) continue;
+
+        let lastHeading: ScriptureBlock | null = null;
+        for (const block of blocks) {
+            if (block.type === 'heading') {
+                lastHeading = block;
+                continue;
+            }
+
+            const v = block.verse || 0;
+            let include = true;
+
+            // Boundary checks
+            if (c === startChapter && startVerse !== undefined && v < startVerse) include = false;
+            if (c === endChapter && endVerse !== undefined && v > endVerse) include = false;
+
+            if (include) {
+                if (lastHeading) {
+                    allFilteredBlocks.push(lastHeading);
+                    lastHeading = null;
+                }
+                allFilteredBlocks.push(block);
+            }
+        }
     }
 
-    const start = parsed.startVerse;
-    const end = parsed.endVerse || start;
+    return allFilteredBlocks.length > 0 ? allFilteredBlocks : null;
+}
 
-    return chapterVerses.filter(v => v.verse >= start && v.verse <= end);
+export async function getVersesByParsedReference(parsed: { bookId: string, chapter: number, endChapter?: number, startVerse?: number, endVerse?: number }): Promise<Verse[]> {
+    const startChapter = parsed.chapter;
+    const endChapter = parsed.endChapter || startChapter;
+    const startVerse = parsed.startVerse;
+    const endVerse = parsed.endVerse;
+
+    const allVerses: Verse[] = [];
+
+    for (let c = startChapter; c <= endChapter; c++) {
+        const chapterVerses = await getVersesForChapter(`${parsed.bookId}.${c}`);
+
+        const filtered = chapterVerses.filter(v => {
+            if (c === startChapter && startVerse !== undefined && v.verse < startVerse) return false;
+            if (c === endChapter && endVerse !== undefined && v.verse > endVerse) return false;
+            return true;
+        });
+
+        allVerses.push(...filtered);
+    }
+
+    return allVerses;
 }

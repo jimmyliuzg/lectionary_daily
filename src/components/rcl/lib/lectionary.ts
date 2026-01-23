@@ -1,4 +1,4 @@
-import lectionary2026 from '../../../data/rcl/lectionary-2026.json';
+import lectionary2026 from '../../../data/lectionary-2026.json';
 
 export interface Reading {
     type: string;

@@ -228,6 +228,7 @@ export interface ParsedReference {
     bookId: string;
     bookName: string;
     chapter: number;
+    endChapter?: number;
     startVerse?: number;
     endVerse?: number;
     raw: string;
@@ -235,11 +236,12 @@ export interface ParsedReference {
 
 /**
  * Parse a Bible reference string into structured data
- * Examples: "John 3:16", "Genesis 1:1-31", "Psalm 23", "1 Corinthians 13:1-13"
+ * Examples: "John 3:16", "Genesis 1:1-31", "Psalm 23", "1 Corinthians 13:1-13", "1 Samuel 3:10-4:1"
  */
 export function parseReference(ref: string): ParsedReference | null {
     // Match patterns like "1 John 3:16-18" or "Psalm 23" or "Genesis 1:1-2:3"
-    const pattern = /^([1-3]?\s?[A-Za-z]+(?:\s+of\s+[A-Za-z]+)?)\s+(\d+)(?::(\d+)(?:[a-z])?)?(?:-(\d+)(?::(\d+))?(?:[a-z])?)?/i;
+    // Groups: 1: Book, 2: Start Chapter, 3: Start Verse, 4: End Chapter or End Verse, 5: End Verse (if chapter:verse range)
+    const pattern = /^([1-3]?\s?[A-Za-z]+(?:\s+of\s+[A-Za-z]+)?)\s+(\d+)(?::(\d+)(?:[a-z])?)?(?:-(\d+)(?::(\d+)(?:[a-z])?)?)?/i;
     const match = ref.match(pattern);
 
     if (!match) return null;
@@ -251,12 +253,24 @@ export function parseReference(ref: string): ParsedReference | null {
 
     const chapter = parseInt(match[2], 10);
     const startVerse = match[3] ? parseInt(match[3], 10) : undefined;
-    const endVerse = match[4] ? parseInt(match[4], 10) : startVerse;
+
+    let endChapter = chapter;
+    let endVerse = startVerse;
+
+    if (match[5]) {
+        // Cross-chapter range: 3:10-4:1
+        endChapter = parseInt(match[4], 10);
+        endVerse = parseInt(match[5], 10);
+    } else if (match[4]) {
+        // Single chapter range: 3:10-15
+        endVerse = parseInt(match[4], 10);
+    }
 
     return {
         bookId,
         bookName,
         chapter,
+        endChapter,
         startVerse,
         endVerse,
         raw: ref,
