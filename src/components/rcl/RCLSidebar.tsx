@@ -41,11 +41,6 @@ export function RCLSidebar({
         {/* Header */}
         <header className="sidebar-header">
           <h1 className="app-title">RCL Daily</h1>
-          {isOfflineReady && (
-            <span className="offline-indicator" title="Available offline">
-              <CheckCircle />
-            </span>
-          )}
           <button
             className="close-btn"
             onClick={onClose}
@@ -87,6 +82,11 @@ export function RCLSidebar({
           >
             <BookIcon />
             <span>Full Bible</span>
+            {isOfflineReady && (
+              <span className="bible-ready-indicator" title="Available offline">
+                <CheckCircle />
+              </span>
+            )}
           </button>
         </nav>
 
@@ -121,8 +121,8 @@ export function RCLSidebar({
             left: 0;
             bottom: 0;
             width: 280px;
-            background: var(--sidebar-bg, #FFFFFF);
-            border-right: 1px solid var(--border-color, rgba(0,0,0,0.1));
+            background: var(--rcl-bg);
+            border-right: 1px solid var(--rcl-primary);
             z-index: 50;
             display: flex;
             flex-direction: column;
@@ -138,29 +138,30 @@ export function RCLSidebar({
             display: flex;
             align-items: center;
             padding: 1.5rem 1rem;
-            border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.1));
+            border-bottom: 1px solid color-mix(in srgb, var(--rcl-primary), transparent 85%);
           }
           
           .app-title {
-            font-family: 'Lora', Georgia, serif;
+            font-family: 'Newsreader', Georgia, serif;
             font-size: 1.25rem;
             font-weight: 600;
-            color: var(--text-primary, #1A1A1A);
+            color: var(--rcl-text);
             margin: 0;
             flex: 1;
           }
           
-          .offline-indicator {
+          .bible-ready-indicator {
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #22C55E;
-            margin-right: 0.5rem;
+            color: var(--rcl-accent);
+            margin-left: auto;
+            opacity: 0.8;
           }
           
-          .offline-indicator svg {
-            width: 20px;
-            height: 20px;
+          .bible-ready-indicator svg {
+            width: 16px;
+            height: 16px;
           }
           
           .close-btn {
@@ -171,13 +172,13 @@ export function RCLSidebar({
             height: 36px;
             border: none;
             background: transparent;
-            color: var(--text-primary, #1A1A1A);
+            color: var(--rcl-text);
             cursor: pointer;
             border-radius: 50%;
           }
           
           .close-btn:hover {
-            background: rgba(0, 0, 0, 0.05);
+            background: color-mix(in srgb, var(--rcl-primary), transparent 90%);
           }
           
           .close-btn svg {
@@ -198,22 +199,23 @@ export function RCLSidebar({
             padding: 0.875rem 1.25rem;
             border: none;
             background: transparent;
-            color: var(--text-primary, #1A1A1A);
-            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--rcl-text);
+            font-family: 'Cabin', system-ui, sans-serif;
             font-size: 0.9375rem;
             text-align: left;
             cursor: pointer;
-            transition: background 0.2s ease;
+            transition: all 0.2s ease;
           }
           
           .nav-item:hover {
-            background: rgba(0, 0, 0, 0.05);
+            background: color-mix(in srgb, var(--rcl-primary), transparent 92%);
           }
           
           .nav-item.active {
-            background: rgba(184, 134, 11, 0.1);
-            color: #B8860B;
-            font-weight: 500;
+            background: color-mix(in srgb, var(--rcl-secondary), transparent 85%);
+            color: var(--rcl-text);
+            font-weight: 600;
+            border-right: 3px solid var(--rcl-secondary);
           }
           
           .nav-item svg {
@@ -224,11 +226,12 @@ export function RCLSidebar({
           
           .nav-item.active svg {
             opacity: 1;
+            color: var(--rcl-secondary);
           }
           
           .sidebar-settings {
             padding: 0.5rem 0;
-            border-top: 1px solid var(--border-color, rgba(0,0,0,0.1));
+            border-top: 1px solid color-mix(in srgb, var(--rcl-primary), transparent 85%);
           }
           
           .settings-item {
@@ -239,15 +242,16 @@ export function RCLSidebar({
             padding: 0.875rem 1.25rem;
             border: none;
             background: transparent;
-            color: var(--text-secondary, #666666);
-            font-family: 'Inter', system-ui, sans-serif;
+            color: var(--rcl-text);
+            opacity: 0.8;
+            font-family: 'Cabin', system-ui, sans-serif;
             font-size: 0.875rem;
             text-align: left;
             cursor: pointer;
           }
           
           .settings-item:hover {
-            background: rgba(0, 0, 0, 0.05);
+            background: color-mix(in srgb, var(--rcl-primary), transparent 92%);
           }
           
           .settings-item svg {
@@ -258,87 +262,38 @@ export function RCLSidebar({
           
           .sidebar-footer {
             padding: 1rem 1.25rem;
-            border-top: 1px solid var(--border-color, rgba(0,0,0,0.1));
+            border-top: 1px solid color-mix(in srgb, var(--rcl-primary), transparent 80%);
           }
           
           .sidebar-footer p {
-            font-family: 'Inter', system-ui, sans-serif;
+            font-family: 'Cabin', system-ui, sans-serif;
             font-size: 0.75rem;
-            color: var(--text-secondary, #999999);
+            color: var(--rcl-text);
+            opacity: 0.5;
             margin: 0;
           }
           
           .copyright {
             margin-top: 0.25rem !important;
-            opacity: 0.7;
+            opacity: 0.4;
           }
           
-          /* Desktop */
+          /* Sidebar always hidden by default, even on desktop */
           @media (min-width: 768px) {
             .sidebar-overlay {
-              display: none;
+              display: block; /* Show overlay when open on desktop too */
             }
             
             .rcl-sidebar {
-              transform: translateX(0);
+              /* Keep transform: translateX(-100%) as default */
+              border-right: 1px solid color-mix(in srgb, var(--rcl-primary), transparent 85%);
             }
             
             .close-btn {
-              display: none;
+              display: flex; /* Show close button on desktop too */
             }
           }
-          
-          /* Dark mode */
-          .dark .rcl-sidebar {
-            background: #0D0D0D;
-            border-right-color: rgba(255,255,255,0.1);
-          }
-          
-          .dark .sidebar-header {
-            border-bottom-color: rgba(255,255,255,0.1);
-          }
-          
-          .dark .app-title {
-            color: #E8E8E8;
-          }
-          
-          .dark .close-btn {
-            color: #E8E8E8;
-          }
-          
-          .dark .close-btn:hover {
-            background: rgba(255,255,255,0.1);
-          }
-          
-          .dark .nav-item {
-            color: #E8E8E8;
-          }
-          
-          .dark .nav-item:hover {
-            background: rgba(255,255,255,0.1);
-          }
-          
-          .dark .nav-item.active {
-            background: rgba(218, 165, 32, 0.15);
-            color: #DAA520;
-          }
-          
-          .dark .sidebar-settings {
-            border-top-color: rgba(255,255,255,0.1);
-          }
-          
-          .dark .settings-item {
-            color: #999999;
-          }
-          
-          .dark .settings-item:hover {
-            background: rgba(255,255,255,0.1);
-          }
-          
-          .dark .sidebar-footer {
-            border-top-color: rgba(255,255,255,0.1);
-          }
-        `}</style>
+      `}</style>
       </aside>
     </>
   );

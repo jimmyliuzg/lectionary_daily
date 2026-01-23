@@ -5,122 +5,122 @@ import { parseReference, formatReference } from './lib/references';
 const bibleData = rawBibleData as { verses: SearchResult[] };
 
 interface SearchViewProps {
-    onNavigate: (bookId: string, chapter: number) => void;
+  onNavigate: (bookId: string, chapter: number) => void;
 }
 
 interface SearchResult {
-    uvid: number;
-    ref: string;
-    book: string;
-    chapter: number;
-    verse: number;
-    text: string;
+  uvid: number;
+  ref: string;
+  book: string;
+  chapter: number;
+  verse: number;
+  text: string;
 }
 
 export function SearchView({ onNavigate }: SearchViewProps) {
-    const [query, setQuery] = useState('');
-    const [results, setResults] = useState<SearchResult[]>([]);
-    const [isSearching, setIsSearching] = useState(false);
-    const searchInputRef = useRef<HTMLInputElement>(null);
+  const [query, setQuery] = useState('');
+  const [results, setResults] = useState<SearchResult[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
 
-    // Focus search on mount
-    useEffect(() => {
-        if (searchInputRef.current) {
-            searchInputRef.current.focus();
-        }
-    }, []);
+  // Focus search on mount
+  useEffect(() => {
+    if (searchInputRef.current) {
+      searchInputRef.current.focus();
+    }
+  }, []);
 
-    const handleSearch = (e: React.FormEvent) => {
-        e.preventDefault();
-        if (!query.trim()) return;
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!query.trim()) return;
 
-        setIsSearching(true);
+    setIsSearching(true);
 
-        // Use setTimeout to allow UI to update (searching state)
-        setTimeout(() => {
-            // 1. Try to parse as reference
-            const parsed = parseReference(query);
-            if (parsed) {
-                onNavigate(parsed.bookId, parsed.chapter);
-                setIsSearching(false);
-                return;
-            }
+    // Use setTimeout to allow UI to update (searching state)
+    setTimeout(() => {
+      // 1. Try to parse as reference
+      const parsed = parseReference(query);
+      if (parsed) {
+        onNavigate(parsed.bookId, parsed.chapter);
+        setIsSearching(false);
+        return;
+      }
 
-            // 2. Otherwise perform text search
-            // Initially, we just search the entire JSON.
-            // In Phase 4, we'll swap this for IndexedDB search.
-            const searchTerms = query.toLowerCase().split(/\s+/).filter(t => t.length > 2);
+      // 2. Otherwise perform text search
+      // Initially, we just search the entire JSON.
+      // In Phase 4, we'll swap this for IndexedDB search.
+      const searchTerms = query.toLowerCase().split(/\s+/).filter(t => t.length > 2);
 
-            if (searchTerms.length === 0) {
-                setResults([]);
-                setIsSearching(false);
-                return;
-            }
+      if (searchTerms.length === 0) {
+        setResults([]);
+        setIsSearching(false);
+        return;
+      }
 
-            const filtered = (bibleData.verses as SearchResult[]).filter(v => {
-                const text = v.text.toLowerCase();
-                return searchTerms.every(term => text.includes(term));
-            }).slice(0, 100); // Limit results for performance
+      const filtered = (bibleData.verses as SearchResult[]).filter(v => {
+        const text = v.text.toLowerCase();
+        return searchTerms.every(term => text.includes(term));
+      }).slice(0, 100); // Limit results for performance
 
-            setResults(filtered);
-            setIsSearching(false);
-        }, 10);
-    };
+      setResults(filtered);
+      setIsSearching(false);
+    }, 10);
+  };
 
-    const handleResultClick = (result: SearchResult) => {
-        onNavigate(result.ref.split('.')[0], result.chapter);
-    };
+  const handleResultClick = (result: SearchResult) => {
+    onNavigate(result.ref.split('.')[0], result.chapter);
+  };
 
-    return (
-        <div className="search-view">
-            <header className="search-header">
-                <h1>Search Bible</h1>
-                <form onSubmit={handleSearch} className="search-box-container">
-                    <input
-                        ref={searchInputRef}
-                        type="text"
-                        className="search-input"
-                        placeholder="Search by text (e.g. 'love one another') or reference ('John 3:16')"
-                        value={query}
-                        onChange={(e) => setQuery(e.target.value)}
-                    />
-                    <button type="submit" className="search-btn">
-                        {isSearching ? '...' : <SearchIcon />}
-                    </button>
-                </form>
-            </header>
+  return (
+    <div className="search-view">
+      <header className="search-header">
+        <h1>Search Bible</h1>
+        <form onSubmit={handleSearch} className="search-box-container">
+          <input
+            ref={searchInputRef}
+            type="text"
+            className="search-input"
+            placeholder="Search by text (e.g. 'love one another') or reference ('John 3:16')"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+          />
+          <button type="submit" className="search-btn">
+            {isSearching ? '...' : <SearchIcon />}
+          </button>
+        </form>
+      </header>
 
-            <main className="search-results">
-                {results.length > 0 ? (
-                    <div className="results-list">
-                        <p className="results-count">Found {results.length} {results.length === 100 ? '+' : ''} results</p>
-                        {results.map((result) => (
-                            <button
-                                key={result.uvid}
-                                className="result-item"
-                                onClick={() => handleResultClick(result)}
-                            >
-                                <div className="result-meta">
-                                    <span className="result-ref">{formatReference(result.ref.split('.')[0], result.chapter, result.verse)}</span>
-                                </div>
-                                <div className="result-text">{result.text}</div>
-                            </button>
-                        ))}
-                    </div>
-                ) : query && !isSearching ? (
-                    <div className="no-results">
-                        <p>No results found for "{query}"</p>
-                        <p className="hint">Try searching for a different keyword or reference.</p>
-                    </div>
-                ) : (
-                    <div className="search-empty">
-                        <SearchIllustration />
-                        <p>Search over 30,000 verses in the Berean Standard Bible</p>
-                    </div>
-                )}
-            </main>
+      <main className="search-results">
+        {results.length > 0 ? (
+          <div className="results-list">
+            <p className="results-count">Found {results.length} {results.length === 100 ? '+' : ''} results</p>
+            {results.map((result) => (
+              <button
+                key={result.uvid}
+                className="result-item"
+                onClick={() => handleResultClick(result)}
+              >
+                <div className="result-meta">
+                  <span className="result-ref">{formatReference(result.ref.split('.')[0], result.chapter, result.verse)}</span>
+                </div>
+                <div className="result-text">{result.text}</div>
+              </button>
+            ))}
+          </div>
+        ) : query && !isSearching ? (
+          <div className="no-results">
+            <p>No results found for "{query}"</p>
+            <p className="hint">Try searching for a different keyword or reference.</p>
+          </div>
+        ) : (
+          <div className="search-empty">
+            <SearchIllustration />
+            <p>Search over 30,000 verses in the Berean Standard Bible</p>
+          </div>
+        )}
+      </main>
 
-            <style>{`
+      <style>{`
         .search-view {
           min-height: 100vh;
           padding: 1rem;
@@ -137,7 +137,7 @@ export function SearchView({ onNavigate }: SearchViewProps) {
         }
         
         .search-header h1 {
-          font-family: 'Lora', Georgia, serif;
+          font-family: 'Newsreader', Georgia, serif;
           font-size: 1.5rem;
           font-weight: 500;
           margin: 0 0 1.5rem;
@@ -160,7 +160,7 @@ export function SearchView({ onNavigate }: SearchViewProps) {
           border: none;
           background: transparent;
           padding: 0.5rem 0.75rem;
-          font-family: 'Inter', system-ui, sans-serif;
+          font-family: 'Cabin', system-ui, sans-serif;
           font-size: 1rem;
           color: var(--text-primary, #1A1A1A);
           outline: none;
@@ -227,14 +227,14 @@ export function SearchView({ onNavigate }: SearchViewProps) {
         }
         
         .result-ref {
-          font-family: 'Inter', system-ui, sans-serif;
+          font-family: 'Cabin', system-ui, sans-serif;
           font-size: 0.875rem;
           font-weight: 600;
           color: #B8860B;
         }
         
         .result-text {
-          font-family: 'Lora', Georgia, serif;
+          font-family: 'Newsreader', Georgia, serif;
           font-size: 1.0625rem;
           line-height: 1.6;
           color: var(--text-primary, #1A1A1A);
@@ -289,27 +289,27 @@ export function SearchView({ onNavigate }: SearchViewProps) {
           color: #999999;
         }
       `}</style>
-        </div>
-    );
+    </div>
+  );
 }
 
 function SearchIcon() {
-    return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <circle cx="11" cy="11" r="8" />
-            <line x1="21" y1="21" x2="16.65" y2="16.65" />
-        </svg>
-    );
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="11" cy="11" r="8" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+    </svg>
+  );
 }
 
 function SearchIllustration() {
-    return (
-        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M4 19.5z" />
-            <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-            <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-            <circle cx="12" cy="10" r="3" />
-            <line x1="14.5" y1="12.5" x2="17" y2="15" />
-        </svg>
-    );
+  return (
+    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M4 19.5z" />
+      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+      <circle cx="12" cy="10" r="3" />
+      <line x1="14.5" y1="12.5" x2="17" y2="15" />
+    </svg>
+  );
 }

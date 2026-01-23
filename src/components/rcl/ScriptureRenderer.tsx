@@ -75,33 +75,33 @@ export function ScriptureRenderer({
         .scripture-header {
           margin-bottom: 1.25rem;
           padding-bottom: 0.75rem;
-          border-bottom: 1px solid var(--border-color, rgba(0,0,0,0.08));
+          border-bottom: 1px solid color-mix(in srgb, var(--rcl-primary), transparent 85%);
         }
         
         .reading-type {
           display: inline-block;
-          font-family: 'Inter', system-ui, sans-serif;
+          font-family: 'Cabin', system-ui, sans-serif;
           font-size: 0.7rem;
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.12em;
-          color: #B8860B;
+          color: var(--rcl-secondary);
           margin-bottom: 0.35rem;
         }
         
         .scripture-reference {
-          font-family: 'Lora', Georgia, serif;
+          font-family: 'Newsreader', Georgia, serif;
           font-size: 1.5rem;
           font-weight: 500;
-          color: var(--text-primary, #1A1A1A);
+          color: var(--rcl-text);
           margin: 0;
         }
         
         .scripture-text {
-          font-family: 'Lora', Georgia, serif;
+          font-family: 'Newsreader', Georgia, serif;
           font-size: 1.125rem;
           line-height: 1.85;
-          color: var(--text-primary, #1A1A1A);
+          color: var(--rcl-text);
         }
 
         .verse-block {
@@ -109,11 +109,11 @@ export function ScriptureRenderer({
         }
         
         .verse-number {
-          font-family: 'Inter', system-ui, sans-serif;
+          font-family: 'Cabin', system-ui, sans-serif;
           font-size: 0.65rem;
           font-weight: 700;
-          color: #B8860B;
-          opacity: 0.6;
+          color: var(--rcl-secondary);
+          opacity: 0.8;
           vertical-align: super;
           margin-right: 0.35em;
           margin-left: 0.1em;
@@ -126,45 +126,21 @@ export function ScriptureRenderer({
         
         .loading-text {
           font-style: italic;
-          color: var(--text-secondary, #999999);
+          color: var(--rcl-text);
+          opacity: 0.5;
           font-size: 0.95rem;
         }
         
         .scripture-link {
-          color: #4A6FA5;
+          color: var(--rcl-accent);
           text-decoration: none;
-          border-bottom: 1px solid rgba(74, 111, 165, 0.3);
+          border-bottom: 1px solid color-mix(in srgb, var(--rcl-accent), transparent 70%);
           transition: all 0.2s ease;
         }
         
         .scripture-link:hover {
-          color: #B8860B;
-          border-bottom-color: #B8860B;
-          background: rgba(184, 134, 11, 0.05);
-        }
-        
-        /* Dark mode */
-        .dark .scripture-reference,
-        .dark .scripture-text {
-          color: #E2E2E2;
-        }
-
-        .dark .reading-type {
-          color: #DAA520;
-        }
-        
-        .dark .verse-number {
-          color: #DAA520;
-        }
-        
-        .dark .scripture-link {
-          color: #8EACD9;
-          border-bottom-color: rgba(142, 172, 217, 0.4);
-        }
-
-        .dark .scripture-link:hover {
-          color: #DAA520;
-          border-bottom-color: #DAA520;
+          color: var(--rcl-accent);
+          background: color-mix(in srgb, var(--rcl-accent), transparent 90%);
         }
       `}</style>
     </article>

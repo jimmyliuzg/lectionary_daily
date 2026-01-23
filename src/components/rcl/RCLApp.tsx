@@ -177,17 +177,19 @@ export function RCLApp() {
           justify-content: center;
           width: 44px;
           height: 44px;
-          border: none;
-          background: var(--sidebar-bg, #FFFFFF);
-          color: var(--text-primary, #1A1A1A);
+          border: 1px solid color-mix(in srgb, var(--rcl-primary), transparent 85%);
+          background: var(--rcl-bg);
+          color: var(--rcl-text);
           cursor: pointer;
           border-radius: 8px;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-          transition: box-shadow 0.2s ease;
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+          transition: all 0.2s ease;
         }
         
         .menu-btn:hover {
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+          background: color-mix(in srgb, var(--rcl-primary), transparent 92%);
+          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+          transform: translateY(-1px);
         }
         
         .menu-btn svg {
@@ -201,24 +203,10 @@ export function RCLApp() {
         }
         
         @media (min-width: 768px) {
-          .menu-btn {
-            display: none;
-          }
-          
           .rcl-main {
-            margin-left: 280px;
+            /* Full width even on desktop, sidebar is now an overlay */
+            margin-left: 0;
           }
-        }
-        
-        /* Dark mode */
-        .dark .menu-btn {
-          background: #1A1A1A;
-          color: #E8E8E8;
-          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        }
-        
-        .dark .menu-btn:hover {
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
         }
       `}</style>
     </div>
@@ -249,7 +237,7 @@ function PlaceholderView({ title, description }: { title: string; description: s
         }
         
         .placeholder-content h1 {
-          font-family: 'Lora', Georgia, serif;
+          font-family: 'Newsreader', Georgia, serif;
           font-size: 2rem;
           font-weight: 500;
           color: var(--text-primary, #1A1A1A);
@@ -257,7 +245,7 @@ function PlaceholderView({ title, description }: { title: string; description: s
         }
         
         .placeholder-content p {
-          font-family: 'Inter', system-ui, sans-serif;
+          font-family: 'Cabin', system-ui, sans-serif;
           font-size: 1rem;
           color: var(--text-secondary, #666666);
           margin: 0;

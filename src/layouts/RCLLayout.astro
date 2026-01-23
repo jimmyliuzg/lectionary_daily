@@ -21,15 +21,31 @@ const { title, description = "RCL Daily - Lectionary Readings" } = Astro.props;
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <link rel="manifest" href="/rcl-manifest.json" />
 
-        <!-- Typography: Lora for reading, Inter for UI -->
+        <!-- Typography: Newsreader for reading, Cabin for UI -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
-            href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&family=Cabin:wght@400;500;600;700&display=swap"
             rel="stylesheet"
         />
 
         <style>
+            :root {
+                --rcl-bg: #e1e3e5;
+                --rcl-text: #14161a;
+                --rcl-primary: #3e4651;
+                --rcl-secondary: #746b81; /* Deepened for legibility */
+                --rcl-accent: #86526c; /* Deepened for contrast */
+            }
+
+            body.dark {
+                --rcl-bg: #1a1c1e;
+                --rcl-text: #e5e7eb;
+                --rcl-primary: #aeb6c1;
+                --rcl-secondary: #9a94a7; /* Lightened for dark mode vibrancy */
+                --rcl-accent: #c98cad; /* Lightened for legibility */
+            }
+
             * {
                 margin: 0;
                 padding: 0;
@@ -39,24 +55,19 @@ const { title, description = "RCL Daily - Lectionary Readings" } = Astro.props;
                 scroll-behavior: smooth;
             }
             body {
-                font-family: "Lora", Georgia, "Times New Roman", serif;
-                background: #faf8f5;
-                color: #1a1a1a;
+                font-family: "Newsreader", Georgia, serif;
+                background-color: var(--rcl-bg);
+                color: var(--rcl-text);
                 -webkit-font-smoothing: antialiased;
                 -moz-osx-font-smoothing: grayscale;
                 line-height: 1.7;
-            }
-            body.dark {
-                background: #0d0d0d;
-                color: #e8e8e8;
+                transition:
+                    background-color 0.3s ease,
+                    color 0.3s ease;
             }
             ::selection {
-                background: #b8860b;
+                background: var(--rcl-accent);
                 color: #ffffff;
-            }
-            .dark ::selection {
-                background: #daa520;
-                color: #0d0d0d;
             }
         </style>
     </head>

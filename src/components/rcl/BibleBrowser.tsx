@@ -34,15 +34,15 @@ export const BibleBrowser: React.FC<BibleBrowserProps> = ({ onNavigate, bibleDat
     const books = bibleData.books.filter(b => b.testament === activeTab);
 
     return (
-        <div className="flex flex-col h-full bg-rcl-cream dark:bg-rcl-night text-rcl-ink dark:text-gray-100 transition-colors duration-300">
+        <div className="flex flex-col h-full bg-rcl-background text-rcl-text transition-colors duration-300">
 
             {/* Header / Tabs */}
             {!selectedBook && (
-                <div className="flex border-b border-gray-200 dark:border-gray-800">
+                <div className="flex border-b border-rcl-primary/20">
                     <button
                         className={`flex-1 py-3 text-center font-serif text-lg ${activeTab === 'OT'
-                            ? 'border-b-2 border-rcl-gold font-bold text-rcl-ink dark:text-white'
-                            : 'text-gray-500 hover:text-gray-700 dark:text-gray-400'
+                            ? 'border-b-2 border-rcl-secondary font-bold text-rcl-text'
+                            : 'opacity-60 hover:opacity-100'
                             }`}
                         onClick={() => setActiveTab('OT')}
                     >
@@ -50,8 +50,8 @@ export const BibleBrowser: React.FC<BibleBrowserProps> = ({ onNavigate, bibleDat
                     </button>
                     <button
                         className={`flex-1 py-3 text-center font-serif text-lg ${activeTab === 'NT'
-                            ? 'border-b-2 border-rcl-gold font-bold text-rcl-ink dark:text-white'
-                            : 'text-gray-500 hover:text-gray-700 dark:text-gray-400'
+                            ? 'border-b-2 border-rcl-secondary font-bold text-rcl-text'
+                            : 'opacity-60 hover:opacity-100'
                             }`}
                         onClick={() => setActiveTab('NT')}
                     >
@@ -67,7 +67,7 @@ export const BibleBrowser: React.FC<BibleBrowserProps> = ({ onNavigate, bibleDat
                     <div className="animate-fade-in">
                         <button
                             onClick={() => setSelectedBook(null)}
-                            className="mb-4 flex items-center text-rcl-gold hover:underline font-serif"
+                            className="mb-4 flex items-center text-rcl-accent hover:underline font-serif"
                         >
                             ← Back to Books
                         </button>
@@ -77,7 +77,7 @@ export const BibleBrowser: React.FC<BibleBrowserProps> = ({ onNavigate, bibleDat
                                 <button
                                     key={chapter}
                                     onClick={() => onNavigate(selectedBook.id, chapter)}
-                                    className="aspect-square flex items-center justify-center rounded-lg border border-gray-200 dark:border-gray-800 hover:bg-rcl-parchment dark:hover:bg-gray-800 hover:border-rcl-gold transition-colors font-serif text-lg"
+                                    className="aspect-square flex items-center justify-center rounded-lg border border-rcl-primary/20 hover:bg-rcl-primary/10 hover:border-rcl-primary transition-colors font-serif text-lg"
                                 >
                                     {chapter}
                                 </button>
@@ -91,7 +91,7 @@ export const BibleBrowser: React.FC<BibleBrowserProps> = ({ onNavigate, bibleDat
                             <button
                                 key={book.id}
                                 onClick={() => setSelectedBook(book)}
-                                className="p-4 text-left rounded-lg hover:bg-rcl-parchment dark:hover:bg-gray-800 transition-colors font-serif text-xl border-b border-gray-100 dark:border-gray-800 last:border-0"
+                                className="p-4 text-left rounded-lg hover:bg-rcl-primary/10 transition-colors font-serif text-xl border-b border-rcl-primary/10 last:border-0"
                             >
                                 {book.name}
                             </button>

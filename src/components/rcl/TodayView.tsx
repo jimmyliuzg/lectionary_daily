@@ -198,31 +198,33 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange }: Today
         
         .today-badge {
           display: inline-block;
-          font-family: 'Inter', system-ui, sans-serif;
+          font-family: 'Cabin', system-ui, sans-serif;
           font-size: 0.7rem;
-          font-weight: 600;
+          font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.15em;
-          color: #FFFFFF;
-          background: #B8860B;
+          color: var(--rcl-secondary);
+          background: color-mix(in srgb, var(--rcl-secondary), transparent 85%);
+          border: 1px solid color-mix(in srgb, var(--rcl-secondary), transparent 80%);
           padding: 0.25rem 0.75rem;
           border-radius: 1rem;
           margin-bottom: 0.5rem;
         }
         
         .display-date {
-          font-family: 'Lora', Georgia, serif;
+          font-family: 'Newsreader', Georgia, serif;
           font-size: 1.25rem;
           font-weight: 500;
           margin: 0;
-          color: var(--text-primary, #1A1A1A);
+          color: var(--rcl-text);
         }
         
         .liturgical-day {
-          font-family: 'Inter', system-ui, sans-serif;
+          font-family: 'Cabin', system-ui, sans-serif;
           font-size: 0.875rem;
           font-weight: 400;
-          color: var(--text-secondary, #666666);
+          color: var(--rcl-text);
+          opacity: 0.7;
           margin: 0.25rem 0 0;
         }
         
@@ -234,18 +236,19 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange }: Today
           height: 44px;
           border: none;
           background: transparent;
-          color: var(--text-primary, #1A1A1A);
+          color: var(--rcl-text);
           cursor: pointer;
           border-radius: 50%;
           transition: background 0.2s ease;
         }
         
         .nav-btn:hover {
-          background: rgba(0, 0, 0, 0.05);
+          background: color-mix(in srgb, var(--rcl-secondary), transparent 85%);
+          opacity: 1;
         }
         
         .nav-btn:active {
-          background: rgba(0, 0, 0, 0.1);
+          background: color-mix(in srgb, var(--rcl-secondary), transparent 70%);
         }
         
         .nav-btn svg {
@@ -260,7 +263,8 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange }: Today
         .no-readings {
           text-align: center;
           padding: 3rem 1rem;
-          color: var(--text-secondary, #666666);
+          color: var(--rcl-text);
+          opacity: 0.6;
         }
         
         .no-readings p {
@@ -276,15 +280,16 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange }: Today
 
         .skeleton-reading {
           height: 200px;
-          background: var(--surface-bg, #F0F0F2);
+          background: var(--rcl-primary);
+          opacity: 0.1;
           border-radius: 12px;
           animation: pulse 1.5s infinite ease-in-out;
         }
 
         @keyframes pulse {
-          0% { opacity: 0.6; }
-          50% { opacity: 1; }
-          100% { opacity: 0.6; }
+          0% { opacity: 0.05; }
+          50% { opacity: 0.15; }
+          100% { opacity: 0.05; }
         }
         
         .hint {
@@ -297,10 +302,10 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange }: Today
           bottom: 1rem;
           left: 50%;
           transform: translateX(-50%);
-          font-family: 'Inter', system-ui, sans-serif;
+          font-family: 'Cabin', system-ui, sans-serif;
           font-size: 0.75rem;
-          color: var(--text-secondary, #999999);
-          opacity: 0.6;
+          color: var(--rcl-text);
+          opacity: 0.4;
           pointer-events: none;
         }
         
@@ -316,32 +321,6 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange }: Today
           .swipe-hint {
             display: none;
           }
-        }
-        
-        /* Dark mode */
-        .dark .today-badge {
-          background: #DAA520;
-          color: #0D0D0D;
-        }
-        
-        .dark .display-date {
-          color: #E8E8E8;
-        }
-        
-        .dark .liturgical-day {
-          color: #999999;
-        }
-        
-        .dark .nav-btn {
-          color: #E8E8E8;
-        }
-        
-        .dark .nav-btn:hover {
-          background: rgba(255, 255, 255, 0.1);
-        }
-        
-        .dark .nav-btn:active {
-          background: rgba(255, 255, 255, 0.15);
         }
       `}</style>
     </div>

@@ -7,18 +7,17 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        serif: ['Lora', 'Georgia', 'serif'],
+        sans: ['Cabin', 'system-ui', 'sans-serif'],
+        serif: ['Newsreader', 'Georgia', 'serif'],
       },
       colors: {
-        // RCL Lectionary Palette
+        // RCL Lectionary Palette (Powered by CSS Variables in RCLLayout.astro)
         rcl: {
-          cream: '#FAF8F5',
-          parchment: '#F5F1EB',
-          ink: '#1A1A1A',
-          night: '#0D0D0D',
-          gold: '#B8860B',
-          goldLight: '#DAA520',
+          background: 'var(--rcl-bg)',
+          text: 'var(--rcl-text)',
+          primary: 'var(--rcl-primary)',
+          secondary: 'var(--rcl-secondary)',
+          accent: 'var(--rcl-accent)',
         },
       },
     },
