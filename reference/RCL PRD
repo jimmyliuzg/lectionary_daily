@@ -1,0 +1,68 @@
+PRD: RCL Daily PWA
+1. Product Overview
+The Lectionary Daily PWA provides a streamlined, distraction-free environment for liturgical reading. It is designed in a minimalist, professionally designed UI that is calming and simple.  It prioritizes immediate access to the current day's lections (Year A for 2026) while silently hydrating a full, offline-capable Bible in the background.
+2. Target User Stories
+The Daily Reader: "I want to open the app and see today's readings immediately without having to navigate menus or wait for a large download."
+The Commuter/Traveler: "I want to be able to read the full Bible and follow cross-references even when I am on a plane or in an area with poor cellular reception."
+The Student: "I want to see the context of an RCL reading by jumping easily from the lectionary view to the full chapter in the Bible."
+
+3. Functional Requirements
+3.1 The "Today" View (Primary Landing)
+Automatic Resolution: On launch, the app calculates the current date and retrieves the corresponding RCL readings (First Reading, Psalm, Second Reading, Gospel) for the current week.
+Liturgical Logic: The app must correctly identify the Liturgical Year (e.g., Year A for 2026).
+Immediate Loading: Use a "Just-in-Time" (JIT) model to fetch today's text as a high-priority, small-payload JSON.
+3.2 Ability to view different day’s reading
+Swiping/Scroll: User should be able to swipe and scroll forward or backward to view the next/previous day’s reading from the main page. (eg, swipe left and tomorrow’s reading will appear). The 7 days (mon - sun) around the current date should be accessible immediately. 
+3.3 Full Bible & Navigation
+Hamburger Menu: Access to a Book/Chapter picker for the entire Bible.
+Internal Cross-References: All references within the RCL text (and eventually the Bible) must be interactive. Clicking a reference (e.g., Genesis 1:1) jumps the user to that chapter.
+Reading Progress: The app should remember the user's last-read position in the full Bible using localStorage. Reloading the page, however, will lead to the next day’s reading. 
+Bible Reading: The app should allow user to progress through the bible chapter by chapter through scrolling and swiping up on mobile. On the desktop, to advance to a new chapter can contain a button UI. 
+Search: Users should be able to search within the bible for different references. 
+Calendar: Allows user to select a date from a calendar ui and then navigate to any day’s selected reading. 
+3.4 Offline Capabilities
+Service Worker: Must proxy all requests. If the network is unavailable, it must serve the App Shell and Bible data from local storage.
+Background Hydration: After the "Today" view is loaded, the app silently downloads the remaining 5MB of Bible data in the background and saves it to IndexedDB.
+
+4. User Interface (UI) & Experience (UX)
+Reader-First Design: High-contrast serif typography optimized for long-form reading.
+Offline Status: A subtle indicator (e.g., a green checkmark) appears in the sidebar once the full Bible hydration is complete.
+Responsive Layout: Mobile-first, but scales gracefully for tablet and desktop "sidebar" use.
+Dark Mode: Dark Mode should be available as a toggle hidden in the hamburger menu. 
+The Sidebar: Contains "Today's Lectionary," "Search.", “Calendar” and “Bible” as the primary options. 
+Full Bible: Full bible should contain navigation that allows the user to browse via book > then chapter > then verse. 
+
+5. Technical Addendum
+5.1 Data Architecture
+To ensure high performance and "jump-to" capabilities, we will use a Universal Verse ID (UVID) system.
+Bible Schema (IndexedDB): | Field | Type | Description | | :--- | :--- | :--- | | uvid | Integer | 1 to 31,102 (e.g., Gen 1:1 = 1). | | ref | String | Standardized slug (e.g., "JHN.3.16"). | | text | String | The verse content. | | meta | JSON | Contains arrays of internal cross-references. |
+5.2 The Hydration Flow (JIT Model)
+Initial Load: Fetch manifest.json + current_day.json (~50KB).
+App Interactive: UI renders "Today's Reading."
+Background Sync: * Service Worker initiates fetch('/assets/full_bible.json').
+Data is streamed into IndexedDB in chunks to avoid blocking the main UI thread.
+Offline Ready: App sets a is_offline_ready flag in localStorage to true.
+5.3 RCL Year Calculation Logic
+The app uses the following logic to determine the cycle (divisible by 3 = Year A):
+JavaScript
+function getRCLYear(date = new Date()) {
+    const year = date.getFullYear();
+    const christmas = new Date(year, 11, 25);
+    const adventStart = new Date(year, 11, 25 - (christmas.getDay() || 7) - 21);
+    const liturgicalYear = (date >= adventStart) ? year + 1 : year;
+    return ['C', 'A', 'B'][liturgicalYear % 3]; 
+}
+
+5.4 Cross-Reference Resolution
+References are parsed using a regex (e.g., /([1-3]?\s?[A-Z][a-z]+)\s(\d+):(\d+)/).
+Match: "John 3:16"
+Action: Maps to slug: JHN.3.16.
+Query: db.verses.where('ref').equals('JHN.3.16').first().
+5.5 Sourcing of biblical Text
+Bible version should be Berean Standard Bible (BSB) which is available as part of the public domain. 
+
+6. Future Considerations
+Treasury of Scripture Knowledge (TSK): Integrating the 500,000+ TSK references as an optional "Advanced Context" layer.
+Multi-Translation Support: Allowing users to download additional versions (NRSV, ESV) which would be stored as separate tables in IndexedDB.
+Share Option: Option on the top right hand of the screen to share to common messages or to common social media. 
+

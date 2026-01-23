@@ -1,0 +1,291 @@
+{
+    "year": "A",
+    "liturgicalYear": "2025-2026",
+    "readings": [
+        {
+            "date": "2026-01-22",
+            "dayName": "Thursday after Epiphany 1",
+            "readings": [
+                {
+                    "type": "Psalm",
+                    "reference": "Psalm 29"
+                },
+                {
+                    "type": "Old Testament",
+                    "reference": "1 Samuel 3:1-9"
+                },
+                {
+                    "type": "New Testament",
+                    "reference": "Acts 9:1-9"
+                }
+            ]
+        },
+        {
+            "date": "2026-01-23",
+            "dayName": "Friday after Epiphany 1",
+            "readings": [
+                {
+                    "type": "Psalm",
+                    "reference": "Psalm 29"
+                },
+                {
+                    "type": "Old Testament",
+                    "reference": "1 Samuel 3:10-4:1a"
+                },
+                {
+                    "type": "New Testament",
+                    "reference": "Acts 9:10-19a"
+                }
+            ]
+        },
+        {
+            "date": "2026-01-24",
+            "dayName": "Saturday after Epiphany 1",
+            "readings": [
+                {
+                    "type": "Psalm",
+                    "reference": "Psalm 29"
+                },
+                {
+                    "type": "Old Testament",
+                    "reference": "1 Samuel 7:3-17"
+                },
+                {
+                    "type": "New Testament",
+                    "reference": "Acts 9:19b-31"
+                }
+            ]
+        },
+        {
+            "date": "2026-01-25",
+            "dayName": "Third Sunday after the Epiphany",
+            "isSunday": true,
+            "readings": [
+                {
+                    "type": "First Reading",
+                    "reference": "Nehemiah 8:1-3, 5-6, 8-10"
+                },
+                {
+                    "type": "Psalm",
+                    "reference": "Psalm 19"
+                },
+                {
+                    "type": "Second Reading",
+                    "reference": "1 Corinthians 12:12-31a"
+                },
+                {
+                    "type": "Gospel",
+                    "reference": "Luke 4:14-21"
+                }
+            ]
+        },
+        {
+            "date": "2026-01-26",
+            "dayName": "Monday after Epiphany 3",
+            "readings": [
+                {
+                    "type": "Psalm",
+                    "reference": "Psalm 119:89-96"
+                },
+                {
+                    "type": "Old Testament",
+                    "reference": "Nehemiah 8:10-18"
+                },
+                {
+                    "type": "New Testament",
+                    "reference": "Acts 8:9-25"
+                }
+            ]
+        },
+        {
+            "date": "2026-01-27",
+            "dayName": "Tuesday after Epiphany 3",
+            "readings": [
+                {
+                    "type": "Psalm",
+                    "reference": "Psalm 119:89-96"
+                },
+                {
+                    "type": "Old Testament",
+                    "reference": "Nehemiah 9:1-8"
+                },
+                {
+                    "type": "New Testament",
+                    "reference": "1 Corinthians 7:17-24"
+                }
+            ]
+        },
+        {
+            "date": "2026-01-28",
+            "dayName": "Wednesday after Epiphany 3",
+            "readings": [
+                {
+                    "type": "Psalm",
+                    "reference": "Psalm 119:89-96"
+                },
+                {
+                    "type": "Old Testament",
+                    "reference": "Nehemiah 9:9-20"
+                },
+                {
+                    "type": "New Testament",
+                    "reference": "Luke 4:38-44"
+                }
+            ]
+        },
+        {
+            "date": "2026-01-29",
+            "dayName": "Thursday after Epiphany 3",
+            "readings": [
+                {
+                    "type": "Psalm",
+                    "reference": "Psalm 71:1-6"
+                },
+                {
+                    "type": "Old Testament",
+                    "reference": "Jeremiah 1:11-19"
+                },
+                {
+                    "type": "New Testament",
+                    "reference": "Acts 3:17-4:4"
+                }
+            ]
+        },
+        {
+            "date": "2026-01-30",
+            "dayName": "Friday after Epiphany 3",
+            "readings": [
+                {
+                    "type": "Psalm",
+                    "reference": "Psalm 71:1-6"
+                },
+                {
+                    "type": "Old Testament",
+                    "reference": "Jeremiah 1:1-10"
+                },
+                {
+                    "type": "New Testament",
+                    "reference": "Acts 5:17-26"
+                }
+            ]
+        },
+        {
+            "date": "2026-01-31",
+            "dayName": "Saturday after Epiphany 3",
+            "readings": [
+                {
+                    "type": "Psalm",
+                    "reference": "Psalm 71:1-6"
+                },
+                {
+                    "type": "Old Testament",
+                    "reference": "Jeremiah 1:11-19"
+                },
+                {
+                    "type": "New Testament",
+                    "reference": "Luke 19:41-44"
+                }
+            ]
+        },
+        {
+            "date": "2026-02-01",
+            "dayName": "Fourth Sunday after the Epiphany",
+            "isSunday": true,
+            "readings": [
+                {
+                    "type": "First Reading",
+                    "reference": "Jeremiah 1:4-10"
+                },
+                {
+                    "type": "Psalm",
+                    "reference": "Psalm 71:1-6"
+                },
+                {
+                    "type": "Second Reading",
+                    "reference": "1 Corinthians 13:1-13"
+                },
+                {
+                    "type": "Gospel",
+                    "reference": "Luke 4:21-30"
+                }
+            ]
+        },
+        {
+            "date": "2026-01-18",
+            "dayName": "Second Sunday after the Epiphany",
+            "isSunday": true,
+            "readings": [
+                {
+                    "type": "First Reading",
+                    "reference": "Isaiah 62:1-5"
+                },
+                {
+                    "type": "Psalm",
+                    "reference": "Psalm 36:5-10"
+                },
+                {
+                    "type": "Second Reading",
+                    "reference": "1 Corinthians 12:1-11"
+                },
+                {
+                    "type": "Gospel",
+                    "reference": "John 2:1-11"
+                }
+            ]
+        },
+        {
+            "date": "2026-01-19",
+            "dayName": "Monday after Epiphany 2",
+            "readings": [
+                {
+                    "type": "Psalm",
+                    "reference": "Psalm 145"
+                },
+                {
+                    "type": "Old Testament",
+                    "reference": "Isaiah 54:1-8"
+                },
+                {
+                    "type": "New Testament",
+                    "reference": "Romans 12:9-21"
+                }
+            ]
+        },
+        {
+            "date": "2026-01-20",
+            "dayName": "Tuesday after Epiphany 2",
+            "readings": [
+                {
+                    "type": "Psalm",
+                    "reference": "Psalm 145"
+                },
+                {
+                    "type": "Old Testament",
+                    "reference": "Song of Solomon 4:1-8"
+                },
+                {
+                    "type": "New Testament",
+                    "reference": "1 Corinthians 1:3-17"
+                }
+            ]
+        },
+        {
+            "date": "2026-01-21",
+            "dayName": "Wednesday after Epiphany 2",
+            "readings": [
+                {
+                    "type": "Psalm",
+                    "reference": "Psalm 145"
+                },
+                {
+                    "type": "Old Testament",
+                    "reference": "Song of Solomon 4:9-5:1"
+                },
+                {
+                    "type": "New Testament",
+                    "reference": "Luke 5:33-39"
+                }
+            ]
+        }
+    ]
+}
