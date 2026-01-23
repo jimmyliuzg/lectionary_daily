@@ -3,6 +3,9 @@ import { TodayView } from './TodayView';
 import { RCLSidebar } from './RCLSidebar';
 import { BibleBrowser } from './BibleBrowser';
 import { ChapterView } from './ChapterView';
+import { SearchView } from './SearchView';
+import { CalendarView } from './CalendarView';
+import { isHydrated, hydrateBible } from '../../lib/rcl/db';
 import bibleData from '../../data/bible-bsb.json';
 
 type View = 'today' | 'bible' | 'chapter-view' | 'search' | 'calendar';
@@ -16,6 +19,7 @@ export function RCLApp() {
   // Bible Navigation State
   const [selectedBookId, setSelectedBookId] = useState<string>('');
   const [selectedChapter, setSelectedChapter] = useState<number>(1);
+  const [currentDate, setCurrentDate] = useState(new Date());
 
   // Initialize dark mode from localStorage or system preference
   useEffect(() => {
@@ -32,8 +36,21 @@ export function RCLApp() {
     }
 
     // Check offline readiness
-    const offlineStatus = localStorage.getItem('rcl-offline-ready');
-    setIsOfflineReady(offlineStatus === 'true');
+    const checkHydration = async () => {
+      const hydrated = await isHydrated();
+      setIsOfflineReady(hydrated);
+
+      if (!hydrated) {
+        // Start hydration in background
+        // @ts-ignore
+        hydrateBible(bibleData as any).then(() => {
+          setIsOfflineReady(true);
+          localStorage.setItem('rcl-offline-ready', 'true');
+        });
+      }
+    };
+
+    checkHydration();
   }, []);
 
   const toggleDarkMode = () => {
@@ -76,7 +93,11 @@ export function RCLApp() {
   const renderView = () => {
     switch (currentView) {
       case 'today':
-        return <TodayView onReferenceClick={handleReferenceClick} />;
+        return <TodayView
+          onReferenceClick={handleReferenceClick}
+          currentDate={currentDate}
+          onDateChange={setCurrentDate}
+        />;
       case 'bible':
         return (
           // @ts-ignore - casting for dev time flexibility with imported json
@@ -98,11 +119,18 @@ export function RCLApp() {
           />
         );
       case 'search':
-        return <PlaceholderView title="Search" description="Bible search coming in Phase 3" />;
+        return <SearchView onNavigate={handleBibleNavigate} />;
       case 'calendar':
-        return <PlaceholderView title="Calendar" description="Calendar picker coming in Phase 3" />;
+        return <CalendarView onDateSelect={(date) => {
+          setCurrentDate(date);
+          setCurrentView('today');
+        }} />;
       default:
-        return <TodayView onReferenceClick={handleReferenceClick} />;
+        return <TodayView
+          onReferenceClick={handleReferenceClick}
+          currentDate={currentDate}
+          onDateChange={setCurrentDate}
+        />;
     }
   };
 

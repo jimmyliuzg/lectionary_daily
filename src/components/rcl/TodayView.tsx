@@ -1,141 +1,178 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ScriptureRenderer } from './ScriptureRenderer';
 import {
-    getReadingsForDate,
-    formatDisplayDate,
-    formatDateKey,
-    type DayReading
+  getReadingsForDate,
+  formatDisplayDate,
+  formatDateKey,
+  type DayReading
 } from './lib/lectionary';
+import { getVersesByParsedReference, type Verse } from '../../lib/rcl/db';
+import { parseReference } from './lib/references';
 
 interface TodayViewProps {
-    onReferenceClick?: (ref: string) => void;
+  onReferenceClick?: (ref: string) => void;
+  currentDate: Date;
+  onDateChange: (date: Date) => void;
 }
 
-export function TodayView({ onReferenceClick }: TodayViewProps) {
-    const [currentDate, setCurrentDate] = useState(new Date());
-    const [readings, setReadings] = useState<DayReading | null>(null);
-    const containerRef = useRef<HTMLDivElement>(null);
-    const touchStartX = useRef<number>(0);
-    const touchEndX = useRef<number>(0);
+export function TodayView({ onReferenceClick, currentDate, onDateChange }: TodayViewProps) {
+  const [readings, setReadings] = useState<DayReading | null>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const touchStartX = useRef<number>(0);
+  const touchEndX = useRef<number>(0);
 
-    // Load readings for current date
-    useEffect(() => {
-        const dayReadings = getReadingsForDate(currentDate);
-        setReadings(dayReadings);
-    }, [currentDate]);
+  const [readingVerses, setReadingVerses] = useState<Record<string, Verse[]>>({});
+  const [isLoadingReadings, setIsLoadingReadings] = useState(true);
 
-    // Navigate to previous day
-    const goToPrevDay = () => {
-        const newDate = new Date(currentDate);
-        newDate.setDate(newDate.getDate() - 1);
-        setCurrentDate(newDate);
-    };
+  // Load readings and their verses for current date
+  useEffect(() => {
+    const loadData = async () => {
+      setIsLoadingReadings(true);
+      const dayReadings = getReadingsForDate(currentDate);
+      setReadings(dayReadings);
 
-    // Navigate to next day
-    const goToNextDay = () => {
-        const newDate = new Date(currentDate);
-        newDate.setDate(newDate.getDate() + 1);
-        setCurrentDate(newDate);
-    };
+      if (dayReadings) {
+        const versesMap: Record<string, Verse[]> = {};
 
-    // Touch handlers for swipe navigation
-    const handleTouchStart = (e: React.TouchEvent) => {
-        touchStartX.current = e.touches[0].clientX;
-    };
-
-    const handleTouchMove = (e: React.TouchEvent) => {
-        touchEndX.current = e.touches[0].clientX;
-    };
-
-    const handleTouchEnd = () => {
-        const diff = touchStartX.current - touchEndX.current;
-        const threshold = 50;
-
-        if (diff > threshold) {
-            // Swiped left - go to next day
-            goToNextDay();
-        } else if (diff < -threshold) {
-            // Swiped right - go to previous day
-            goToPrevDay();
-        }
-    };
-
-    // Keyboard navigation
-    useEffect(() => {
-        const handleKeyDown = (e: KeyboardEvent) => {
-            if (e.key === 'ArrowLeft') {
-                goToPrevDay();
-            } else if (e.key === 'ArrowRight') {
-                goToNextDay();
+        await Promise.all(dayReadings.readings.map(async (reading) => {
+          const parsed = parseReference(reading.reference);
+          if (parsed) {
+            try {
+              const verses = await getVersesByParsedReference(parsed);
+              versesMap[reading.reference] = verses;
+            } catch (e) {
+              console.error(`Failed to load verses for ${reading.reference}:`, e);
             }
-        };
+          }
+        }));
 
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [currentDate]);
+        setReadingVerses(versesMap);
+      }
+      setIsLoadingReadings(false);
+    };
 
-    const isToday = formatDateKey(currentDate) === formatDateKey(new Date());
+    loadData();
+  }, [currentDate]);
 
-    return (
-        <div
-            ref={containerRef}
-            className="today-view"
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
+  // Navigate to previous day
+  const goToPrevDay = () => {
+    const newDate = new Date(currentDate);
+    newDate.setDate(newDate.getDate() - 1);
+    onDateChange(newDate);
+  };
+
+  // Navigate to next day
+  const goToNextDay = () => {
+    const newDate = new Date(currentDate);
+    newDate.setDate(newDate.getDate() + 1);
+    onDateChange(newDate);
+  };
+
+  // Touch handlers for swipe navigation
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    touchEndX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = () => {
+    const diff = touchStartX.current - touchEndX.current;
+    const threshold = 50;
+
+    if (diff > threshold) {
+      // Swiped left - go to next day
+      goToNextDay();
+    } else if (diff < -threshold) {
+      // Swiped right - go to previous day
+      goToPrevDay();
+    }
+  };
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        goToPrevDay();
+      } else if (e.key === 'ArrowRight') {
+        goToNextDay();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [currentDate]);
+
+  const isToday = formatDateKey(currentDate) === formatDateKey(new Date());
+
+  return (
+    <div
+      ref={containerRef}
+      className="today-view"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Date Header */}
+      <header className="today-header">
+        <button
+          className="nav-btn prev-btn"
+          onClick={goToPrevDay}
+          aria-label="Previous day"
         >
-            {/* Date Header */}
-            <header className="today-header">
-                <button
-                    className="nav-btn prev-btn"
-                    onClick={goToPrevDay}
-                    aria-label="Previous day"
-                >
-                    <ChevronLeft />
-                </button>
+          <ChevronLeft />
+        </button>
 
-                <div className="date-info">
-                    {isToday && <span className="today-badge">Today</span>}
-                    <h1 className="display-date">{formatDisplayDate(currentDate)}</h1>
-                    {readings?.dayName && (
-                        <h2 className="liturgical-day">{readings.dayName}</h2>
-                    )}
-                </div>
+        <div className="date-info">
+          {isToday && <span className="today-badge">Today</span>}
+          <h1 className="display-date">{formatDisplayDate(currentDate)}</h1>
+          {readings?.dayName && (
+            <h2 className="liturgical-day">{readings.dayName}</h2>
+          )}
+        </div>
 
-                <button
-                    className="nav-btn next-btn"
-                    onClick={goToNextDay}
-                    aria-label="Next day"
-                >
-                    <ChevronRight />
-                </button>
-            </header>
+        <button
+          className="nav-btn next-btn"
+          onClick={goToNextDay}
+          aria-label="Next day"
+        >
+          <ChevronRight />
+        </button>
+      </header>
 
-            {/* Readings */}
-            <main className="readings-container">
-                {readings && readings.readings.length > 0 ? (
-                    readings.readings.map((reading, index) => (
-                        <ScriptureRenderer
-                            key={`${reading.type}-${index}`}
-                            type={reading.type}
-                            reference={reading.reference}
-                            onReferenceClick={onReferenceClick}
-                        />
-                    ))
-                ) : (
-                    <div className="no-readings">
-                        <p>No readings available for this date.</p>
-                        <p className="hint">Try navigating to a different day using the arrows or swiping.</p>
-                    </div>
-                )}
-            </main>
+      {/* Readings */}
+      <main className="readings-container">
+        {isLoadingReadings ? (
+          <div className="loading-state">
+            <div className="skeleton-reading"></div>
+            <div className="skeleton-reading"></div>
+            <div className="skeleton-reading"></div>
+          </div>
+        ) : readings && readings.readings.length > 0 ? (
+          readings.readings.map((reading, index) => (
+            <ScriptureRenderer
+              key={`${reading.type}-${index}`}
+              type={reading.type}
+              reference={reading.reference}
+              verses={readingVerses[reading.reference]}
+              onReferenceClick={onReferenceClick}
+            />
+          ))
+        ) : (
+          <div className="no-readings">
+            <p>No readings available for this date.</p>
+            <p className="hint">Try navigating to a different day using the arrows or swiping.</p>
+          </div>
+        )}
+      </main>
 
-            {/* Swipe hint for mobile */}
-            <div className="swipe-hint">
-                <span>← Swipe to navigate →</span>
-            </div>
+      {/* Swipe hint for mobile */}
+      <div className="swipe-hint">
+        <span>← Swipe to navigate →</span>
+      </div>
 
-            <style>{`
+      <style>{`
         .today-view {
           min-height: 100vh;
           padding: 1rem;
@@ -229,6 +266,26 @@ export function TodayView({ onReferenceClick }: TodayViewProps) {
         .no-readings p {
           margin: 0.5rem 0;
         }
+
+        .loading-state {
+          display: flex;
+          flex-direction: column;
+          gap: 2rem;
+          padding: 1rem 0;
+        }
+
+        .skeleton-reading {
+          height: 200px;
+          background: var(--surface-bg, #F0F0F2);
+          border-radius: 12px;
+          animation: pulse 1.5s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+          0% { opacity: 0.6; }
+          50% { opacity: 1; }
+          100% { opacity: 0.6; }
+        }
         
         .hint {
           font-size: 0.875rem;
@@ -287,25 +344,25 @@ export function TodayView({ onReferenceClick }: TodayViewProps) {
           background: rgba(255, 255, 255, 0.15);
         }
       `}</style>
-        </div>
-    );
+    </div>
+  );
 }
 
 // Chevron icons
 function ChevronLeft() {
-    return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="15 18 9 12 15 6" />
-        </svg>
-    );
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="15 18 9 12 15 6" />
+    </svg>
+  );
 }
 
 function ChevronRight() {
-    return (
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="9 18 15 12 9 6" />
-        </svg>
-    );
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <polyline points="9 18 15 12 9 6" />
+    </svg>
+  );
 }
 
 export default TodayView;

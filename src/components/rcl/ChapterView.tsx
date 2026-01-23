@@ -1,14 +1,5 @@
-import React from 'react';
-
-// Reusing types roughly, but simpler for display
-interface Verse {
-    uvid: number;
-    ref: string;
-    book: string;
-    chapter: number;
-    verse: number;
-    text: string;
-}
+import React, { useState, useEffect } from 'react';
+import { getVersesForChapter, type Verse } from '../../lib/rcl/db';
 
 interface ChapterViewProps {
     bookId: string;
@@ -25,13 +16,36 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
     onNavigate,
     onBack
 }) => {
-    // Filter verses for this chapter
-    // Note: in a real app this would be an indexed database query
-    const verses = bibleData.verses.filter(
-        v => v.ref.startsWith(`${bookId}.${chapter}.`)
-    );
+    const [verses, setVerses] = useState<Verse[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    // Determine current book name from the first verse or lookup (simplified for now)
+    useEffect(() => {
+        const loadVerses = async () => {
+            setIsLoading(true);
+            try {
+                const dbVerses = await getVersesForChapter(`${bookId}.${chapter}`);
+                if (dbVerses && dbVerses.length > 0) {
+                    setVerses(dbVerses);
+                } else {
+                    // Fallback to prop data
+                    const filtered = bibleData.verses.filter(
+                        (v: Verse) => v.ref.startsWith(`${bookId}.${chapter}.`)
+                    );
+                    setVerses(filtered);
+                }
+            } catch (e) {
+                console.error('Failed to load from DB:', e);
+                const filtered = bibleData.verses.filter(
+                    (v: Verse) => v.ref.startsWith(`${bookId}.${chapter}.`)
+                );
+                setVerses(filtered);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        loadVerses();
+    }, [bookId, chapter, bibleData]);
+
     const bookName = verses.length > 0 ? verses[0].book : bookId;
 
     return (
@@ -51,7 +65,9 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
 
             {/* Content */}
             <div className="flex-1 overflow-y-auto p-4 max-w-2xl mx-auto w-full font-serif leading-relaxed text-lg">
-                {verses.length > 0 ? (
+                {isLoading ? (
+                    <div className="text-center py-20 text-gray-400">Loading chapter...</div>
+                ) : verses.length > 0 ? (
                     <div className="space-y-4">
                         {verses.map((verse) => (
                             <span key={verse.uvid}>
@@ -65,8 +81,7 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                     </div>
                 ) : (
                     <div className="text-center py-20 text-gray-500">
-                        <p>Content for {bookName} {chapter} not available in this sample.</p>
-                        <p className="text-sm mt-2">(This is a dev preview with limited data)</p>
+                        <p>Content for {bookName} {chapter} not available.</p>
                     </div>
                 )}
 
@@ -90,3 +105,5 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
         </div>
     );
 };
+
+export default ChapterView;
