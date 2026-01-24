@@ -64,20 +64,20 @@ export const BibleBrowser: React.FC<BibleBrowserProps> = ({ onNavigate, bibleDat
             <div className="flex-1 overflow-y-auto p-4">
                 {selectedBook ? (
                     // Chapter Selection View
-                    <div className="animate-fade-in">
+                    <div className="animate-fade-in max-w-4xl mx-auto">
                         <button
                             onClick={() => setSelectedBook(null)}
-                            className="mb-4 flex items-center text-rcl-accent hover:underline font-serif"
+                            className="mb-2 flex items-center text-rcl-accent hover:underline font-serif text-sm opacity-80"
                         >
                             ← Back to Books
                         </button>
-                        <h2 className="text-2xl font-serif font-bold mb-6 text-center">{selectedBook.name}</h2>
-                        <div className="grid grid-cols-5 gap-3 animate-fade-in pb-12">
+                        <h2 className="text-xl font-serif font-bold mb-4 text-center">{selectedBook.name}</h2>
+                        <div className="grid grid-cols-6 sm:grid-cols-8 md:grid-cols-10 lg:grid-cols-12 gap-2 animate-fade-in pb-12">
                             {Array.from({ length: selectedBook.chapters }, (_, i) => i + 1).map((chapter) => (
                                 <button
                                     key={chapter}
                                     onClick={() => onNavigate(selectedBook.id, chapter)}
-                                    className="aspect-square flex items-center justify-center rounded-xl bg-rcl-primary/5 dark:bg-white/5 border border-rcl-primary/10 dark:border-white/10 hover:border-rcl-secondary/50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg font-serif text-xl font-medium text-rcl-text hover:text-rcl-secondary"
+                                    className="aspect-square flex items-center justify-center rounded-lg bg-rcl-primary/5 dark:bg-white/5 border border-rcl-primary/10 dark:border-white/10 hover:border-rcl-secondary/70 transition-all duration-200 hover:scale-105 font-serif text-base font-medium text-rcl-text hover:text-rcl-secondary"
                                 >
                                     {chapter}
                                 </button>
