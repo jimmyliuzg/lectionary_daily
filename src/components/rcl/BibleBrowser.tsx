@@ -72,12 +72,12 @@ export const BibleBrowser: React.FC<BibleBrowserProps> = ({ onNavigate, bibleDat
                             ← Back to Books
                         </button>
                         <h2 className="text-2xl font-serif font-bold mb-6 text-center">{selectedBook.name}</h2>
-                        <div className="grid grid-cols-5 gap-4">
+                        <div className="grid grid-cols-5 gap-3 animate-fade-in pb-12">
                             {Array.from({ length: selectedBook.chapters }, (_, i) => i + 1).map((chapter) => (
                                 <button
                                     key={chapter}
                                     onClick={() => onNavigate(selectedBook.id, chapter)}
-                                    className="aspect-square flex items-center justify-center rounded-lg border border-rcl-primary/20 hover:bg-rcl-primary/10 hover:border-rcl-primary transition-colors font-serif text-lg"
+                                    className="aspect-square flex items-center justify-center rounded-xl bg-rcl-primary/5 dark:bg-white/5 border border-rcl-primary/10 dark:border-white/10 hover:border-rcl-secondary/50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg font-serif text-xl font-medium text-rcl-text hover:text-rcl-secondary"
                                 >
                                     {chapter}
                                 </button>
@@ -85,15 +85,20 @@ export const BibleBrowser: React.FC<BibleBrowserProps> = ({ onNavigate, bibleDat
                         </div>
                     </div>
                 ) : (
-                    // Book Selection View
-                    <div className="grid grid-cols-1 gap-2 animate-fade-in">
+                    // Book Selection View - Modern Grid Pattern
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 animate-fade-in pb-12">
                         {books.map((book) => (
                             <button
                                 key={book.id}
                                 onClick={() => setSelectedBook(book)}
-                                className="p-4 text-left rounded-lg hover:bg-rcl-primary/10 transition-colors font-serif text-xl border-b border-rcl-primary/10 last:border-0"
+                                className="group relative flex flex-col p-4 text-left rounded-xl bg-rcl-primary/5 dark:bg-white/5 border border-rcl-primary/10 dark:border-white/10 hover:border-rcl-secondary/50 transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg"
                             >
-                                {book.name}
+                                <span className="font-serif text-lg font-medium text-rcl-text group-hover:text-rcl-secondary transition-colors">
+                                    {book.name}
+                                </span>
+                                <span className="text-[0.65rem] uppercase tracking-widest opacity-40 mt-1 font-sans">
+                                    {book.chapters} Chapters
+                                </span>
                             </button>
                         ))}
                     </div>
