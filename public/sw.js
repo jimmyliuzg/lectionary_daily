@@ -1,7 +1,7 @@
 const CACHE_NAME = 'rcl-daily-v1';
 const ASSETS_TO_CACHE = [
-    '/rcl/',
-    '/rcl-manifest.json',
+    '/',
+    '/manifest.json',
     '/rcl-icon-192.png',
     '/rcl-icon-512.png',
     'https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap'
