@@ -1,0 +1,29 @@
+{
+    "year": "B",
+    "liturgicalYear": "2026-2027",
+    "readings": [
+        {
+            "date": "2026-11-29",
+            "dayName": "First Sunday of Advent",
+            "isSunday": true,
+            "readings": [
+                {
+                    "type": "First Reading",
+                    "reference": "Isaiah 64:1-9"
+                },
+                {
+                    "type": "Psalm",
+                    "reference": "Psalm 80:1-7, 17-19"
+                },
+                {
+                    "type": "Second Reading",
+                    "reference": "1 Corinthians 1:3-9"
+                },
+                {
+                    "type": "Gospel",
+                    "reference": "Mark 13:24-37"
+                }
+            ]
+        }
+    ]
+}

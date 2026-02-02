@@ -29,11 +29,15 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange }: Today
   const [readingContent, setReadingContent] = useState<Record<string, ReadingContent>>({});
   const [isLoadingReadings, setIsLoadingReadings] = useState(true);
 
+  // Scroll-based header visibility
+  const [headerVisible, setHeaderVisible] = useState(true);
+  const lastScrollY = useRef(0);
+
   // Load readings and their verses for current date
   useEffect(() => {
     const loadData = async () => {
       setIsLoadingReadings(true);
-      const dayReadings = getReadingsForDate(currentDate);
+      const dayReadings = await getReadingsForDate(currentDate);
       setReadings(dayReadings);
 
       if (dayReadings) {
@@ -114,6 +118,29 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange }: Today
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [currentDate]);
 
+  // Track scroll direction to hide/show header
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollingDown = currentScrollY > lastScrollY.current;
+      const atTop = currentScrollY < 50;
+
+      // Show header if at top or scrolling up, hide if scrolling down
+      if (atTop) {
+        setHeaderVisible(true);
+      } else if (scrollingDown && currentScrollY > 100) {
+        setHeaderVisible(false);
+      } else if (!scrollingDown) {
+        setHeaderVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   const isToday = formatDateKey(currentDate) === formatDateKey(new Date());
 
   return (
@@ -125,7 +152,7 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange }: Today
       onTouchEnd={handleTouchEnd}
     >
       {/* Date Header */}
-      <header className="today-header">
+      <header className={`today-header ${headerVisible ? '' : 'header-hidden'}`}>
         <button
           className="nav-btn prev-btn"
           onClick={goToPrevDay}
@@ -198,8 +225,21 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange }: Today
           padding: 1rem 0 2rem;
           position: sticky;
           top: 0;
-          background: inherit;
           z-index: 10;
+          transition: transform 0.3s ease, opacity 0.3s ease;
+          /* Frosted glass effect */
+          background: color-mix(in srgb, var(--rcl-background), transparent 10%);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          margin: -1rem -1rem 0 -1rem;
+          padding: 1rem 1rem 1.5rem 1rem;
+          border-bottom: 1px solid color-mix(in srgb, var(--rcl-text), transparent 90%);
+        }
+        
+        .today-header.header-hidden {
+          transform: translateY(-100%);
+          opacity: 0;
+          pointer-events: none;
         }
         
         .date-info {

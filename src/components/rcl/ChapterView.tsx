@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { getVersesForChapter, getStructuredChapter, type Verse, type ScriptureBlock } from '../../lib/rcl/db';
 import { ScriptureRenderer } from './ScriptureRenderer';
+import { getBookName } from './lib/references';
 
 interface ChapterViewProps {
     bookId: string;
@@ -20,6 +21,10 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
     const [verses, setVerses] = useState<Verse[]>([]);
     const [blocks, setBlocks] = useState<ScriptureBlock[] | null>(null);
     const [isLoading, setIsLoading] = useState(true);
+
+    // Scroll-based header visibility
+    const [headerVisible, setHeaderVisible] = useState(true);
+    const lastScrollY = useRef(0);
 
     useEffect(() => {
         const loadContent = async () => {
@@ -56,25 +61,128 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
         loadContent();
     }, [bookId, chapter, bibleData]);
 
-    const bookName = verses.length > 0 ? verses[0].book : (blocks ? bookId : 'Bible');
+    // Track scroll direction to hide/show header
+    useEffect(() => {
+        const handleScroll = () => {
+            const currentScrollY = window.scrollY;
+            const scrollingDown = currentScrollY > lastScrollY.current;
+            const atTop = currentScrollY < 50;
+
+            if (atTop) {
+                setHeaderVisible(true);
+            } else if (scrollingDown && currentScrollY > 100) {
+                setHeaderVisible(false);
+            } else if (!scrollingDown) {
+                setHeaderVisible(true);
+            }
+
+            lastScrollY.current = currentScrollY;
+        };
+
+        window.addEventListener('scroll', handleScroll, { passive: true });
+        return () => window.removeEventListener('scroll', handleScroll);
+    }, []);
+
+    // Use full book name (e.g., 'Genesis' instead of 'Gen')
+    const bookName = getBookName(bookId);
 
     return (
-        <div className="flex flex-col h-full bg-rcl-cream dark:bg-rcl-night text-rcl-ink dark:text-gray-100 transition-colors duration-300">
+        <div className="chapter-view-container">
+            <style>{`
+                .chapter-view-container {
+                    display: flex;
+                    flex-direction: column;
+                    min-height: 100vh;
+                    background: var(--rcl-background);
+                    color: var(--rcl-text);
+                    transition: colors 0.3s ease;
+                }
+                
+                .chapter-header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    padding: 1rem;
+                    position: sticky;
+                    top: 0;
+                    z-index: 10;
+                    transition: transform 0.3s ease, opacity 0.3s ease;
+                    /* Frosted glass effect */
+                    background: color-mix(in srgb, var(--rcl-background), transparent 10%);
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
+                    border-bottom: 1px solid color-mix(in srgb, var(--rcl-text), transparent 90%);
+                }
+                
+                .chapter-header.header-hidden {
+                    transform: translateY(-100%);
+                    opacity: 0;
+                    pointer-events: none;
+                }
+                
+                .back-btn {
+                    color: var(--rcl-secondary);
+                    font-family: 'Newsreader', Georgia, serif;
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                    font-size: 1rem;
+                }
+                
+                .back-btn:hover {
+                    text-decoration: underline;
+                }
+                
+                .chapter-title {
+                    font-family: 'Newsreader', Georgia, serif;
+                    font-size: 1.25rem;
+                    font-weight: 700;
+                    margin: 0;
+                }
+                
+                .chapter-content {
+                    flex: 1;
+                    padding: 1rem;
+                    max-width: 42rem;
+                    margin: 0 auto;
+                    width: 100%;
+                }
+                
+                .nav-footer {
+                    display: flex;
+                    justify-content: space-between;
+                    margin-top: 3rem;
+                    padding-top: 2rem;
+                    border-top: 1px solid color-mix(in srgb, var(--rcl-text), transparent 90%);
+                }
+                
+                .nav-footer button {
+                    padding: 0.5rem 1rem;
+                    border-radius: 0.5rem;
+                    background: transparent;
+                    border: none;
+                    color: var(--rcl-secondary);
+                    font-family: 'Newsreader', Georgia, serif;
+                    cursor: pointer;
+                    transition: background 0.2s ease;
+                }
+                
+                .nav-footer button:hover {
+                    background: color-mix(in srgb, var(--rcl-secondary), transparent 85%);
+                }
+            `}</style>
 
-            {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800 bg-rcl-cream dark:bg-rcl-night sticky top-0 z-10">
-                <button
-                    onClick={onBack}
-                    className="text-rcl-gold font-serif hover:underline"
-                >
+            {/* Header with frosted glass */}
+            <header className={`chapter-header ${headerVisible ? '' : 'header-hidden'}`}>
+                <button onClick={onBack} className="back-btn">
                     ← {bookName}
                 </button>
-                <h2 className="text-xl font-serif font-bold">Chapter {chapter}</h2>
-                <div className="w-16"></div> {/* Spacer for alignment */}
-            </div>
+                <h2 className="chapter-title">Chapter {chapter}</h2>
+                <div style={{ width: '4rem' }}></div> {/* Spacer for alignment */}
+            </header>
 
             {/* Content */}
-            <div className="flex-1 overflow-y-auto p-4 max-w-2xl mx-auto w-full">
+            <div className="chapter-content">
                 {isLoading ? (
                     <div className="text-center py-20 text-gray-400">Loading chapter...</div>
                 ) : (blocks || verses.length > 0) ? (
@@ -91,21 +199,20 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                 )}
 
                 {/* Navigation Footer */}
-                <div className="flex justify-between mt-12 pt-8 border-t border-gray-100 dark:border-gray-800">
+                <div className="nav-footer">
                     <button
                         onClick={() => onNavigate(bookId, Math.max(1, chapter - 1))}
-                        className={`px-4 py-2 rounded hover:bg-rcl-parchment dark:hover:bg-gray-800 text-rcl-gold transition-colors font-serif ${chapter <= 1 ? 'invisible' : ''}`}
+                        style={{ visibility: chapter <= 1 ? 'hidden' : 'visible' }}
                     >
                         ← Previous
                     </button>
                     <button
                         onClick={() => onNavigate(bookId, chapter + 1)}
-                        className="px-4 py-2 rounded hover:bg-rcl-parchment dark:hover:bg-gray-800 text-rcl-gold transition-colors font-serif"
                     >
                         Next →
                     </button>
                 </div>
-                <div className="h-20"></div> {/* Bottom padding */}
+                <div style={{ height: '5rem' }}></div> {/* Bottom padding */}
             </div>
         </div>
     );

@@ -1,0 +1,29 @@
+{
+    "year": "C",
+    "liturgicalYear": "2027-2028",
+    "readings": [
+        {
+            "date": "2027-11-28",
+            "dayName": "First Sunday of Advent",
+            "isSunday": true,
+            "readings": [
+                {
+                    "type": "First Reading",
+                    "reference": "Jeremiah 33:14-16"
+                },
+                {
+                    "type": "Psalm",
+                    "reference": "Psalm 25:1-10"
+                },
+                {
+                    "type": "Second Reading",
+                    "reference": "1 Thessalonians 3:9-13"
+                },
+                {
+                    "type": "Gospel",
+                    "reference": "Luke 21:25-36"
+                }
+            ]
+        }
+    ]
+}
