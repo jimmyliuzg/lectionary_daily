@@ -1,6 +1,8 @@
-# RCL Daily - Daily Lectionary PWA
+# Lectionary Daily PWA
 
 A beautiful, distraction-free Progressive Web App for daily liturgical readings following the Revised Common Lectionary (RCL), featuring the complete Berean Standard Bible.
+
+Try it here: https://lectionary-daily.pages.dev/
 
 ## ✨ Features
 
@@ -22,44 +24,13 @@ A beautiful, distraction-free Progressive Web App for daily liturgical readings 
 - **Dark Mode**: Seamless system-based dark/light mode transitions
 - **Typography**: Premium serif fonts (Newsreader, Cabin) for optimal readability
 - **Responsive**: Optimized for mobile, tablet, and desktop
+- **Mobile-Friendly**: Includes swipe based gestures for mobile friendly navigation
 
 ### 🔧 Technical Highlights
 - **PWA**: Installable, full offline support via Service Worker
 - **IndexedDB**: Background Bible hydration for performance
 - **Year-Agnostic**: Automatically selects the correct liturgical year
 - **Fast Loading**: Astro static site generation with React islands
-
-## 🚀 Getting Started
-
-### Development
-
-```bash
-# Install dependencies
-npm install
-
-# Start dev server (localhost:4321)
-npm run dev
-
-# Build for production
-npm run build
-
-# Preview production build
-npm run preview
-```
-
-### Production
-
-The app is designed to be deployed to any static hosting service:
-
-```bash
-npm run build
-# Deploy the ./dist/ folder to your hosting provider
-```
-
-Recommended hosts:
-- **Cloudflare Pages**: Zero-config deployment
-- **Vercel**: Astro-optimized
-- **Netlify**: Instant deploys
 
 ## 📂 Project Structure
 
@@ -93,8 +64,6 @@ Recommended hosts:
 The app includes complete daily readings for the RCL three-year cycle:
 
 - **Year A (2025-2026)**: Sundays, major feasts, and all weekdays
-- **Year B (2026-2027)**: Placeholder (ready for population)
-- **Year C (2027-2028)**: Placeholder (ready for population)
 
 Readings include:
 - Psalm of the day
