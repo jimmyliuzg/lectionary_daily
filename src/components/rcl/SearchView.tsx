@@ -114,7 +114,6 @@ export function SearchView({ onNavigate }: SearchViewProps) {
           </div>
         ) : (
           <div className="search-empty">
-            <SearchIllustration />
             <p>Search over 30,000 verses in the Berean Standard Bible</p>
           </div>
         )}
@@ -132,8 +131,14 @@ export function SearchView({ onNavigate }: SearchViewProps) {
           padding: 1rem 0 2rem;
           position: sticky;
           top: 0;
-          background: inherit;
           z-index: 10;
+          /* Frosted glass effect matching TodayView */
+          background: color-mix(in srgb, var(--rcl-bg), transparent 10%);
+          backdrop-filter: blur(12px);
+          -webkit-backdrop-filter: blur(12px);
+          margin: -1rem -1rem 0 -1rem;
+          padding: 1rem 1rem 1.5rem 1rem;
+          border-bottom: 1px solid color-mix(in srgb, var(--rcl-text), transparent 90%);
         }
         
         .search-header h1 {
@@ -141,17 +146,17 @@ export function SearchView({ onNavigate }: SearchViewProps) {
           font-size: 1.5rem;
           font-weight: 500;
           margin: 0 0 1.5rem;
-          color: var(--text-primary, #1A1A1A);
+          color: var(--rcl-text);
           text-align: center;
         }
         
         .search-box-container {
           display: flex;
           gap: 0.5rem;
-          background: var(--surface-bg, #F5F5F7);
+          background: color-mix(in srgb, var(--rcl-primary), transparent 92%);
           padding: 0.5rem;
           border-radius: 12px;
-          border: 1px solid var(--border-color, rgba(0,0,0,0.1));
+          border: 1px solid color-mix(in srgb, var(--rcl-primary), transparent 80%);
           box-shadow: 0 2px 8px rgba(0,0,0,0.05);
         }
         
@@ -162,8 +167,13 @@ export function SearchView({ onNavigate }: SearchViewProps) {
           padding: 0.5rem 0.75rem;
           font-family: 'Cabin', system-ui, sans-serif;
           font-size: 1rem;
-          color: var(--text-primary, #1A1A1A);
+          color: var(--rcl-text);
           outline: none;
+        }
+
+        .search-input::placeholder {
+          color: var(--rcl-text);
+          opacity: 0.45;
         }
         
         .search-btn {
@@ -173,15 +183,16 @@ export function SearchView({ onNavigate }: SearchViewProps) {
           width: 40px;
           height: 40px;
           border: none;
-          background: #B8860B;
-          color: white;
+          background: var(--rcl-accent);
+          color: var(--rcl-bg);
           border-radius: 8px;
           cursor: pointer;
-          transition: background 0.2s ease;
+          transition: opacity 0.2s ease, transform 0.2s ease;
         }
         
         .search-btn:hover {
-          background: #9A7209;
+          opacity: 0.85;
+          transform: translateY(-1px);
         }
         
         .search-btn svg {
@@ -196,8 +207,10 @@ export function SearchView({ onNavigate }: SearchViewProps) {
         }
         
         .results-count {
+          font-family: 'Cabin', system-ui, sans-serif;
           font-size: 0.8rem;
-          color: var(--text-secondary, #666666);
+          color: var(--rcl-text);
+          opacity: 0.6;
           text-transform: uppercase;
           letter-spacing: 0.05em;
           margin-bottom: 0.5rem;
@@ -209,17 +222,17 @@ export function SearchView({ onNavigate }: SearchViewProps) {
           align-items: flex-start;
           text-align: left;
           padding: 1.25rem;
-          background: var(--surface-bg, #FFFFFF);
-          border: 1px solid var(--border-color, rgba(0,0,0,0.1));
+          background: color-mix(in srgb, var(--rcl-primary), transparent 93%);
+          border: 1px solid color-mix(in srgb, var(--rcl-primary), transparent 82%);
           border-radius: 12px;
           cursor: pointer;
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
+          transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
         }
         
         .result-item:hover {
           transform: translateY(-2px);
           box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-          border-color: #B8860B;
+          border-color: var(--rcl-accent);
         }
         
         .result-meta {
@@ -230,30 +243,33 @@ export function SearchView({ onNavigate }: SearchViewProps) {
           font-family: 'Cabin', system-ui, sans-serif;
           font-size: 0.875rem;
           font-weight: 600;
-          color: #B8860B;
+          color: var(--rcl-accent);
         }
         
         .result-text {
           font-family: 'Newsreader', Georgia, serif;
           font-size: 1.0625rem;
           line-height: 1.6;
-          color: var(--text-primary, #1A1A1A);
+          color: var(--rcl-text);
         }
         
         .no-results, .search-empty {
           text-align: center;
           padding: 4rem 1rem;
-          color: var(--text-secondary, #666666);
+          color: var(--rcl-text);
+          opacity: 0.6;
         }
         
         .search-empty svg {
-          opacity: 0.2;
+          opacity: 0.3;
           margin-bottom: 1.5rem;
+          color: var(--rcl-secondary);
         }
         
         .search-empty p {
           max-width: 300px;
           margin: 0 auto;
+          font-family: 'Cabin', system-ui, sans-serif;
         }
 
         @media (min-width: 768px) {
@@ -264,29 +280,6 @@ export function SearchView({ onNavigate }: SearchViewProps) {
           .search-header h1 {
             font-size: 2rem;
           }
-        }
-        
-        /* Dark mode */
-        .dark .search-box-container {
-          background: #1A1A1A;
-          border-color: rgba(255,255,255,0.1);
-        }
-        
-        .dark .search-input {
-          color: #E8E8E8;
-        }
-        
-        .dark .result-item {
-          background: #1A1A1A;
-          border-color: rgba(255,255,255,0.1);
-        }
-        
-        .dark .result-text {
-          color: #E8E8E8;
-        }
-        
-        .dark .results-count {
-          color: #999999;
         }
       `}</style>
     </div>
@@ -302,14 +295,4 @@ function SearchIcon() {
   );
 }
 
-function SearchIllustration() {
-  return (
-    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M4 19.5z" />
-      <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
-      <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
-      <circle cx="12" cy="10" r="3" />
-      <line x1="14.5" y1="12.5" x2="17" y2="15" />
-    </svg>
-  );
-}
+

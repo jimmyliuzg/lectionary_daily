@@ -143,7 +143,7 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                     z-index: 10;
                     transition: transform 0.3s ease, opacity 0.3s ease;
                     /* Frosted glass effect */
-                    background: color-mix(in srgb, var(--rcl-background), transparent 10%);
+                    background: color-mix(in srgb, var(--rcl-bg), transparent 10%);
                     backdrop-filter: blur(12px);
                     -webkit-backdrop-filter: blur(12px);
                     border-bottom: 1px solid color-mix(in srgb, var(--rcl-text), transparent 90%);
@@ -157,22 +157,63 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                 
                 .back-btn {
                     color: var(--rcl-secondary);
-                    font-family: 'Newsreader', Georgia, serif;
+                    font-family: 'Cabin', system-ui, sans-serif;
+                    font-size: 0.875rem;
                     background: none;
                     border: none;
                     cursor: pointer;
-                    font-size: 1rem;
+                    padding: 0.25rem 0.5rem;
+                    border-radius: 6px;
+                    transition: background 0.2s ease;
+                    white-space: nowrap;
                 }
                 
                 .back-btn:hover {
-                    text-decoration: underline;
+                    background: color-mix(in srgb, var(--rcl-secondary), transparent 88%);
                 }
                 
                 .chapter-title {
                     font-family: 'Newsreader', Georgia, serif;
-                    font-size: 1.25rem;
-                    font-weight: 700;
+                    font-size: 1.125rem;
+                    font-weight: 500;
                     margin: 0;
+                    text-align: center;
+                    flex: 1;
+                    padding: 0 0.5rem;
+                }
+
+                .chapter-nav-btns {
+                    display: flex;
+                    gap: 0.25rem;
+                    align-items: center;
+                }
+                
+                .chapter-nav-btn {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 36px;
+                    height: 36px;
+                    border: none;
+                    background: transparent;
+                    color: var(--rcl-text);
+                    cursor: pointer;
+                    border-radius: 50%;
+                    transition: background 0.2s ease;
+                }
+
+                .chapter-nav-btn:disabled {
+                    opacity: 0.2;
+                    cursor: default;
+                }
+                
+                .chapter-nav-btn:not(:disabled):hover {
+                    background: color-mix(in srgb, var(--rcl-secondary), transparent 85%);
+                }
+                
+                .chapter-nav-btn svg {
+                    width: 22px;
+                    height: 22px;
                 }
                 
                 .chapter-content {
@@ -182,29 +223,6 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                     margin: 0 auto;
                     width: 100%;
                 }
-                
-                .nav-footer {
-                    display: flex;
-                    justify-content: space-between;
-                    margin-top: 3rem;
-                    padding-top: 2rem;
-                    border-top: 1px solid color-mix(in srgb, var(--rcl-text), transparent 90%);
-                }
-                
-                .nav-footer button {
-                    padding: 0.5rem 1rem;
-                    border-radius: 0.5rem;
-                    background: transparent;
-                    border: none;
-                    color: var(--rcl-secondary);
-                    font-family: 'Newsreader', Georgia, serif;
-                    cursor: pointer;
-                    transition: background 0.2s ease;
-                }
-                
-                .nav-footer button:hover {
-                    background: color-mix(in srgb, var(--rcl-secondary), transparent 85%);
-                }
             `}</style>
 
             {/* Header with frosted glass */}
@@ -212,8 +230,24 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                 <button onClick={onBack} className="back-btn">
                     ← {bookName}
                 </button>
-                <h2 className="chapter-title">Chapter {chapter}</h2>
-                <div style={{ width: '4rem' }}></div> {/* Spacer for alignment */}
+                <h2 className="chapter-title">{bookName} {chapter}</h2>
+                <div className="chapter-nav-btns">
+                    <button
+                        className="chapter-nav-btn"
+                        onClick={() => onNavigate(bookId, chapter - 1)}
+                        disabled={chapter <= 1}
+                        aria-label="Previous chapter"
+                    >
+                        <ChevronLeft />
+                    </button>
+                    <button
+                        className="chapter-nav-btn"
+                        onClick={() => onNavigate(bookId, chapter + 1)}
+                        aria-label="Next chapter"
+                    >
+                        <ChevronRight />
+                    </button>
+                </div>
             </header>
 
             {/* Content */}
@@ -233,24 +267,26 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                     </div>
                 )}
 
-                {/* Navigation Footer */}
-                <div className="nav-footer">
-                    <button
-                        onClick={() => onNavigate(bookId, Math.max(1, chapter - 1))}
-                        style={{ visibility: chapter <= 1 ? 'hidden' : 'visible' }}
-                    >
-                        ← Previous
-                    </button>
-                    <button
-                        onClick={() => onNavigate(bookId, chapter + 1)}
-                    >
-                        Next →
-                    </button>
-                </div>
                 <div style={{ height: '5rem' }}></div> {/* Bottom padding */}
             </div>
         </div>
     );
 };
+
+function ChevronLeft() {
+    return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="15 18 9 12 15 6" />
+        </svg>
+    );
+}
+
+function ChevronRight() {
+    return (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="9 18 15 12 9 6" />
+        </svg>
+    );
+}
 
 export default ChapterView;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { TodayView } from './TodayView';
 import { RCLSidebar } from './RCLSidebar';
 import { BibleBrowser } from './BibleBrowser';
@@ -18,6 +18,8 @@ export function RCLApp() {
   const [isDark, setIsDark] = useState(false);
   const [fontSize, setFontSize] = useState<FontSize>('medium');
   const [isOfflineReady, setIsOfflineReady] = useState(false);
+  const [menuVisible, setMenuVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   // Bible Navigation State
   const [selectedBookId, setSelectedBookId] = useState<string>('');
@@ -63,6 +65,26 @@ export function RCLApp() {
     };
 
     checkHydration();
+
+    // Scroll listener to hide/show the hamburger menu button
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const scrollingDown = currentScrollY > lastScrollY.current;
+      const atTop = currentScrollY < 50;
+
+      if (atTop) {
+        setMenuVisible(true);
+      } else if (scrollingDown && currentScrollY > 100) {
+        setMenuVisible(false);
+      } else if (!scrollingDown) {
+        setMenuVisible(true);
+      }
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const toggleDarkMode = () => {
@@ -157,7 +179,7 @@ export function RCLApp() {
     <div className="rcl-app">
       {/* Hamburger menu button (mobile) */}
       <button
-        className="menu-btn"
+        className={`menu-btn ${menuVisible ? '' : 'menu-btn-hidden'}`}
         onClick={() => setSidebarOpen(true)}
         aria-label="Open menu"
       >
@@ -211,6 +233,12 @@ export function RCLApp() {
           background: color-mix(in srgb, var(--rcl-primary), transparent 92%);
           box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
           transform: translateY(-1px);
+        }
+
+        .menu-btn-hidden {
+          opacity: 0;
+          transform: translateY(-150%);
+          pointer-events: none;
         }
         
         .menu-btn svg {
