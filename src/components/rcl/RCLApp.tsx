@@ -10,11 +10,13 @@ import bibleData from '../../data/bible-bsb.json';
 import bibleStructured from '../../data/bible-structured.json';
 
 type View = 'today' | 'bible' | 'chapter-view' | 'search' | 'calendar';
+export type FontSize = 'small' | 'medium' | 'large' | 'xlarge';
 
 export function RCLApp() {
   const [currentView, setCurrentView] = useState<View>('today');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
+  const [fontSize, setFontSize] = useState<FontSize>('medium');
   const [isOfflineReady, setIsOfflineReady] = useState(false);
 
   // Bible Navigation State
@@ -34,6 +36,15 @@ export function RCLApp() {
     } else if (typeof window !== 'undefined' && window.matchMedia('(prefers-color-scheme: dark)').matches) {
       setIsDark(true);
       document.body.classList.add('dark');
+    }
+
+    // Initialize font size
+    const savedFontSize = localStorage.getItem('rcl-font-size') as FontSize;
+    if (savedFontSize && ['small', 'medium', 'large', 'xlarge'].includes(savedFontSize)) {
+      setFontSize(savedFontSize);
+      document.body.classList.add(`text-size-${savedFontSize}`);
+    } else {
+      document.body.classList.add('text-size-medium');
     }
 
     // Check offline readiness
@@ -65,6 +76,13 @@ export function RCLApp() {
       document.body.classList.remove('dark');
       localStorage.setItem('rcl-theme', 'light');
     }
+  };
+
+  const changeFontSize = (newSize: FontSize) => {
+    document.body.classList.remove(`text-size-${fontSize}`);
+    document.body.classList.add(`text-size-${newSize}`);
+    setFontSize(newSize);
+    localStorage.setItem('rcl-font-size', newSize);
   };
 
   const handleReferenceClick = (ref: string) => {
@@ -154,6 +172,8 @@ export function RCLApp() {
         onClose={() => setSidebarOpen(false)}
         isDark={isDark}
         onToggleDark={toggleDarkMode}
+        fontSize={fontSize}
+        onChangeFontSize={changeFontSize}
         isOfflineReady={isOfflineReady}
       />
 

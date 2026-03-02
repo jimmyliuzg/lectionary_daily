@@ -22,7 +22,10 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
     const [blocks, setBlocks] = useState<ScriptureBlock[] | null>(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    // Scroll-based header visibility
+    const touchStartX = useRef<number>(0);
+    const touchEndX = useRef<number>(0);
+
+    // Track scroll direction to hide/show header
     const [headerVisible, setHeaderVisible] = useState(true);
     const lastScrollY = useRef(0);
 
@@ -61,6 +64,33 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
         loadContent();
     }, [bookId, chapter, bibleData]);
 
+    // Touch handlers for swipe navigation
+    const handleTouchStart = (e: React.TouchEvent) => {
+        touchStartX.current = e.touches[0].clientX;
+        touchEndX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchMove = (e: React.TouchEvent) => {
+        touchEndX.current = e.touches[0].clientX;
+    };
+
+    const handleTouchEnd = () => {
+        if (touchEndX.current === touchStartX.current) return;
+
+        const diff = touchStartX.current - touchEndX.current;
+        const threshold = 50;
+
+        if (diff > threshold) {
+            // Swiped left - go to next chapter
+            onNavigate(bookId, chapter + 1);
+        } else if (diff < -threshold) {
+            // Swiped right - go to previous chapter
+            if (chapter > 1) {
+                onNavigate(bookId, chapter - 1);
+            }
+        }
+    };
+
     // Track scroll direction to hide/show header
     useEffect(() => {
         const handleScroll = () => {
@@ -87,7 +117,12 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
     const bookName = getBookName(bookId);
 
     return (
-        <div className="chapter-view-container">
+        <div
+            className="chapter-view-container"
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
+        >
             <style>{`
                 .chapter-view-container {
                     display: flex;

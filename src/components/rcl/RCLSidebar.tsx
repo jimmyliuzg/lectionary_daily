@@ -1,4 +1,4 @@
-import React from 'react';
+import { type FontSize } from './RCLApp';
 
 type View = 'today' | 'bible' | 'chapter-view' | 'search' | 'calendar';
 
@@ -9,6 +9,8 @@ interface RCLSidebarProps {
   onClose: () => void;
   isDark: boolean;
   onToggleDark: () => void;
+  fontSize: FontSize;
+  onChangeFontSize: (size: FontSize) => void;
   isOfflineReady?: boolean;
 }
 
@@ -19,6 +21,8 @@ export function RCLSidebar({
   onClose,
   isDark,
   onToggleDark,
+  fontSize,
+  onChangeFontSize,
   isOfflineReady = false,
 }: RCLSidebarProps) {
   const handleNavClick = (view: View) => {
@@ -92,13 +96,50 @@ export function RCLSidebar({
 
         {/* Settings */}
         <div className="sidebar-settings">
-          <button
-            className="settings-item"
-            onClick={onToggleDark}
-          >
-            {isDark ? <SunIcon /> : <MoonIcon />}
-            <span>{isDark ? 'Light Mode' : 'Dark Mode'}</span>
-          </button>
+          <div className="settings-group">
+            <span className="settings-label">Appearance</span>
+            <button
+              className="settings-item"
+              onClick={onToggleDark}
+            >
+              {isDark ? <SunIcon /> : <MoonIcon />}
+              <span>{isDark ? 'Light Mode' : 'Dark Mode'}</span>
+            </button>
+          </div>
+
+          <div className="settings-group">
+            <span className="settings-label">Text Size</span>
+            <div className="font-size-controls">
+              <button
+                className={`font-btn small ${fontSize === 'small' ? 'active' : ''}`}
+                onClick={() => onChangeFontSize('small')}
+                aria-label="Small text"
+              >
+                A
+              </button>
+              <button
+                className={`font-btn medium ${fontSize === 'medium' ? 'active' : ''}`}
+                onClick={() => onChangeFontSize('medium')}
+                aria-label="Medium text"
+              >
+                A
+              </button>
+              <button
+                className={`font-btn large ${fontSize === 'large' ? 'active' : ''}`}
+                onClick={() => onChangeFontSize('large')}
+                aria-label="Large text"
+              >
+                A
+              </button>
+              <button
+                className={`font-btn xlarge ${fontSize === 'xlarge' ? 'active' : ''}`}
+                onClick={() => onChangeFontSize('xlarge')}
+                aria-label="Extra large text"
+              >
+                A
+              </button>
+            </div>
+          </div>
         </div>
 
         {/* Footer */}
@@ -258,6 +299,68 @@ export function RCLSidebar({
             width: 18px;
             height: 18px;
             opacity: 0.7;
+          }
+
+          .settings-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            padding: 0.5rem 1.25rem;
+            margin-bottom: 0.5rem;
+          }
+
+          .settings-label {
+            font-family: 'Cabin', system-ui, sans-serif;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--rcl-text);
+            opacity: 0.5;
+            font-weight: 600;
+          }
+
+          .settings-group .settings-item {
+            padding: 0.5rem 0;
+            border-radius: 0.375rem;
+          }
+
+          .font-size-controls {
+            display: flex;
+            background: color-mix(in srgb, var(--rcl-primary), transparent 90%);
+            border-radius: 0.5rem;
+            padding: 0.25rem;
+            margin-top: 0.25rem;
+          }
+
+          .font-btn {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 2.5rem;
+            border: none;
+            background: transparent;
+            color: var(--rcl-text);
+            font-family: 'Newsreader', Georgia, serif;
+            cursor: pointer;
+            border-radius: 0.375rem;
+            transition: all 0.2s ease;
+          }
+
+          .font-btn.small { font-size: 0.875rem; }
+          .font-btn.medium { font-size: 1rem; }
+          .font-btn.large { font-size: 1.125rem; }
+          .font-btn.xlarge { font-size: 1.25rem; }
+
+          .font-btn:hover {
+            background: color-mix(in srgb, var(--rcl-primary), transparent 85%);
+          }
+
+          .font-btn.active {
+            background: var(--rcl-bg);
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            font-weight: 600;
+            color: var(--rcl-secondary);
           }
           
           .sidebar-footer {

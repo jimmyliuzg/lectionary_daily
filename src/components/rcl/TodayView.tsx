@@ -85,6 +85,7 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange }: Today
   // Touch handlers for swipe navigation
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
+    touchEndX.current = e.touches[0].clientX; // Reset end X to avoid false swipes
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
@@ -92,6 +93,8 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange }: Today
   };
 
   const handleTouchEnd = () => {
+    if (touchEndX.current === touchStartX.current) return; // Ignore taps
+    
     const diff = touchStartX.current - touchEndX.current;
     const threshold = 50;
 
