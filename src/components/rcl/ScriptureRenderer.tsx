@@ -122,7 +122,7 @@ export function ScriptureRenderer({
         .reading-type {
           display: inline-block;
           font-family: 'Cabin', system-ui, sans-serif;
-          font-size: 0.7rem;
+          font-size: calc(0.7rem * var(--text-scale, 1));
           font-weight: 700;
           text-transform: uppercase;
           letter-spacing: 0.12em;
@@ -132,7 +132,7 @@ export function ScriptureRenderer({
         
         .scripture-reference {
           font-family: 'Newsreader', Georgia, serif;
-          font-size: 1.5rem;
+          font-size: calc(1.5rem * var(--text-scale, 1));
           font-weight: 500;
           color: var(--rcl-text);
           margin: 0;
@@ -140,7 +140,7 @@ export function ScriptureRenderer({
         
         .scripture-text {
           font-family: 'Newsreader', Georgia, serif;
-          font-size: 1.125rem;
+          font-size: calc(1rem * var(--text-scale, 1));
           line-height: 1.85;
           color: var(--rcl-text);
         }
@@ -153,7 +153,7 @@ export function ScriptureRenderer({
 
         .section-heading {
           font-family: 'Newsreader', Georgia, serif;
-          font-size: 1.1rem;
+          font-size: calc(1.1rem * var(--text-scale, 1));
           font-weight: 700;
           font-style: italic;
           color: var(--rcl-primary);
@@ -183,7 +183,7 @@ export function ScriptureRenderer({
         
         .verse-number {
           font-family: 'Cabin', system-ui, sans-serif;
-          font-size: 0.65rem;
+          font-size: calc(0.7rem * var(--text-scale, 1));
           font-weight: 700;
           color: var(--rcl-secondary);
           opacity: 0.8;

@@ -16,7 +16,7 @@ export function RCLApp() {
   const [currentView, setCurrentView] = useState<View>('today');
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isDark, setIsDark] = useState(false);
-  const [fontSize, setFontSize] = useState<FontSize>('medium');
+  const [fontSize, setFontSize] = useState<FontSize>('large');
   const [isOfflineReady, setIsOfflineReady] = useState(false);
   const [menuVisible, setMenuVisible] = useState(true);
   const lastScrollY = useRef(0);
@@ -46,7 +46,7 @@ export function RCLApp() {
       setFontSize(savedFontSize);
       document.body.classList.add(`text-size-${savedFontSize}`);
     } else {
-      document.body.classList.add('text-size-medium');
+      document.body.classList.add('text-size-large');
     }
 
     // Check offline readiness
@@ -175,15 +175,54 @@ export function RCLApp() {
     }
   };
 
+  // Touch handlers for swipe to open sidebar
+  const touchStartX = useRef<number | null>(null);
+  const touchDeltaX = useRef(0);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    // Only respond to touches starting from left edge (first 20px)
+    if (e.touches[0].clientX < 20) {
+      touchStartX.current = e.touches[0].clientX;
+    }
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (touchStartX.current !== null) {
+      touchDeltaX.current = e.touches[0].clientX - touchStartX.current;
+      // If swiping right from left edge, prevent default scroll
+      if (touchDeltaX.current > 10) {
+        // Could prevent scroll here if needed
+      }
+    }
+  };
+
+  const handleTouchEnd = () => {
+    // If swiped more than 50px from left edge, open sidebar
+    if (touchStartX.current !== null && touchDeltaX.current > 50) {
+      setSidebarOpen(true);
+    }
+    touchStartX.current = null;
+    touchDeltaX.current = 0;
+  };
+
   return (
-    <div className="rcl-app">
-      {/* Hamburger menu button (mobile) */}
+    <div 
+      className="rcl-app"
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
+      {/* Swipe hint indicator - shows when near left edge */}
+      <div className="swipe-edge-hint" />
+
+      {/* Hamburger menu button */}
       <button
-        className={`menu-btn ${menuVisible ? '' : 'menu-btn-hidden'}`}
-        onClick={() => setSidebarOpen(true)}
-        aria-label="Open menu"
+        className={`menu-btn ${menuVisible ? '' : 'menu-btn-hidden'} ${sidebarOpen ? 'menu-btn-active' : ''}`}
+        onClick={() => setSidebarOpen(!sidebarOpen)}
+        aria-label={sidebarOpen ? "Close menu" : "Open menu"}
+        aria-expanded={sidebarOpen}
       >
-        <MenuIcon />
+        {sidebarOpen ? <CloseIcon /> : <MenuIcon />}
       </button>
 
       {/* Sidebar */}
@@ -200,61 +239,126 @@ export function RCLApp() {
       />
 
       {/* Main content */}
-      <div className="rcl-main">
+      <div className={`rcl-main ${sidebarOpen ? 'rcl-main-shifted' : ''}`}>
         {renderView()}
       </div>
+
+      {/* Click outside to close */}
+      {sidebarOpen && (
+        <div 
+          className="sidebar-closer" 
+          onClick={() => setSidebarOpen(false)}
+          aria-hidden="true"
+        />
+      )}
 
       <style>{`
         .rcl-app {
           min-height: 100vh;
           display: flex;
+          position: relative;
+        }
+
+        .swipe-edge-hint {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 3px;
+          height: 100%;
+          background: transparent;
+          z-index: 5;
+          opacity: 0;
+          transition: opacity 0.2s ease;
+          pointer-events: none;
+        }
+
+        .rcl-app:active .swipe-edge-hint {
+          opacity: 1;
+          background: var(--rcl-secondary);
+          opacity: 0.3;
         }
         
         .menu-btn {
           position: fixed;
-          top: 1rem;
-          left: 1rem;
-          z-index: 30;
+          top: 0.75rem;
+          left: 0.75rem;
+          z-index: 60;
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 44px;
-          height: 44px;
-          border: 1px solid color-mix(in srgb, var(--rcl-primary), transparent 85%);
-          background: var(--rcl-bg);
+          width: 48px;
+          height: 48px;
+          border: none;
+          background: color-mix(in srgb, var(--rcl-bg) 85%, transparent);
+          backdrop-filter: blur(8px);
+          -webkit-backdrop-filter: blur(8px);
           color: var(--rcl-text);
           cursor: pointer;
-          border-radius: 8px;
-          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-          transition: all 0.2s ease;
+          border-radius: 12px;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+          transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
         .menu-btn:hover {
-          background: color-mix(in srgb, var(--rcl-primary), transparent 92%);
-          box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-          transform: translateY(-1px);
+          background: color-mix(in srgb, var(--rcl-bg) 95%, transparent);
+          box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+          transform: scale(1.02);
+        }
+
+        .menu-btn:active {
+          transform: scale(0.96);
         }
 
         .menu-btn-hidden {
           opacity: 0;
-          transform: translateY(-150%);
+          transform: translateY(-100%);
           pointer-events: none;
+        }
+
+        .menu-btn-active {
+          background: color-mix(in srgb, var(--rcl-secondary) 15%, transparent);
         }
         
         .menu-btn svg {
           width: 24px;
           height: 24px;
+          transition: transform 0.25s ease;
+        }
+
+        .sidebar-closer {
+          position: fixed;
+          inset: 0;
+          z-index: 35;
+          background: rgba(0, 0, 0, 0.3);
+          backdrop-filter: blur(2px);
+          animation: fadeIn 0.2s ease;
+        }
+
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
         
         .rcl-main {
           flex: 1;
           min-height: 100vh;
+          transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         
-        @media (min-width: 768px) {
-          .rcl-main {
-            /* Full width even on desktop, sidebar is now an overlay */
-            margin-left: 0;
+        .rcl-main-shifted {
+          transform: translateX(280px);
+        }
+
+        @media (max-width: 480px) {
+          .rcl-main-shifted {
+            transform: translateX(0);
+          }
+
+          .menu-btn {
+            top: 0.5rem;
+            left: 0.5rem;
+            width: 44px;
+            height: 44px;
           }
         }
       `}</style>
@@ -319,6 +423,15 @@ function MenuIcon() {
       <line x1="3" y1="12" x2="21" y2="12" />
       <line x1="3" y1="6" x2="21" y2="6" />
       <line x1="3" y1="18" x2="21" y2="18" />
+    </svg>
+  );
+}
+
+function CloseIcon() {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <line x1="18" y1="6" x2="6" y2="18" />
+      <line x1="6" y1="6" x2="18" y2="18" />
     </svg>
   );
 }

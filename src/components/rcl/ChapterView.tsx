@@ -174,7 +174,7 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                 
                 .chapter-title {
                     font-family: 'Newsreader', Georgia, serif;
-                    font-size: 1.125rem;
+                    font-size: calc(1.125rem * var(--text-scale, 1));
                     font-weight: 500;
                     margin: 0;
                     text-align: center;

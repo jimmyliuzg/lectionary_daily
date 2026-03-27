@@ -31,17 +31,7 @@ export function RCLSidebar({
   };
 
   return (
-    <>
-      {/* Overlay for mobile */}
-      {isOpen && (
-        <div
-          className="sidebar-overlay"
-          onClick={onClose}
-          aria-hidden="true"
-        />
-      )}
-
-      <aside className={`rcl-sidebar ${isOpen ? 'open' : ''}`}>
+    <aside className={`rcl-sidebar ${isOpen ? 'open' : ''}`}>
         {/* Header */}
         <header className="sidebar-header">
           <h1 className="app-title">RCL Daily</h1>
@@ -149,26 +139,21 @@ export function RCLSidebar({
         </footer>
 
         <style>{`
-          .sidebar-overlay {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.5);
-            z-index: 40;
-          }
-          
           .rcl-sidebar {
             position: fixed;
             top: 0;
             left: 0;
             bottom: 0;
             width: 280px;
+            max-width: 85vw;
             background: var(--rcl-bg);
             border-right: 1px solid var(--rcl-primary);
-            z-index: 50;
+            z-index: 40;
             display: flex;
             flex-direction: column;
             transform: translateX(-100%);
-            transition: transform 0.3s ease;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15);
           }
           
           .rcl-sidebar.open {
@@ -383,13 +368,10 @@ export function RCLSidebar({
           
           /* Sidebar always hidden by default, even on desktop */
           @media (min-width: 768px) {
-            .sidebar-overlay {
-              display: block; /* Show overlay when open on desktop too */
-            }
-            
             .rcl-sidebar {
               /* Keep transform: translateX(-100%) as default */
               border-right: 1px solid color-mix(in srgb, var(--rcl-primary), transparent 85%);
+              box-shadow: none;
             }
             
             .close-btn {
@@ -398,7 +380,6 @@ export function RCLSidebar({
           }
       `}</style>
       </aside>
-    </>
   );
 }
 

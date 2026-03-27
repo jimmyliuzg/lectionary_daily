@@ -36,6 +36,7 @@ const { title, description = "RCL Daily - Lectionary Readings" } = Astro.props;
                 --rcl-primary: #3e4651;
                 --rcl-secondary: #746b81; /* Deepened for legibility */
                 --rcl-accent: #86526c; /* Deepened for contrast */
+                --text-scale: 1;
             }
 
             body.dark {
@@ -46,10 +47,10 @@ const { title, description = "RCL Daily - Lectionary Readings" } = Astro.props;
                 --rcl-accent: #c98cad; /* Lightened for legibility */
             }
 
-            body.text-size-small { font-size: 0.8rem; }
-            body.text-size-medium { font-size: 1rem; }
-            body.text-size-large { font-size: 1.2rem; }
-            body.text-size-xlarge { font-size: 1.45rem; }
+            body.text-size-small { --text-scale: 0.85; font-size: 0.9rem; }
+            body.text-size-medium { --text-scale: 1; font-size: 1.0625rem; }
+            body.text-size-large { --text-scale: 1.25; font-size: 1.25rem; }
+            body.text-size-xlarge { --text-scale: 1.6; font-size: 1.5rem; }
 
             * {
                 margin: 0;
