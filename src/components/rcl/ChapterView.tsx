@@ -137,7 +137,8 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                     display: flex;
                     align-items: center;
                     justify-content: space-between;
-                    padding: 1rem;
+                    padding: 0.75rem 1rem;
+                    padding-left: 4.5rem;
                     position: sticky;
                     top: 0;
                     z-index: 10;
@@ -154,22 +155,45 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                     opacity: 0;
                     pointer-events: none;
                 }
+
+                .header-left {
+                    display: flex;
+                    align-items: center;
+                    min-width: 0;
+                }
                 
                 .back-btn {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.25rem;
                     color: var(--rcl-secondary);
                     font-family: 'Cabin', system-ui, sans-serif;
-                    font-size: 0.875rem;
+                    font-size: 0.9375rem;
+                    font-weight: 500;
                     background: none;
                     border: none;
                     cursor: pointer;
-                    padding: 0.25rem 0.5rem;
-                    border-radius: 6px;
+                    padding: 0.5rem 0.75rem;
+                    border-radius: 8px;
                     transition: background 0.2s ease;
                     white-space: nowrap;
+                    max-width: 100%;
+                    overflow: hidden;
                 }
                 
                 .back-btn:hover {
                     background: color-mix(in srgb, var(--rcl-secondary), transparent 88%);
+                }
+
+                .back-btn svg {
+                    width: 18px;
+                    height: 18px;
+                    flex-shrink: 0;
+                }
+
+                .back-btn-text {
+                    overflow: hidden;
+                    text-overflow: ellipsis;
                 }
                 
                 .chapter-title {
@@ -180,11 +204,12 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                     text-align: center;
                     flex: 1;
                     padding: 0 0.5rem;
+                    min-width: 0;
                 }
 
                 .chapter-nav-btns {
                     display: flex;
-                    gap: 0.25rem;
+                    gap: 0.125rem;
                     align-items: center;
                 }
                 
@@ -192,13 +217,13 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    width: 36px;
-                    height: 36px;
+                    width: 40px;
+                    height: 40px;
                     border: none;
                     background: transparent;
                     color: var(--rcl-text);
                     cursor: pointer;
-                    border-radius: 50%;
+                    border-radius: 10px;
                     transition: background 0.2s ease;
                 }
 
@@ -223,14 +248,36 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                     margin: 0 auto;
                     width: 100%;
                 }
+
+                @media (max-width: 480px) {
+                    .chapter-header {
+                        padding-left: 3.75rem;
+                        padding-right: 0.75rem;
+                    }
+
+                    .back-btn-text {
+                        display: none;
+                    }
+
+                    .back-btn {
+                        padding: 0.5rem;
+                    }
+
+                    .chapter-title {
+                        font-size: calc(1rem * var(--text-scale, 1));
+                    }
+                }
             `}</style>
 
             {/* Header with frosted glass */}
             <header className={`chapter-header ${headerVisible ? '' : 'header-hidden'}`}>
-                <button onClick={onBack} className="back-btn">
-                    ← {bookName}
-                </button>
-                <h2 className="chapter-title">{bookName} {chapter}</h2>
+                <div className="header-left">
+                    <button onClick={onBack} className="back-btn" aria-label="Back to Bible">
+                        <ChevronLeft />
+                        <span className="back-btn-text">{bookName}</span>
+                    </button>
+                </div>
+                <h2 className="chapter-title">{chapter}</h2>
                 <div className="chapter-nav-btns">
                     <button
                         className="chapter-nav-btn"
