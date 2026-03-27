@@ -91,6 +91,15 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
         }
     };
 
+    // Handle click on left/right edge zones
+    const handleEdgeClick = (direction: 'prev' | 'next') => {
+        if (direction === 'prev' && chapter > 1) {
+            onNavigate(bookId, chapter - 1);
+        } else if (direction === 'next') {
+            onNavigate(bookId, chapter + 1);
+        }
+    };
+
     // Track scroll direction to hide/show header
     useEffect(() => {
         const handleScroll = () => {
@@ -267,7 +276,98 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                         font-size: calc(1rem * var(--text-scale, 1));
                     }
                 }
+
+                /* Edge navigation zones */
+                .edge-nav {
+                    position: fixed;
+                    top: 0;
+                    bottom: 0;
+                    width: 18%;
+                    z-index: 5;
+                    cursor: pointer;
+                    opacity: 0;
+                    transition: opacity 0.25s ease;
+                    pointer-events: none;
+                }
+
+                .edge-nav-left {
+                    left: 0;
+                    background: linear-gradient(to right, var(--rcl-bg) 0%, transparent 100%);
+                }
+
+                .edge-nav-right {
+                    right: 0;
+                    background: linear-gradient(to left, var(--rcl-bg) 0%, transparent 100%);
+                }
+
+                .edge-nav-left::after,
+                .edge-nav-right::after {
+                    content: '';
+                    position: absolute;
+                    top: 50%;
+                    transform: translateY(-50%);
+                    width: 3px;
+                    height: 48px;
+                    border-radius: 2px;
+                    background: var(--rcl-text);
+                    opacity: 0;
+                    transition: opacity 0.25s ease;
+                }
+
+                .edge-nav-left::after {
+                    left: 12px;
+                }
+
+                .edge-nav-right::after {
+                    right: 12px;
+                }
+
+                /* Show on hover (desktop) */
+                @media (hover: hover) {
+                    .edge-nav {
+                        pointer-events: auto;
+                    }
+
+                    .chapter-view-container:hover .edge-nav {
+                        opacity: 0.15;
+                    }
+
+                    .edge-nav:hover {
+                        opacity: 0.4 !important;
+                    }
+
+                    .edge-nav:hover::after {
+                        opacity: 0.6;
+                    }
+                }
+
+                /* Mobile: always subtle, no hover needed */
+                @media (hover: none) {
+                    .edge-nav {
+                        opacity: 0.08;
+                        pointer-events: auto;
+                        width: 22%;
+                    }
+
+                    .edge-nav:active {
+                        opacity: 0.3;
+                    }
+                }
             `}</style>
+
+            {/* Edge navigation zones */}
+            <div 
+                className="edge-nav edge-nav-left" 
+                onClick={() => handleEdgeClick('prev')}
+                role="button"
+                aria-label="Previous chapter"
+            />
+            <div 
+                className="edge-nav edge-nav-right" 
+                onClick={() => handleEdgeClick('next')}
+                role="button"
+                aria-label="Next chapter"
+            />
 
             {/* Header with frosted glass */}
             <header className={`chapter-header ${headerVisible ? '' : 'header-hidden'}`}>
@@ -278,23 +378,7 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                     </button>
                 </div>
                 <h2 className="chapter-title">{chapter}</h2>
-                <div className="chapter-nav-btns">
-                    <button
-                        className="chapter-nav-btn"
-                        onClick={() => onNavigate(bookId, chapter - 1)}
-                        disabled={chapter <= 1}
-                        aria-label="Previous chapter"
-                    >
-                        <ChevronLeft />
-                    </button>
-                    <button
-                        className="chapter-nav-btn"
-                        onClick={() => onNavigate(bookId, chapter + 1)}
-                        aria-label="Next chapter"
-                    >
-                        <ChevronRight />
-                    </button>
-                </div>
+                <div style={{ width: '40px' }}></div>
             </header>
 
             {/* Content */}
