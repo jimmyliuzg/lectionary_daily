@@ -190,19 +190,13 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange, offline
           )}
         </div>
 
-        {!isToday ? (
-          <button className="nav-btn today-btn" onClick={() => onDateChange(new Date())} aria-label="Go to today">
-            <span className="today-btn-text">Today</span>
-          </button>
-        ) : (
-          <button
-            className="nav-btn next-btn"
-            onClick={goToNextDay}
-            aria-label="Next day"
-          >
-            <ChevronRight />
-          </button>
-        )}
+        <button
+          className="nav-btn next-btn"
+          onClick={goToNextDay}
+          aria-label="Next day"
+        >
+          <ChevronRight />
+        </button>
       </header>
 
       {/* Readings */}
@@ -287,22 +281,6 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange, offline
           padding: 0.25rem 0.75rem;
           border-radius: 1rem;
           margin-bottom: 0.5rem;
-        }
-
-        .today-btn-text {
-          font-family: 'Cabin', system-ui, sans-serif;
-          font-size: 0.75rem;
-          font-weight: 600;
-          text-transform: uppercase;
-          letter-spacing: 0.05em;
-        }
-
-        .today-btn {
-          min-width: 44px;
-        }
-
-        .today-btn:hover .today-btn-text {
-          color: var(--rcl-secondary);
         }
 
         .badge-row {
