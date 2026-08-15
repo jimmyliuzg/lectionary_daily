@@ -120,6 +120,15 @@ export function RCLApp() {
     }
   };
 
+  // Sidebar navigation: "Today's Lectionary" always returns to the real
+  // today, not the last browsed date (e.g. one picked in the calendar).
+  const handleViewChange = (view: View) => {
+    if (view === 'today') {
+      setCurrentDate(new Date());
+    }
+    setCurrentView(view);
+  };
+
   const handleBibleNavigate = (bookId: string, chapter: number) => {
     setSelectedBookId(bookId);
     setSelectedChapter(chapter);
@@ -221,7 +230,7 @@ export function RCLApp() {
       {/* Sidebar */}
       <RCLSidebar
         currentView={currentView}
-        onViewChange={setCurrentView}
+        onViewChange={handleViewChange}
         isOpen={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
         isDark={isDark}
