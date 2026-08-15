@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { formatDateKey, formatDisplayDate } from './lib/lectionary';
+import { formatDateKey, formatDisplayDate, getLiturgicalInfo } from './lib/lectionary';
 
 interface CalendarViewProps {
   onDateSelect: (date: Date) => void;
@@ -53,6 +53,14 @@ export function CalendarView({ onDateSelect }: CalendarViewProps) {
     return formatDateKey(date) === formatDateKey(new Date());
   };
 
+  const liturgicalColor = (date: Date) => {
+    return getLiturgicalInfo(date).color;
+  };
+
+  const seasonLabel = (date: Date) => {
+    return getLiturgicalInfo(date).label;
+  };
+
   return (
     <div className="calendar-view">
       <header className="calendar-header">
@@ -80,9 +88,14 @@ export function CalendarView({ onDateSelect }: CalendarViewProps) {
               key={i}
               className={`calendar-day ${currentMonth ? '' : 'other-month'} ${isToday(date) ? 'today' : ''}`}
               onClick={() => onDateSelect(date)}
+              aria-label={`${formatDisplayDate(date)} — ${seasonLabel(date)}`}
             >
               <span className="day-number">{date.getDate()}</span>
-              {/* Future enhancement: show liturgical color dot here */}
+              <span
+                className="liturgical-dot"
+                style={{ backgroundColor: liturgicalColor(date) }}
+                title={seasonLabel(date)}
+              />
             </button>
           ))}
         </div>
@@ -223,6 +236,14 @@ export function CalendarView({ onDateSelect }: CalendarViewProps) {
           font-family: 'Cabin', system-ui, sans-serif;
           font-size: 0.9375rem;
           color: var(--rcl-text);
+        }
+        
+        .liturgical-dot {
+          width: 5px;
+          height: 5px;
+          border-radius: 50%;
+          margin-top: 2px;
+          opacity: 0.85;
         }
         
         .calendar-info {

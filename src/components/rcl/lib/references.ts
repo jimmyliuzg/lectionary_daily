@@ -224,57 +224,141 @@ export const BOOK_ALIASES: Record<string, string> = {
     'rev': 'REV',
 };
 
+export interface RangeSpec {
+    chapter: number;
+    endChapter: number;
+    startVerse?: number;
+    endVerse?: number;
+}
+
 export interface ParsedReference {
     bookId: string;
     bookName: string;
     chapter: number;
-    endChapter?: number;
+    endChapter: number;
     startVerse?: number;
     endVerse?: number;
+    ranges: RangeSpec[];
     raw: string;
 }
 
 /**
- * Parse a Bible reference string into structured data
- * Examples: "John 3:16", "Genesis 1:1-31", "Psalm 23", "1 Corinthians 13:1-13", "1 Samuel 3:10-4:1"
+ * Parse a Bible reference string into structured data.
+ * Handles multi-range references (comma/semicolon separated), parenthesised
+ * ranges ("John 1:(1-9), 10-18"), lettered verses ("9a", "46b"), cross-chapter
+ * ranges ("Ezekiel 34:11-16, 20-24", "Exodus 14:10-31; 15:20-21"), and whole
+ * chapters ("Psalm 100", "Jude 17-25" = verses in single-chapter books).
+ *
+ * Examples: "John 3:16", "Genesis 1:1-31", "Psalm 23",
+ *           "1 Corinthians 13:1-13", "1 Samuel 3:10-4:1"
  */
 export function parseReference(ref: string): ParsedReference | null {
-    // Match patterns like "1 John 3:16-18" or "Psalm 23" or "Genesis 1:1-2:3"
-    // Groups: 1: Book, 2: Start Chapter, 3: Start Verse, 4: End Chapter or End Verse, 5: End Verse (if chapter:verse range)
-    const pattern = /^([1-3]?\s?[A-Za-z]+(?:\s+of\s+[A-Za-z]+)?)\s+(\d+)(?::(\d+)(?:[a-z])?)?(?:-(\d+)(?::(\d+)(?:[a-z])?)?)?/i;
-    const match = ref.match(pattern);
+    const cleaned = ref.trim()
+        .replace(/:\s+/g, ':')
+        .replace(/\s*-\s*/g, '-');
 
-    if (!match) return null;
-
-    const bookName = match[1].trim();
+    // Book name (handles "1 Samuel", "Song of Solomon")
+    const bookMatch = cleaned.match(/^([1-3]?\s?[A-Za-z]+(?:\s+of\s+[A-Za-z]+)?)/);
+    if (!bookMatch) return null;
+    const bookName = bookMatch[1].trim();
     const bookId = BOOK_ALIASES[bookName.toLowerCase()];
-
     if (!bookId) return null;
 
-    const chapter = parseInt(match[2], 10);
-    const startVerse = match[3] ? parseInt(match[3], 10) : undefined;
+    const book = [...BIBLE_BOOKS.oldTestament, ...BIBLE_BOOKS.newTestament]
+        .find((b) => b.id === bookId);
+    const chapterCount = book?.chapters ?? 100;
 
-    let endChapter = chapter;
-    let endVerse = startVerse;
+    const remainder = cleaned.slice(bookMatch[0].length).trim();
+    // ";" separates parts that may omit the book name ("14:10-31; 15:20-21");
+    // "and" joins two whole psalms ("Psalm 42 and 43").
+    const marked = remainder.replace(/\s+and\s+/g, '\u0001');
+    const parts: { text: string; afterAnd: boolean }[] = [];
+    let afterAnd = false;
+    for (const piece of marked.split(/[;,]/)) {
+        const t = piece.trim();
+        if (!t) continue;
+        const subs = t.split('\u0001');
+        for (let i = 0; i < subs.length; i++) {
+            const sub = subs[i].trim();
+            if (!sub) continue;
+            parts.push({ text: sub, afterAnd: i > 0 ? true : afterAnd });
+        }
+        afterAnd = false;
+    }
+    if (parts.length === 0) return null;
 
-    if (match[5]) {
-        // Cross-chapter range: 3:10-4:1
-        endChapter = parseInt(match[4], 10);
-        endVerse = parseInt(match[5], 10);
-    } else if (match[4]) {
-        // Single chapter range: 3:10-15
-        endVerse = parseInt(match[4], 10);
+    const ranges: RangeSpec[] = [];
+    let currentChapter: number | null = null;
+
+    for (let i = 0; i < parts.length; i++) {
+        const range = parseRangePart(parts[i].text, i === 0, currentChapter, chapterCount, parts[i].afterAnd);
+        if (!range) return null;
+        ranges.push(range);
+        currentChapter = range.chapter;
     }
 
+    const last = ranges[ranges.length - 1];
     return {
         bookId,
         bookName,
-        chapter,
-        endChapter,
-        startVerse,
-        endVerse,
+        chapter: ranges[0].chapter,
+        endChapter: last.endChapter,
+        startVerse: ranges[0].startVerse,
+        endVerse: last.endVerse,
+        ranges,
         raw: ref,
     };
+}
+
+function parseRangePart(
+    part: string,
+    isFirst: boolean,
+    currentChapter: number | null,
+    chapterCount: number,
+    afterAnd = false
+): RangeSpec | null {
+    part = part.replace(/^:|\(|\)$/g, ''); // strip parens / stray colons
+    // Single lettered verse, e.g. "45b" (in "Psalm 105:1-6, 16-22, 45b")
+    const bare = part.match(/^(\d+)[a-z]$/);
+    if (bare) {
+        const v = parseInt(bare[1], 10);
+        return { chapter: currentChapter ?? 1, endChapter: currentChapter ?? 1, startVerse: v, endVerse: v };
+    }
+
+    // Groups: 1 chapter, 2 start verse, 3 end verse, 4 end chapter, 5 end verse
+    const m = part.match(/^(\d+)[a-z]?(?::(\d+)[a-z]?(?:-(\d+)[a-z]?)?)?(?:-(\d+)[a-z]?(?::(\d+)[a-z]?)?)?$/);
+    if (!m) return null;
+
+    const c = parseInt(m[1], 10);
+    const sv = m[2] ? parseInt(m[2], 10) : undefined;
+    const ev = m[3] ? parseInt(m[3], 10) : undefined;
+    const ec = m[4] ? parseInt(m[4], 10) : undefined;
+    const eve = m[5] ? parseInt(m[5], 10) : undefined;
+
+    if (sv !== undefined) {
+        // Explicit chapter:verse (possibly cross-chapter)
+        return {
+            chapter: c,
+            endChapter: ec ?? c,
+            startVerse: sv,
+            endVerse: ec !== undefined ? (eve ?? sv) : (ev ?? sv),
+        };
+    }
+
+    if (!isFirst && !afterAnd) {
+        // Continuation part without a colon: verses of the current chapter
+        // (e.g. "20-24" in "Ezekiel 34:11-16, 20-24")
+        const ch = currentChapter ?? c;
+        return { chapter: ch, endChapter: ch, startVerse: c, endVerse: ec ?? c };
+    }
+
+    // First part, or a part joined by "and" ("Psalm 42 and 43"): a chapter
+    // (or chapter range). In single-chapter books a range like "Jude 17-25"
+    // is verses instead.
+    if (part.includes('-') && chapterCount === 1) {
+        return { chapter: 1, endChapter: 1, startVerse: c, endVerse: ec ?? c };
+    }
+    return { chapter: c, endChapter: ec ?? c };
 }
 
 /**

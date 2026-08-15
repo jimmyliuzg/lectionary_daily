@@ -4,6 +4,12 @@ dist/
 # generated types
 .astro/
 
+# lectionary build cache (downloaded source pages)
+scripts/.cache/
+
+# source documents (3.3MB docx of the BSB)
+src/data/bsb.docx
+
 # dependencies
 node_modules/
 

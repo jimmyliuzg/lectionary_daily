@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
+import { BIBLE_BOOKS } from './lib/references';
 
-// Define types for our data
 interface Book {
     id: string;
     name: string;
@@ -10,14 +10,18 @@ interface Book {
 
 interface BibleBrowserProps {
     onNavigate: (bookId: string, chapter: number) => void;
-    bibleData: { books: Book[]; verses: any[] };
     initialBookId?: string;
 }
 
-export const BibleBrowser: React.FC<BibleBrowserProps> = ({ onNavigate, bibleData, initialBookId }) => {
+export const BibleBrowser: React.FC<BibleBrowserProps> = ({ onNavigate, initialBookId }) => {
     // Find initial book if provided
+    const allBooks: Book[] = [
+        ...BIBLE_BOOKS.oldTestament.map((b) => ({ ...b, testament: 'OT' as const })),
+        ...BIBLE_BOOKS.newTestament.map((b) => ({ ...b, testament: 'NT' as const })),
+    ];
+
     const initialBook = initialBookId
-        ? bibleData.books.find(b => b.id === initialBookId) || null
+        ? allBooks.find((b) => b.id === initialBookId) || null
         : null;
 
     const [selectedBook, setSelectedBook] = useState<Book | null>(initialBook);
@@ -26,12 +30,12 @@ export const BibleBrowser: React.FC<BibleBrowserProps> = ({ onNavigate, bibleDat
     // Sync selectedBook with initialBookId when it changes
     React.useEffect(() => {
         if (initialBookId) {
-            const book = bibleData.books.find(b => b.id === initialBookId);
+            const book = allBooks.find((b) => b.id === initialBookId);
             if (book) setSelectedBook(book);
         }
-    }, [initialBookId, bibleData]);
+    }, [initialBookId]);
 
-    const books = bibleData.books.filter(b => b.testament === activeTab);
+    const books = allBooks.filter((b) => b.testament === activeTab);
 
     return (
         <div className="flex flex-col h-full bg-rcl-background text-rcl-text transition-colors duration-300">

@@ -1,25 +1,15 @@
-import React, { useState, useMemo, useEffect, useRef } from 'react';
-import rawBibleData from '../../data/bible-bsb.json';
+import React, { useState, useEffect, useRef } from 'react';
 import { parseReference, formatReference } from './lib/references';
-
-const bibleData = rawBibleData as { verses: SearchResult[] };
+import { loadBibleData } from '../../lib/rcl/bibleData';
+import type { Verse } from '../../lib/rcl/db';
 
 interface SearchViewProps {
   onNavigate: (bookId: string, chapter: number) => void;
 }
 
-interface SearchResult {
-  uvid: number;
-  ref: string;
-  book: string;
-  chapter: number;
-  verse: number;
-  text: string;
-}
-
 export function SearchView({ onNavigate }: SearchViewProps) {
   const [query, setQuery] = useState('');
-  const [results, setResults] = useState<SearchResult[]>([]);
+  const [results, setResults] = useState<Verse[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -30,44 +20,44 @@ export function SearchView({ onNavigate }: SearchViewProps) {
     }
   }, []);
 
-  const handleSearch = (e: React.FormEvent) => {
+  const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!query.trim()) return;
 
     setIsSearching(true);
 
-    // Use setTimeout to allow UI to update (searching state)
-    setTimeout(() => {
-      // 1. Try to parse as reference
-      const parsed = parseReference(query);
-      if (parsed) {
-        onNavigate(parsed.bookId, parsed.chapter);
-        setIsSearching(false);
-        return;
-      }
-
-      // 2. Otherwise perform text search
-      // Initially, we just search the entire JSON.
-      // In Phase 4, we'll swap this for IndexedDB search.
-      const searchTerms = query.toLowerCase().split(/\s+/).filter(t => t.length > 2);
-
-      if (searchTerms.length === 0) {
-        setResults([]);
-        setIsSearching(false);
-        return;
-      }
-
-      const filtered = (bibleData.verses as SearchResult[]).filter(v => {
-        const text = v.text.toLowerCase();
-        return searchTerms.every(term => text.includes(term));
-      }).slice(0, 100); // Limit results for performance
-
-      setResults(filtered);
+    // 1. Try to parse as reference
+    const parsed = parseReference(query);
+    if (parsed) {
+      onNavigate(parsed.bookId, parsed.chapter);
       setIsSearching(false);
-    }, 10);
+      return;
+    }
+
+    // 2. Otherwise perform text search over the full Bible (lazy-loaded)
+    const searchTerms = query.toLowerCase().split(/\s+/).filter((t) => t.length > 2);
+
+    if (searchTerms.length === 0) {
+      setResults([]);
+      setIsSearching(false);
+      return;
+    }
+
+    try {
+      const bibleData = await loadBibleData();
+      const filtered = bibleData.verses.filter((v) => {
+        const text = v.text.toLowerCase();
+        return searchTerms.every((term) => text.includes(term));
+      }).slice(0, 100); // Limit results for performance
+      setResults(filtered);
+    } catch (err) {
+      console.error('Search failed:', err);
+      setResults([]);
+    }
+    setIsSearching(false);
   };
 
-  const handleResultClick = (result: SearchResult) => {
+  const handleResultClick = (result: Verse) => {
     onNavigate(result.ref.split('.')[0], result.chapter);
   };
 

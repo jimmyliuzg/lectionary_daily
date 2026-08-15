@@ -1,20 +1,25 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { getVersesForChapter, getStructuredChapter, type Verse, type ScriptureBlock } from '../../lib/rcl/db';
 import { ScriptureRenderer } from './ScriptureRenderer';
-import { getBookName } from './lib/references';
+import { getBookName, BIBLE_BOOKS } from './lib/references';
+import { loadBibleData } from '../../lib/rcl/bibleData';
 
 interface ChapterViewProps {
     bookId: string;
     chapter: number;
-    bibleData: { verses: Verse[] };
     onNavigate: (bookId: string, chapter: number) => void;
     onBack: () => void;
 }
 
+// Canonical book order for prev/next rollover across book boundaries
+const CANONICAL_BOOKS = [
+    ...BIBLE_BOOKS.oldTestament,
+    ...BIBLE_BOOKS.newTestament,
+];
+
 export const ChapterView: React.FC<ChapterViewProps> = ({
     bookId,
     chapter,
-    bibleData,
     onNavigate,
     onBack
 }) => {
@@ -29,21 +34,46 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
     const [headerVisible, setHeaderVisible] = useState(true);
     const lastScrollY = useRef(0);
 
+    // Book boundaries
+    const bookIndex = CANONICAL_BOOKS.findIndex((b) => b.id === bookId);
+    const book = CANONICAL_BOOKS[bookIndex];
+    const hasPrev = chapter > 1 || bookIndex > 0;
+    const hasNext = chapter < (book?.chapters ?? 0) || bookIndex < CANONICAL_BOOKS.length - 1;
+
+    const prevChapter = (): [string, number] => {
+        if (chapter > 1) return [bookId, chapter - 1];
+        const prevBook = CANONICAL_BOOKS[bookIndex - 1];
+        return prevBook ? [prevBook.id, prevBook.chapters] : [bookId, 1];
+    };
+
+    const nextChapter = (): [string, number] => {
+        if (chapter < (book?.chapters ?? 0)) return [bookId, chapter + 1];
+        const nextBook = CANONICAL_BOOKS[bookIndex + 1];
+        return nextBook ? [nextBook.id, 1] : [bookId, chapter];
+    };
+
     useEffect(() => {
+        let cancelled = false;
         const loadContent = async () => {
             setIsLoading(true);
             try {
                 // Try structured first
                 const structuredBlocks = await getStructuredChapter(bookId, chapter);
+                if (cancelled) return;
                 if (structuredBlocks) {
                     setBlocks(structuredBlocks);
+                    setVerses([]);
                 } else {
                     setBlocks(null);
                     const dbVerses = await getVersesForChapter(`${bookId}.${chapter}`);
+                    if (cancelled) return;
                     if (dbVerses && dbVerses.length > 0) {
                         setVerses(dbVerses);
                     } else {
-                        // Fallback to prop data
+                        // Fallback: lazy-load the bundled JSON (only when the DB
+                        // hasn't been hydrated yet)
+                        const bibleData = await loadBibleData();
+                        if (cancelled) return;
                         const filtered = bibleData.verses.filter(
                             (v: Verse) => v.ref.startsWith(`${bookId}.${chapter}.`)
                         );
@@ -52,17 +82,26 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                 }
             } catch (e) {
                 console.error('Failed to load from DB:', e);
+                if (cancelled) return;
                 setBlocks(null);
-                const filtered = bibleData.verses.filter(
-                    (v: Verse) => v.ref.startsWith(`${bookId}.${chapter}.`)
-                );
-                setVerses(filtered);
+                try {
+                    const bibleData = await loadBibleData();
+                    if (cancelled) return;
+                    const filtered = bibleData.verses.filter(
+                        (v: Verse) => v.ref.startsWith(`${bookId}.${chapter}.`)
+                    );
+                    setVerses(filtered);
+                } catch (e2) {
+                    console.error('Fallback load failed:', e2);
+                    setVerses([]);
+                }
             } finally {
-                setIsLoading(false);
+                if (!cancelled) setIsLoading(false);
             }
         };
         loadContent();
-    }, [bookId, chapter, bibleData]);
+        return () => { cancelled = true; };
+    }, [bookId, chapter]);
 
     // Touch handlers for swipe navigation
     const handleTouchStart = (e: React.TouchEvent) => {
@@ -82,23 +121,48 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
 
         if (diff > threshold) {
             // Swiped left - go to next chapter
-            onNavigate(bookId, chapter + 1);
+            if (hasNext) {
+                const [b, c] = nextChapter();
+                onNavigate(b, c);
+            }
         } else if (diff < -threshold) {
             // Swiped right - go to previous chapter
-            if (chapter > 1) {
-                onNavigate(bookId, chapter - 1);
+            if (hasPrev) {
+                const [b, c] = prevChapter();
+                onNavigate(b, c);
             }
         }
     };
 
     // Handle click on left/right edge zones
     const handleEdgeClick = (direction: 'prev' | 'next') => {
-        if (direction === 'prev' && chapter > 1) {
-            onNavigate(bookId, chapter - 1);
-        } else if (direction === 'next') {
-            onNavigate(bookId, chapter + 1);
+        if (direction === 'prev' && hasPrev) {
+            const [b, c] = prevChapter();
+            onNavigate(b, c);
+        } else if (direction === 'next' && hasNext) {
+            const [b, c] = nextChapter();
+            onNavigate(b, c);
         }
     };
+
+    // Keyboard navigation (Left/Right arrows)
+    useEffect(() => {
+        const handleKeyDown = (e: KeyboardEvent) => {
+            if (e.key === 'ArrowRight') {
+                if (hasNext) {
+                    const [b, c] = nextChapter();
+                    onNavigate(b, c);
+                }
+            } else if (e.key === 'ArrowLeft') {
+                if (hasPrev) {
+                    const [b, c] = prevChapter();
+                    onNavigate(b, c);
+                }
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [bookId, chapter, hasPrev, hasNext]);
 
     // Track scroll direction to hide/show header
     useEffect(() => {
@@ -124,6 +188,12 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
 
     // Use full book name (e.g., 'Genesis' instead of 'Gen')
     const bookName = getBookName(bookId);
+    const nextName = bookIndex < CANONICAL_BOOKS.length - 1 && chapter >= (book?.chapters ?? 0)
+        ? getBookName(CANONICAL_BOOKS[bookIndex + 1].id)
+        : bookName;
+    const prevName = bookIndex > 0 && chapter <= 1
+        ? getBookName(CANONICAL_BOOKS[bookIndex - 1].id)
+        : bookName;
 
     return (
         <div
@@ -277,17 +347,16 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                     }
                 }
 
-                /* Edge navigation zones */
+                /* Edge navigation zones — decorative gradient (click-through) */
                 .edge-nav {
                     position: fixed;
                     top: 0;
                     bottom: 0;
                     width: 18%;
-                    z-index: 5;
-                    cursor: pointer;
+                    z-index: 4;
+                    pointer-events: none;
                     opacity: 0;
                     transition: opacity 0.25s ease;
-                    pointer-events: none;
                 }
 
                 .edge-nav-left {
@@ -300,8 +369,25 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                     background: linear-gradient(to left, var(--rcl-bg) 0%, transparent 100%);
                 }
 
-                .edge-nav-left::after,
-                .edge-nav-right::after {
+                /* Actual clickable hit strip (narrow, so content stays clickable) */
+                .edge-hit {
+                    position: fixed;
+                    top: 0;
+                    bottom: 0;
+                    width: 22px;
+                    z-index: 4;
+                    cursor: pointer;
+                }
+
+                .edge-hit-left { left: 0; }
+                .edge-hit-right { right: 0; }
+
+                .edge-hit:hover ~ .edge-nav,
+                .chapter-view-container:hover .edge-nav {
+                    opacity: 0.15;
+                }
+
+                .edge-nav::after {
                     content: '';
                     position: absolute;
                     top: 50%;
@@ -314,59 +400,92 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                     transition: opacity 0.25s ease;
                 }
 
-                .edge-nav-left::after {
-                    left: 12px;
-                }
+                .edge-nav-left::after { left: 8px; }
+                .edge-nav-right::after { right: 8px; }
 
-                .edge-nav-right::after {
-                    right: 12px;
-                }
-
-                /* Show on hover (desktop) */
                 @media (hover: hover) {
-                    .edge-nav {
-                        pointer-events: auto;
-                    }
-
-                    .chapter-view-container:hover .edge-nav {
-                        opacity: 0.15;
-                    }
-
-                    .edge-nav:hover {
-                        opacity: 0.4 !important;
-                    }
-
-                    .edge-nav:hover::after {
-                        opacity: 0.6;
-                    }
+                    .chapter-view-container:hover .edge-nav { opacity: 0.15; }
+                    .edge-nav:hover { opacity: 0.4 !important; }
+                    .edge-nav:hover::after { opacity: 0.6; }
                 }
 
-                /* Mobile: always subtle, no hover needed */
                 @media (hover: none) {
-                    .edge-nav {
-                        opacity: 0.08;
-                        pointer-events: auto;
-                        width: 22%;
-                    }
+                    .edge-nav { opacity: 0.06; }
+                    .edge-hit { width: 18px; }
+                }
 
-                    .edge-nav:active {
-                        opacity: 0.3;
-                    }
+                /* Bottom chapter navigation */
+                .chapter-bottom-nav {
+                    display: flex;
+                    justify-content: space-between;
+                    gap: 1rem;
+                    padding: 1.5rem 0 3rem;
+                    margin-top: 1rem;
+                    border-top: 1px solid color-mix(in srgb, var(--rcl-primary), transparent 85%);
+                }
+
+                .bottom-nav-btn {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-start;
+                    gap: 0.25rem;
+                    padding: 0.75rem 1rem;
+                    background: color-mix(in srgb, var(--rcl-primary), transparent 93%);
+                    border: 1px solid color-mix(in srgb, var(--rcl-primary), transparent 82%);
+                    border-radius: 12px;
+                    color: var(--rcl-text);
+                    font-family: 'Cabin', system-ui, sans-serif;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    max-width: 48%;
+                }
+
+                .bottom-nav-btn.next {
+                    align-items: flex-end;
+                    text-align: right;
+                    margin-left: auto;
+                }
+
+                .bottom-nav-btn:disabled {
+                    opacity: 0.3;
+                    cursor: default;
+                }
+
+                .bottom-nav-btn:not(:disabled):hover {
+                    border-color: var(--rcl-secondary);
+                    transform: translateY(-1px);
+                }
+
+                .bottom-nav-label {
+                    font-size: 0.7rem;
+                    text-transform: uppercase;
+                    letter-spacing: 0.08em;
+                    opacity: 0.6;
+                }
+
+                .bottom-nav-text {
+                    font-size: 0.9375rem;
+                    font-weight: 500;
+                    color: var(--rcl-secondary);
                 }
             `}</style>
 
-            {/* Edge navigation zones */}
-            <div 
-                className="edge-nav edge-nav-left" 
+            {/* Edge navigation zones (visual) + hit strips (interactive) */}
+            <div className="edge-nav edge-nav-left" aria-hidden="true" />
+            <div className="edge-nav edge-nav-right" aria-hidden="true" />
+            <div
+                className="edge-hit edge-hit-left"
                 onClick={() => handleEdgeClick('prev')}
                 role="button"
                 aria-label="Previous chapter"
+                tabIndex={-1}
             />
-            <div 
-                className="edge-nav edge-nav-right" 
+            <div
+                className="edge-hit edge-hit-right"
                 onClick={() => handleEdgeClick('next')}
                 role="button"
                 aria-label="Next chapter"
+                tabIndex={-1}
             />
 
             {/* Header with frosted glass */}
@@ -377,8 +496,25 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                         <span className="back-btn-text">{bookName}</span>
                     </button>
                 </div>
-                <h2 className="chapter-title">{chapter}</h2>
-                <div style={{ width: '40px' }}></div>
+                <h2 className="chapter-title">{bookName} {chapter}</h2>
+                <div className="chapter-nav-btns">
+                    <button
+                        className="chapter-nav-btn"
+                        onClick={() => handleEdgeClick('prev')}
+                        disabled={!hasPrev}
+                        aria-label="Previous chapter"
+                    >
+                        <ChevronLeft />
+                    </button>
+                    <button
+                        className="chapter-nav-btn"
+                        onClick={() => handleEdgeClick('next')}
+                        disabled={!hasNext}
+                        aria-label="Next chapter"
+                    >
+                        <ChevronRight />
+                    </button>
+                </div>
             </header>
 
             {/* Content */}
@@ -398,7 +534,29 @@ export const ChapterView: React.FC<ChapterViewProps> = ({
                     </div>
                 )}
 
-                <div style={{ height: '5rem' }}></div> {/* Bottom padding */}
+                {/* Bottom prev/next navigation */}
+                <div className="chapter-bottom-nav">
+                    <button
+                        className="bottom-nav-btn"
+                        onClick={() => handleEdgeClick('prev')}
+                        disabled={!hasPrev}
+                    >
+                        <span className="bottom-nav-label">Previous</span>
+                        <span className="bottom-nav-text">
+                            {chapter > 1 ? `${bookName} ${chapter - 1}` : `${prevName} ${CANONICAL_BOOKS[bookIndex - 1]?.chapters ?? ''}`}
+                        </span>
+                    </button>
+                    <button
+                        className="bottom-nav-btn next"
+                        onClick={() => handleEdgeClick('next')}
+                        disabled={!hasNext}
+                    >
+                        <span className="bottom-nav-label">Next</span>
+                        <span className="bottom-nav-text">
+                            {chapter < (book?.chapters ?? 0) ? `${bookName} ${chapter + 1}` : `${nextName} 1`}
+                        </span>
+                    </button>
+                </div>
             </div>
         </div>
     );

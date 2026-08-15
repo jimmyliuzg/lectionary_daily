@@ -4,6 +4,7 @@ import {
   getReadingsForDate,
   formatDisplayDate,
   formatDateKey,
+  getLiturgicalInfo,
   type DayReading
 } from './lib/lectionary';
 import { getVersesByParsedReference, getBlocksByParsedReference, type Verse, type ScriptureBlock } from '../../lib/rcl/db';
@@ -18,9 +19,10 @@ interface TodayViewProps {
   onReferenceClick?: (ref: string) => void;
   currentDate: Date;
   onDateChange: (date: Date) => void;
+  offlineReady?: boolean;
 }
 
-export function TodayView({ onReferenceClick, currentDate, onDateChange }: TodayViewProps) {
+export function TodayView({ onReferenceClick, currentDate, onDateChange, offlineReady = false }: TodayViewProps) {
   const [readings, setReadings] = useState<DayReading | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const touchStartX = useRef<number>(0);
@@ -28,21 +30,25 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange }: Today
 
   const [readingContent, setReadingContent] = useState<Record<string, ReadingContent>>({});
   const [isLoadingReadings, setIsLoadingReadings] = useState(true);
+  const hasLoadedRef = useRef(false);
 
   // Scroll-based header visibility
   const [headerVisible, setHeaderVisible] = useState(true);
   const lastScrollY = useRef(0);
 
-  // Load readings and their verses for current date
+  // Load readings and their verses for current date.
+  // Re-runs when offlineReady flips true (IndexedDB hydration finished) so
+  // the first visit shows content once the Bible data is available.
   useEffect(() => {
     const loadData = async () => {
-      setIsLoadingReadings(true);
+      if (!hasLoadedRef.current) {
+        setIsLoadingReadings(true);
+      }
       const dayReadings = await getReadingsForDate(currentDate);
       setReadings(dayReadings);
 
+      const contentMap: Record<string, ReadingContent> = {};
       if (dayReadings) {
-        const contentMap: Record<string, ReadingContent> = {};
-
         await Promise.all(dayReadings.readings.map(async (reading) => {
           const parsed = parseReference(reading.reference);
           if (parsed) {
@@ -62,11 +68,14 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange }: Today
 
         setReadingContent(contentMap);
       }
-      setIsLoadingReadings(false);
+      hasLoadedRef.current = true;
+      // Keep the skeleton until the Bible data is actually available
+      // (IndexedDB hydration may still be running on first visit).
+      setIsLoadingReadings(!offlineReady && Object.keys(contentMap).length === 0);
     };
 
     loadData();
-  }, [currentDate]);
+  }, [currentDate, offlineReady]);
 
   // Navigate to previous day
   const goToPrevDay = () => {
@@ -145,6 +154,7 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange }: Today
   }, []);
 
   const isToday = formatDateKey(currentDate) === formatDateKey(new Date());
+  const liturgical = getLiturgicalInfo(currentDate);
 
   return (
     <div
@@ -165,7 +175,15 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange }: Today
         </button>
 
         <div className="date-info">
-          {isToday && <span className="today-badge">Today</span>}
+          <div className="badge-row">
+            {isToday && <span className="today-badge">Today</span>}
+            <span
+              className="season-badge"
+              style={{ color: liturgical.color, borderColor: `${liturgical.color}55`, background: `${liturgical.color}1a` }}
+            >
+              {liturgical.label}
+            </span>
+          </div>
           <h1 className="display-date">{formatDisplayDate(currentDate)}</h1>
           {readings?.dayName && (
             <h2 className="liturgical-day">{readings.dayName}</h2>
@@ -261,6 +279,26 @@ export function TodayView({ onReferenceClick, currentDate, onDateChange }: Today
           background: color-mix(in srgb, var(--rcl-secondary), transparent 85%);
           border: 1px solid color-mix(in srgb, var(--rcl-secondary), transparent 80%);
           padding: 0.25rem 0.75rem;
+          border-radius: 1rem;
+          margin-bottom: 0.5rem;
+        }
+
+        .badge-row {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 0.5rem;
+        }
+
+        .season-badge {
+          display: inline-block;
+          font-family: 'Cabin', system-ui, sans-serif;
+          font-size: 0.7rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.15em;
+          padding: 0.25rem 0.75rem;
+          border: 1px solid;
           border-radius: 1rem;
           margin-bottom: 0.5rem;
         }

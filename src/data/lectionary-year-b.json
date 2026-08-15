@@ -1,29 +1,6878 @@
 {
-    "year": "B",
-    "liturgicalYear": "2026-2027",
-    "readings": [
+  "year": "B",
+  "liturgicalYear": "2026-2027",
+  "readings": [
+    {
+      "date": "2026-11-29",
+      "dayName": "First Sunday of Advent",
+      "readings": [
         {
-            "date": "2026-11-29",
-            "dayName": "First Sunday of Advent",
-            "isSunday": true,
-            "readings": [
-                {
-                    "type": "First Reading",
-                    "reference": "Isaiah 64:1-9"
-                },
-                {
-                    "type": "Psalm",
-                    "reference": "Psalm 80:1-7, 17-19"
-                },
-                {
-                    "type": "Second Reading",
-                    "reference": "1 Corinthians 1:3-9"
-                },
-                {
-                    "type": "Gospel",
-                    "reference": "Mark 13:24-37"
-                }
-            ]
+          "type": "First Reading",
+          "reference": "Isaiah 64:1-9"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 80:1-7, 17-19"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "1 Corinthians 1:3-9"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 13:24-37"
         }
-    ]
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2026-11-30",
+      "dayName": "Monday - Reflection on First Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 79"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Micah 4:1-5"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Revelation 15:1-8"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-01",
+      "dayName": "Tuesday - Reflection on First Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 79"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Micah 4:6-13"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Revelation 18:1-10"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-02",
+      "dayName": "Wednesday - Reflection on First Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 79"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Micah 5:1-5a"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 21:34-38"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-03",
+      "dayName": "Thursday - Preparation for Second Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 85:1-2, 8-13"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Hosea 6:1-6"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Thessalonians 1:2-10"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-04",
+      "dayName": "Friday - Preparation for Second Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 85:1-2, 8-13"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Jeremiah 1:4-10"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 11:19-26"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-05",
+      "dayName": "Saturday - Preparation for Second Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 85:1-2, 8-13"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Ezekiel 36:24-28"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 11:27-33"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-06",
+      "dayName": "Second Sunday of Advent",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Isaiah 40:1-11"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 85:1-2, 8-13"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "2 Peter 3:8-15a"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 1:1-8"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2026-12-07",
+      "dayName": "Monday - Reflection on Second Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 27"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Isaiah 26:7-15"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 2:37-42"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-08",
+      "dayName": "Tuesday - Reflection on Second Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 27"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Isaiah 4:2-6"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 11:1-18"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-09",
+      "dayName": "Wednesday - Reflection on Second Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 27"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Malachi 2:10-3:1"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 1:5-17"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-10",
+      "dayName": "Thursday - Preparation for Third Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 126"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Habakkuk 2:1-5"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Philippians 3:7-11"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-11",
+      "dayName": "Friday - Preparation for Third Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 126"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Habakkuk 3:2-6"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Philippians 3:12-16"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-12",
+      "dayName": "Saturday - Preparation for Third Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 126"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Habakkuk 3:13-19"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Matthew 21:28-32"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-13",
+      "dayName": "Third Sunday of Advent",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Isaiah 61:1-4, 8-11"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 126"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "1 Thessalonians 5:16-24"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 1:6-8, 19-28"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2026-12-14",
+      "dayName": "Monday - Reflection on Third Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 125"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Kings 18:1-18"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Ephesians 6:10-17"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-15",
+      "dayName": "Tuesday - Reflection on Third Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 125"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Kings 2:9-22"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 3:17-4:4"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-16",
+      "dayName": "Wednesday - Reflection on Third Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 125"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Malachi 3:16-4:6"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 9:9-13"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-17",
+      "dayName": "Thursday - Preparation for Fourth Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 89:1-4, 19-26"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 6:1-11"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 1:1-4"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-18",
+      "dayName": "Friday - Preparation for Fourth Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 89:1-4, 19-26"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 6:12-19"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 1:5-14"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-19",
+      "dayName": "Saturday - Preparation for Fourth Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 89:1-4, 19-26"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Judges 13:2-24"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 7:40-52"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-20",
+      "dayName": "Fourth Sunday of Advent",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "2 Samuel 7:1-11, 16"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Romans 16:25-27"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Luke 1:26-38"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2026-12-21",
+      "dayName": "Monday - Reflection on Fourth Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Luke 1:46b-55"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 1:1-18"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 9:1-14"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-22",
+      "dayName": "Tuesday - Reflection on Fourth Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Luke 1:46b-55"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 1:19-28"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 8:1-13"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-23",
+      "dayName": "Wednesday - Reflection on Fourth Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Luke 1:46b-55"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 2:1-10"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 11:1-11"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-24",
+      "dayName": "Christmas Eve",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Isaiah 9:2-7"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 96"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Titus 2:11-14"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Luke 2:1-14, (15-20)"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-25",
+      "dayName": "Christmas Day",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Isaiah 62:6-12"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 97"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Titus 3:4-7"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Luke 2:(1-7), 8-20"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-26",
+      "dayName": "Saturday after Christmas 1",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 148"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Jeremiah 26:1-9, 12-15"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 6:8-15; 7:51-60"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-27",
+      "dayName": "First Sunday after Christmas Day",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Isaiah 61:10-62:3"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 148"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Galatians 4:4-7"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Luke 2:22-40"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2026-12-28",
+      "dayName": "Monday after Christmas 1",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 148"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Jeremiah 31:15-17"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Matthew 2:13-18"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-29",
+      "dayName": "Tuesday after Christmas 1",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Matthew 12:46-50"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Psalm 148"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Isaiah 49:5-15"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-30",
+      "dayName": "Wednesday after Christmas 1",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 148"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Proverbs 9:1-12"
+        },
+        {
+          "type": "New Testament",
+          "reference": "2 Peter 3:8-13"
+        }
+      ]
+    },
+    {
+      "date": "2026-12-31",
+      "dayName": "Thursday - Preparation for Holy Name of Jesus",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 148"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Kings 3:5-14"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 8:12-19"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-01",
+      "dayName": "Holy Name of Jesus",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Numbers 6:22-27"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 8"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Galatians 4:4-7"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Luke 2:15-21"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-02",
+      "dayName": "Saturday after Christmas 2",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 148"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Proverbs 1:1-7"
+        },
+        {
+          "type": "New Testament",
+          "reference": "James 3:13-18"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-03",
+      "dayName": "Second Sunday after Christmas Day",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Jeremiah 31:7-14"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 147:12-20"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Ephesians 1:3-14"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 1:(1-9), 10-18"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-01-04",
+      "dayName": "Monday after Christmas 2",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 110"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Proverbs 3:1-12"
+        },
+        {
+          "type": "New Testament",
+          "reference": "James 4:11-17"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-05",
+      "dayName": "Tuesday after Christmas 2",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 110"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Proverbs 22:1-9"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 6:27-31"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-06",
+      "dayName": "Epiphany of the Lord",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Isaiah 60:1-6"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 72:1-7, 10-14"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Ephesians 3:1-12"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Matthew 2:1-12"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-07",
+      "dayName": "Thursday after Epiphany 1",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 29"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 3:1-21"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 9:10-19a"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-08",
+      "dayName": "Friday after Epiphany 1",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 29"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 16:1-13"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Timothy 4:11-16"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-09",
+      "dayName": "Saturday after Epiphany 1",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 29"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Kings 2:1-4, 10-12"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 5:1-11"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-10",
+      "dayName": "Baptism of the Lord",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Genesis 1:1-5"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 29"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Acts 19:1-7"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 1:4-11"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-01-11",
+      "dayName": "Monday after Epiphany 1",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 69:1-5, 30-36"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Genesis 17:1-13"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Romans 4:1-12"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-12",
+      "dayName": "Tuesday after Epiphany 1",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 69:1-5, 30-36"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Exodus 30:22-38"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 22:2-16"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-13",
+      "dayName": "Wednesday after Epiphany 1",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 69:1-5, 30-36"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Isaiah 41:14-20"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 1:29-34"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-14",
+      "dayName": "Thursday after Epiphany 2",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 139:1-6, 13-18"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Judges 2:6-15"
+        },
+        {
+          "type": "New Testament",
+          "reference": "2 Corinthians 10:1-11"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-15",
+      "dayName": "Friday after Epiphany 2",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 139:1-6, 13-18"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Judges 2:16-23"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 13:16-25"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-16",
+      "dayName": "Saturday after Epiphany 2",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 139:1-6, 13-18"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 2:21-25"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Matthew 25:1-13"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-17",
+      "dayName": "Second Sunday after the Epiphany",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "1 Samuel 3:1-10, (11-20)"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 139:1-6, 13-18"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "1 Corinthians 6:12-20"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 1:43-51"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-01-18",
+      "dayName": "Monday after Epiphany 2",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 86"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 9:27-10:8"
+        },
+        {
+          "type": "New Testament",
+          "reference": "2 Corinthians 6:14-7:1"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-19",
+      "dayName": "Tuesday after Epiphany 2",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 86"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 15:10-31"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 5:1-11"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-20",
+      "dayName": "Wednesday after Epiphany 2",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 86"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Genesis 16:1-14"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 18:15-17"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-21",
+      "dayName": "Thursday after Epiphany 3",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 62:5-12"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Jeremiah 19:1-15"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Revelation 18:11-20"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-22",
+      "dayName": "Friday after Epiphany 3",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 62:5-12"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Jeremiah 20:7-13"
+        },
+        {
+          "type": "New Testament",
+          "reference": "2 Peter 3:1-7"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-23",
+      "dayName": "Saturday after Epiphany 3",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 62:5-12"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Jeremiah 20:14-18"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 10:13-16"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-24",
+      "dayName": "Third Sunday after the Epiphany",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Jonah 3:1-5, 10"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 62:5-12"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "1 Corinthians 7:29-31"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 1:14-20"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-01-25",
+      "dayName": "Monday after Epiphany 3",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 46"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Genesis 12:1-9"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Corinthians 7:17-24"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-26",
+      "dayName": "Tuesday after Epiphany 3",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 46"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Genesis 45:25-46:7"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 5:33-42"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-27",
+      "dayName": "Wednesday after Epiphany 3",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 46"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Proverbs 8:1-21"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 3:13-19a"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-28",
+      "dayName": "Thursday after Epiphany 4",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 111"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Deuteronomy 3:23-29"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Romans 9:6-18"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-29",
+      "dayName": "Friday after Epiphany 4",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 111"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Deuteronomy 12:28-32"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Revelation 2:12-17"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-30",
+      "dayName": "Saturday after Epiphany 4",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 111"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Deuteronomy 13:1-5"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Matthew 8:28-9:1"
+        }
+      ]
+    },
+    {
+      "date": "2027-01-31",
+      "dayName": "Fourth Sunday after the Epiphany",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Deuteronomy 18:15-20"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 111"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "1 Corinthians 8:1-13"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 1:21-28"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-02-01",
+      "dayName": "Monday after Epiphany 4",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 35:1-10"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Numbers 22:1-21"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 21:17-26"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-02",
+      "dayName": "Presentation of the Lord",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Malachi 3:1-4"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 84"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Hebrews 2:14-18"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Luke 2:22-40"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-03",
+      "dayName": "Wednesday - Reflection on Presentation of the Lord",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 35:1-10"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Jeremiah 29:1-14"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 5:1-20"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-04",
+      "dayName": "Thursday after Epiphany 6",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 50:1-6"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Kings 11:26-40"
+        },
+        {
+          "type": "New Testament",
+          "reference": "2 Corinthians 2:12-17"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-05",
+      "dayName": "Friday after Epiphany 6",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 50:1-6"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Kings 14:1-18"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Timothy 1:12-20"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-06",
+      "dayName": "Saturday after Epiphany 6",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 50:1-6"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Kings 16:1-7"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 19:41-44"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-07",
+      "dayName": "Transfiguration Sunday",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "2 Kings 2:1-12"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 50:1-6"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "2 Corinthians 4:3-6"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 9:2-9"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-02-08",
+      "dayName": "Monday after Epiphany 6",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 110:1-4"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Exodus 19:7-25"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 2:1-4"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-09",
+      "dayName": "Tuesday before Ash Wednesday",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 110:1-4"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 19:23-27"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Timothy 3:14-16"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-10",
+      "dayName": "Ash Wednesday",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Joel 2:1-2, 12-17"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 51:1-17"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "2 Corinthians 5:20b-6:10"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Matthew 6:1-6, 16-21"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-11",
+      "dayName": "Thursday after Ash Wednesday",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 25:1-10"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Daniel 9:1-14"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 John 1:3-10"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-12",
+      "dayName": "Friday after Ash Wednesday",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 25:1-10"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Daniel 9:15-25a"
+        },
+        {
+          "type": "New Testament",
+          "reference": "2 Timothy 4:1-5"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-13",
+      "dayName": "Saturday after Ash Wednesday",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 25:1-10"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Psalm 32"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Matthew 9:2-13"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-14",
+      "dayName": "First Sunday in Lent",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Genesis 9:8-17"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 25:1-10"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "1 Peter 3:18-22"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 1:9-15"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-02-15",
+      "dayName": "Monday in Lent 1",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 77"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 4:1-21"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Ephesians 2:1-10"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-16",
+      "dayName": "Tuesday in Lent 1",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 77"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 5:8-27"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Peter 3:8-18a"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-17",
+      "dayName": "Wednesday in Lent 1",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 77"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Proverbs 30:1-9"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Matthew 4:1-11"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-18",
+      "dayName": "Thursday in Lent 1",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 22:23-31"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Genesis 15:1-6, 12-18"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Romans 3:21-31"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-19",
+      "dayName": "Friday in Lent 1",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 22:23-31"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Genesis 16:1-6"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Romans 4:1-12"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-20",
+      "dayName": "Saturday in Lent 1",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 22:23-31"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Genesis 16:7-15"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 8:27-30"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-21",
+      "dayName": "Second Sunday in Lent",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Genesis 17:1-7, 15-16"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 22:23-31"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Romans 4:13-25"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 8:31-38"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-02-22",
+      "dayName": "Monday in Lent 2",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 105:1-11, 37-45"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Genesis 21:1-7"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 1:8-12"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-23",
+      "dayName": "Tuesday in Lent 2",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 105:1-11, 37-45"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Genesis 22:1-19"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 11:1-3, 13-19"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-24",
+      "dayName": "Wednesday in Lent 2",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 105:1-11, 37-45"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Jeremiah 30:12-22"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 12:36-43"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-25",
+      "dayName": "Thursday in Lent 2",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 19"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Exodus 19:1-9a"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Peter 2:4-10"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-26",
+      "dayName": "Friday in Lent 2",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 19"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Exodus 19:9b-15"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 7:30-40"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-27",
+      "dayName": "Saturday in Lent 2",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 19"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Exodus 19:16-25"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 9:2-8"
+        }
+      ]
+    },
+    {
+      "date": "2027-02-28",
+      "dayName": "Third Sunday in Lent",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Exodus 20:1-17"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 19"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "1 Corinthians 1:18-25"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 2:13-22"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-03-01",
+      "dayName": "Monday in Lent 3",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 84"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Kings 6:1-4, 21-22"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Corinthians 3:10-23"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-02",
+      "dayName": "Tuesday in Lent 3",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 84"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Chronicles 29:1-11, 16-19"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 9:23-28"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-03",
+      "dayName": "Wednesday in Lent 3",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 84"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Ezra 6:1-16"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 11:15-19"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-04",
+      "dayName": "Thursday in Lent 3",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 107:1-3, 17-22"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Genesis 9:8-17"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Ephesians 1:3-6"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-05",
+      "dayName": "Friday in Lent 3",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 107:1-3, 17-22"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Daniel 12:5-13"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Ephesians 1:7-14"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-06",
+      "dayName": "Saturday in Lent 3",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 107:1-3, 17-22"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Numbers 20:22-29"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 3:1-13"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-07",
+      "dayName": "Fourth Sunday in Lent",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Numbers 21:4-9"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 107:1-3, 17-22"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Ephesians 2:1-10"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 3:14-21"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-03-08",
+      "dayName": "Monday in Lent 4",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 107:1-16"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Exodus 15:22-27"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 3:1-6"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-09",
+      "dayName": "Tuesday in Lent 4",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 107:1-16"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Numbers 20:1-13"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Corinthians 10:6-13"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-10",
+      "dayName": "Wednesday in Lent 4",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 107:1-16"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Isaiah 60:15-22"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 8:12-20"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-11",
+      "dayName": "Thursday in Lent 4",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 51:1-12"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Isaiah 30:15-18"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 4:1-13"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-12",
+      "dayName": "Friday in Lent 4",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 51:1-12"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Exodus 30:1-10"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 4:14-5:4"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-13",
+      "dayName": "Saturday in Lent 4",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 51:1-12"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Habakkuk 3:2-13"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 12:1-11"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-14",
+      "dayName": "Fifth Sunday in Lent",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Jeremiah 31:31-34"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 51:1-12"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Hebrews 5:5-10"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 12:20-33"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-03-15",
+      "dayName": "Monday in Lent 5",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 119:9-16"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Isaiah 43:8-13"
+        },
+        {
+          "type": "New Testament",
+          "reference": "2 Corinthians 3:4-11"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-16",
+      "dayName": "Tuesday in Lent 5",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 119:9-16"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Isaiah 44:1-8"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 2:14-24"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-17",
+      "dayName": "Wednesday in Lent 5",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 119:9-16"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Haggai 2:1-9, 20-23"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 12:34-50"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-18",
+      "dayName": "Thursday in Lent 5",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 118:1-2, 19-29"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Deuteronomy 16:1-8"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Philippians 2:1-11"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-19",
+      "dayName": "Friday in Lent 5",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 118:1-2, 19-29"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Jeremiah 33:1-9"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Philippians 2:12-18"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-20",
+      "dayName": "Saturday in Lent 5",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 118:1-2, 19-29"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Jeremiah 33:10-16"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 10:32-34, 46-52"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-21",
+      "dayName": "Palm Sunday / Passion Sunday",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Isaiah 50:4-9a"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 118:1-2, 19-29"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Philippians 2:5-11"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 14:1-15:47"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-03-22",
+      "dayName": "Monday of Holy Week",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Isaiah 42:1-9"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 36:5-11"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Hebrews 9:11-15"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 12:1-11"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-23",
+      "dayName": "Tuesday of Holy Week",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Isaiah 49:1-7"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 71:1-14"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "1 Corinthians 1:18-31"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 12:20-36"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-24",
+      "dayName": "Wednesday of Holy Week",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Isaiah 50:4-9a"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 70"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Hebrews 12:1-3"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 13:21-32"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-25",
+      "dayName": "Maundy Thursday",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Exodus 12:1-4, (5-10), 11-14"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 116:1-2, 12-19"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "1 Corinthians 11:23-26"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 13:1-17, 31b-35"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-26",
+      "dayName": "Good Friday",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Isaiah 52:13-53:12"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 22"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Hebrews 10:16-25"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 18:1-19:42"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-27",
+      "dayName": "Holy Saturday",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Job 14:1-14"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 31:1-4, 15-16"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "1 Peter 4:1-8"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Matthew 27:57-66"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-28",
+      "dayName": "Easter Sunday",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Acts 10:34-43"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 118:1-2, 14-24"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "1 Corinthians 15:1-11"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 20:1-18"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-03-29",
+      "dayName": "Monday of Easter Week",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 118:1-2, 14-24"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Genesis 1:1-19"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Corinthians 15:35-49"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-30",
+      "dayName": "Tuesday of Easter Week",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 118:1-2, 14-24"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Genesis 1:20-2:4a"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Corinthians 15:50-58"
+        }
+      ]
+    },
+    {
+      "date": "2027-03-31",
+      "dayName": "Wednesday of Easter Week",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 118:1-2, 14-24"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Song of Solomon 3:1-11"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 16:1-8"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-01",
+      "dayName": "Thursday of Easter Week",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 133"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Daniel 1:1-21"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 2:42-47"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-02",
+      "dayName": "Friday of Easter Week",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 133"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Daniel 2:1-23"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 4:23-31"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-03",
+      "dayName": "Saturday of Easter Week",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 133"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Daniel 2:24-49"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 12:44-50"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-04",
+      "dayName": "Second Sunday of Easter",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Acts 4:32-35"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 133"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "1 John 1:1-2:2"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 20:19-31"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-04-05",
+      "dayName": "Monday - Reflection on Second Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 135"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Daniel 3:1-30"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 John 2:3-11"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-06",
+      "dayName": "Tuesday - Reflection on Second Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 135"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Daniel 6:1-28"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 John 2:12-17"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-07",
+      "dayName": "Wednesday - Reflection on Second Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 135"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Isaiah 26:1-15"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 12:18-27"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-08",
+      "dayName": "Thursday - Preparation for Third Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 4"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Daniel 9:1-19"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 John 2:18-25"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-09",
+      "dayName": "Friday - Preparation for Third Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 4"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Daniel 10:2-19"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 John 2:26-28"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-10",
+      "dayName": "Saturday - Preparation for Third Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 4"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Acts 3:1-10"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 22:24-30"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-11",
+      "dayName": "Third Sunday of Easter",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Acts 3:12-19"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 4"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "1 John 3:1-7"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Luke 24:36b-48"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-04-12",
+      "dayName": "Monday - Reflection on Third Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 150"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Jeremiah 30:1-11a"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 John 3:10-16"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-13",
+      "dayName": "Tuesday - Reflection on Third Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 150"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Hosea 5:15-6:6"
+        },
+        {
+          "type": "New Testament",
+          "reference": "2 John 1:1-6"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-14",
+      "dayName": "Wednesday - Reflection on Third Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 150"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Proverbs 9:1-6"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 16:9-18"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-15",
+      "dayName": "Thursday - Preparation for Fourth Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 23"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Genesis 30:25-43"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 3:17-26"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-16",
+      "dayName": "Friday - Preparation for Fourth Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 23"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Genesis 46:28-47:6"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 4:1-4"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-17",
+      "dayName": "Saturday - Preparation for Fourth Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 23"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Genesis 48:8-19"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 6:30-34"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-18",
+      "dayName": "Fourth Sunday of Easter",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Acts 4:5-12"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 23"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "1 John 3:16-24"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 10:11-18"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-04-19",
+      "dayName": "Monday - Reflection on Fourth Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 95"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 16:1-13"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Peter 5:1-5"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-20",
+      "dayName": "Tuesday - Reflection on Fourth Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 95"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Chronicles 11:1-9"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Revelation 7:13-17"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-21",
+      "dayName": "Wednesday - Reflection on Fourth Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 95"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Micah 7:8-20"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 14:26-31"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-22",
+      "dayName": "Thursday - Preparation for Fifth Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 22:25-31"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Amos 8:1-7"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 8:1b-8"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-23",
+      "dayName": "Friday - Preparation for Fifth Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 22:25-31"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Amos 8:11-13"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 8:9-25"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-24",
+      "dayName": "Saturday - Preparation for Fifth Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 22:25-31"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Amos 9:7-15"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 4:30-32"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-25",
+      "dayName": "Fifth Sunday of Easter",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Acts 8:26-40"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 22:25-31"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "1 John 4:7-21"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 15:1-8"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-04-26",
+      "dayName": "Monday - Reflection on Fifth Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 80"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Isaiah 5:1-7"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Galatians 5:16-26"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-27",
+      "dayName": "Tuesday - Reflection on Fifth Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 80"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Isaiah 32:9-20"
+        },
+        {
+          "type": "New Testament",
+          "reference": "James 3:17-18"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-28",
+      "dayName": "Wednesday - Reflection on Fifth Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 80"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Isaiah 65:17-25"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 14:18-31"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-29",
+      "dayName": "Thursday - Preparation for Sixth Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 98"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Isaiah 49:5-6"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 10:1-34"
+        }
+      ]
+    },
+    {
+      "date": "2027-04-30",
+      "dayName": "Friday - Preparation for Sixth Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 98"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Isaiah 42:5-9"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 10:34-43"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-01",
+      "dayName": "Saturday - Preparation for Sixth Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 98"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Deuteronomy 32:44-47"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 10:42-45"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-02",
+      "dayName": "Sixth Sunday of Easter",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Acts 10:44-48"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 98"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "1 John 5:1-6"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 15:9-17"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-05-03",
+      "dayName": "Monday - Reflection on Sixth Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 93"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Deuteronomy 7:1-11"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Timothy 6:11-12"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-04",
+      "dayName": "Tuesday - Reflection on Sixth Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 93"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Deuteronomy 11:1-17"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Timothy 6:13-16"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-05",
+      "dayName": "Wednesday - Reflection on Sixth Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 93"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Deuteronomy 11:18-21"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 16:19-20"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-06",
+      "dayName": "Ascension of the Lord",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Acts 1:1-11"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 47"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Ephesians 1:15-23"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Luke 24:44-53"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-07",
+      "dayName": "Friday - Preparation for Seventh Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 47"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Exodus 24:15-18"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Revelation 1:9-18"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-08",
+      "dayName": "Saturday - Preparation for Seventh Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 47"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Deuteronomy 34:1-7"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 16:4-11"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-09",
+      "dayName": "Seventh Sunday of Easter",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Acts 1:15-17, 21-26"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 1"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "1 John 5:9-13"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 17:6-19"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-05-10",
+      "dayName": "Monday - Reflection on Seventh Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 115"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Exodus 28:29-38"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Philippians 1:3-11"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-11",
+      "dayName": "Tuesday - Reflection on Seventh Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 115"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Numbers 8:5-22"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Titus 1:1-9"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-12",
+      "dayName": "Wednesday - Reflection on Seventh Sunday of Easter",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 115"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Ezra 9:5-15"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 16:16-24"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-13",
+      "dayName": "Thursday - Preparation for Day of Pentecost",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 33:12-22"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Genesis 2:4b-7"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Corinthians 15:42b-49"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-14",
+      "dayName": "Friday - Preparation for Day of Pentecost",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 33:12-22"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 37:1-13"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Corinthians 15:50-57"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-15",
+      "dayName": "Saturday - Preparation for Day of Pentecost",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 33:12-22"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Exodus 15:6-11"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 7:37-39"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-16",
+      "dayName": "Day of Pentecost",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Acts 2:1-21"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 104:24-34, 35b"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Romans 8:22-27"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 15:26-27; 16:4b-15"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-05-17",
+      "dayName": "Monday - Reflection on Day of Pentecost",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 104:24-34, 35b"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Joel 2:18-29"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Corinthians 12:4-11"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-18",
+      "dayName": "Tuesday - Reflection on Day of Pentecost",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 104:24-34, 35b"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Genesis 11:1-9"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Corinthians 12:12-27"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-19",
+      "dayName": "Wednesday - Reflection on Day of Pentecost",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 104:24-34, 35b"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Ezekiel 37:1-14"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 20:19-23"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-20",
+      "dayName": "Thursday - Preparation for Trinity Sunday",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 29"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Isaiah 1:1-4, 16-20"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Romans 8:1-8"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-21",
+      "dayName": "Friday - Preparation for Trinity Sunday",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 29"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Isaiah 2:1-5"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Romans 8:9-11"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-22",
+      "dayName": "Saturday - Preparation for Trinity Sunday",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 29"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Isaiah 5:15-24"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 15:18-20, 26-27"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-23",
+      "dayName": "Trinity Sunday",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Isaiah 6:1-8"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 29"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Romans 8:12-17"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 3:1-17"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-05-24",
+      "dayName": "Monday - Reflection on Trinity Sunday",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 20"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Numbers 9:15-23"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Revelation 4:1-8"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-25",
+      "dayName": "Tuesday - Reflection on Trinity Sunday",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 20"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Exodus 25:1-22"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Corinthians 2:1-10"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-26",
+      "dayName": "Wednesday - Reflection on Trinity Sunday",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 20"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Numbers 6:22-27"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 4:21-25"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-27",
+      "dayName": "Thursday - Preparation for Proper 4 / Ordinary Time 9",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 139:1-6, 13-18"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 1:1-18"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 25:1-12"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-28",
+      "dayName": "Friday - Preparation for Proper 4 / Ordinary Time 9",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 139:1-6, 13-18"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 1:19-27"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Romans 8:31-39"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-29",
+      "dayName": "Saturday - Preparation for Proper 4 / Ordinary Time 9",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 139:1-6, 13-18"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 2:1-10"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 7:19-24"
+        }
+      ]
+    },
+    {
+      "date": "2027-05-30",
+      "dayName": "Proper 4 / Ordinary Time 9",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "1 Samuel 3:1-10, (11-20)"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 139:1-6, 13-18"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "2 Corinthians 4:5-12"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 2:23-3:6"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-05-31",
+      "dayName": "Visitation of Mary to Elizabeth",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "1 Samuel 2:1-10"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 113"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Romans 12:9-16b"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Luke 1:39-57"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-01",
+      "dayName": "Tuesday - Reflection on Visitation of Mary to Elizabeth",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 99"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 2:18-21"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 15:1-5, 22-35"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-02",
+      "dayName": "Wednesday - Reflection on Visitation of Mary to Elizabeth",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 99"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 2:22-36"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 5:1-18"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-03",
+      "dayName": "Thursday - Preparation for Proper 5 / Ordinary Time 10",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 138"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 4:1-22"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Peter 4:7-19"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-04",
+      "dayName": "Friday - Preparation for Proper 5 / Ordinary Time 10",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 138"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 5:1-12"
+        },
+        {
+          "type": "New Testament",
+          "reference": "2 Corinthians 5:1-5"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-05",
+      "dayName": "Saturday - Preparation for Proper 5 / Ordinary Time 10",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 138"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 6:1-18"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 8:4-15"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-06",
+      "dayName": "Proper 5 / Ordinary Time 10",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "1 Samuel 8:4-11, (12-15), 16-20, (11:14-15)"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 138"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "2 Corinthians 4:13-5:1"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 3:20-35"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-06-07",
+      "dayName": "Monday - Reflection on Proper 5 / Ordinary Time 10",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 108"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 7:3-15"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Revelation 20:1-6"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-08",
+      "dayName": "Tuesday - Reflection on Proper 5 / Ordinary Time 10",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 108"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 8:1-22"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Revelation 20:7-15"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-09",
+      "dayName": "Wednesday - Reflection on Proper 5 / Ordinary Time 10",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 108"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 9:1-14"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 11:14-28"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-10",
+      "dayName": "Thursday - Preparation for Proper 6 / Ordinary Time 11",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 20"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 9:15-27"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 2:5-9"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-11",
+      "dayName": "Friday - Preparation for Proper 6 / Ordinary Time 11",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 20"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 10:1-8"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 11:4-7"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-12",
+      "dayName": "Saturday - Preparation for Proper 6 / Ordinary Time 11",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 20"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 13:1-15a"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 4:1-20"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-13",
+      "dayName": "Proper 6 / Ordinary Time 11",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "1 Samuel 15:34-16:13"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 20"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "2 Corinthians 5:6-10, (11-13), 14-17"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 4:26-34"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-06-14",
+      "dayName": "Monday - Reflection on Proper 6 / Ordinary Time 11",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 53"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 13:23-14:23"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Galatians 6:11-18"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-15",
+      "dayName": "Tuesday - Reflection on Proper 6 / Ordinary Time 11",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 53"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 15:10-23"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Revelation 21:22-22:5"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-16",
+      "dayName": "Wednesday - Reflection on Proper 6 / Ordinary Time 11",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 53"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 15:24-31"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 6:43-45"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-17",
+      "dayName": "Thursday - Preparation for Proper 7 / Ordinary Time 12",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 9:9-20"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 16:14-23"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 20:1-16"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-18",
+      "dayName": "Friday - Preparation for Proper 7 / Ordinary Time 12",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 9:9-20"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 17:55-18:5"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 21:1-16"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-19",
+      "dayName": "Saturday - Preparation for Proper 7 / Ordinary Time 12",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 9:9-20"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 18:1-4"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 21:25-28"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-20",
+      "dayName": "Proper 7 / Ordinary Time 12",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "1 Samuel 17:(1a, 4-11, 19-23), 32-49"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 9:9-20"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "2 Corinthians 6:1-13"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 4:35-41"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-06-21",
+      "dayName": "Monday - Reflection on Proper 7 / Ordinary Time 12",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 119:113-128"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 18:6-30"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 27:13-38"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-22",
+      "dayName": "Tuesday - Reflection on Proper 7 / Ordinary Time 12",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 119:113-128"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 19:1-7"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 27:39-44"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-23",
+      "dayName": "Wednesday - Reflection on Proper 7 / Ordinary Time 12",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 119:113-128"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 19:8-17"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 6:45-52"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-24",
+      "dayName": "Thursday - Preparation for Proper 8 / Ordinary Time 13",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 130"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 19:18-24"
+        },
+        {
+          "type": "New Testament",
+          "reference": "2 Corinthians 7:2-16"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-25",
+      "dayName": "Friday - Preparation for Proper 8 / Ordinary Time 13",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 130"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 20:1-25"
+        },
+        {
+          "type": "New Testament",
+          "reference": "2 Corinthians 8:1-7"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-26",
+      "dayName": "Saturday - Preparation for Proper 8 / Ordinary Time 13",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 130"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 20:27-42"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 4:31-37"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-27",
+      "dayName": "Proper 8 / Ordinary Time 13",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "2 Samuel 1:1, 17-27"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 130"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "2 Corinthians 8:7-15"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 5:21-43"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-06-28",
+      "dayName": "Monday - Reflection on Proper 8 / Ordinary Time 13",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 18:1-6, 43-50"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 23:14-18"
+        },
+        {
+          "type": "New Testament",
+          "reference": "2 Corinthians 8:16-24"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-29",
+      "dayName": "Tuesday - Reflection on Proper 8 / Ordinary Time 13",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 18:1-6, 43-50"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 31:1-13"
+        },
+        {
+          "type": "New Testament",
+          "reference": "2 Corinthians 9:1-5"
+        }
+      ]
+    },
+    {
+      "date": "2027-06-30",
+      "dayName": "Wednesday - Reflection on Proper 8 / Ordinary Time 13",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 18:1-6, 43-50"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Chronicles 10:1-14"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 9:14-29"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-01",
+      "dayName": "Thursday - Preparation for Proper 9 / Ordinary Time 14",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 48"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 2:1-11"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Corinthians 4:8-13"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-02",
+      "dayName": "Friday - Preparation for Proper 9 / Ordinary Time 14",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 48"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 3:1-12"
+        },
+        {
+          "type": "New Testament",
+          "reference": "2 Corinthians 10:7-11"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-03",
+      "dayName": "Saturday - Preparation for Proper 9 / Ordinary Time 14",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 48"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 3:31-38"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Matthew 8:18-22"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-04",
+      "dayName": "Proper 9 / Ordinary Time 14",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "2 Samuel 5:1-5, 9-10"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 48"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "2 Corinthians 12:2-10"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 6:1-13"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-07-05",
+      "dayName": "Monday - Reflection on Proper 9 / Ordinary Time 14",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 21"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 5:1-10"
+        },
+        {
+          "type": "New Testament",
+          "reference": "2 Corinthians 11:16-33"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-06",
+      "dayName": "Tuesday - Reflection on Proper 9 / Ordinary Time 14",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 21"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 5:11-16"
+        },
+        {
+          "type": "New Testament",
+          "reference": "James 5:7-12"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-07",
+      "dayName": "Wednesday - Reflection on Proper 9 / Ordinary Time 14",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 21"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 5:17-25"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 7:1-9"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-08",
+      "dayName": "Thursday - Preparation for Proper 10 / Ordinary Time 15",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 24"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Exodus 25:10-22"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Colossians 2:1-5"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-09",
+      "dayName": "Friday - Preparation for Proper 10 / Ordinary Time 15",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 24"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Exodus 37:1-16"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Colossians 4:2-18"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-10",
+      "dayName": "Saturday - Preparation for Proper 10 / Ordinary Time 15",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 24"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Numbers 10:11-36"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 1:57-80"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-11",
+      "dayName": "Proper 10 / Ordinary Time 15",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "2 Samuel 6:1-5, 12b-19"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 24"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Ephesians 1:3-14"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 6:14-29"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-07-12",
+      "dayName": "Monday - Reflection on Proper 10 / Ordinary Time 15",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 68:24-35"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 6:6-12a"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 21:27-39"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-13",
+      "dayName": "Tuesday - Reflection on Proper 10 / Ordinary Time 15",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 68:24-35"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 3:12-16"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 23:12-35"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-14",
+      "dayName": "Wednesday - Reflection on Proper 10 / Ordinary Time 15",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 68:24-35"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 6:16-23"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 7:31-35"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-15",
+      "dayName": "Thursday - Preparation for Proper 11 / Ordinary Time 16",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 89:20-37"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Chronicles 11:15-19"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Colossians 1:15-23"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-16",
+      "dayName": "Friday - Preparation for Proper 11 / Ordinary Time 16",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 89:20-37"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Chronicles 14:1-2"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 17:16-31"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-17",
+      "dayName": "Saturday - Preparation for Proper 11 / Ordinary Time 16",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 89:20-37"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Chronicles 15:1-2, 16:4-13"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 18:35-43"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-18",
+      "dayName": "Proper 11 / Ordinary Time 16",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "2 Samuel 7:1-14a"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 89:20-37"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Ephesians 2:11-22"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 6:30-34, 53-56"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-07-19",
+      "dayName": "Monday - Reflection on Proper 11 / Ordinary Time 16",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 61"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 7:18-29"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 13:17-25"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-20",
+      "dayName": "Tuesday - Reflection on Proper 11 / Ordinary Time 16",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 61"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 8:1-18"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 20:17-38"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-21",
+      "dayName": "Wednesday - Reflection on Proper 11 / Ordinary Time 16",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 61"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 9:1-13"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 15:1-7"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-22",
+      "dayName": "Thursday - Preparation for Proper 12 / Ordinary Time 17",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 14"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 10:1-5"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Colossians 1:9-14"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-23",
+      "dayName": "Friday - Preparation for Proper 12 / Ordinary Time 17",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 14"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 10:6-12"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Colossians 3:12-17"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-24",
+      "dayName": "Saturday - Preparation for Proper 12 / Ordinary Time 17",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 14"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 10:13-19"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 4:31-38"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-25",
+      "dayName": "Proper 12 / Ordinary Time 17",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "2 Samuel 11:1-15"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 14"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Ephesians 3:14-21"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 6:1-21"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-07-26",
+      "dayName": "Monday - Reflection on Proper 12 / Ordinary Time 17",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 37:12-22"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 11:14-21"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Philippians 4:10-20"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-27",
+      "dayName": "Tuesday - Reflection on Proper 12 / Ordinary Time 17",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 37:12-22"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 11:22-27"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Romans 15:22-33"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-28",
+      "dayName": "Wednesday - Reflection on Proper 12 / Ordinary Time 17",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 37:12-22"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Chronicles 9:29-31"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 6:35-44"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-29",
+      "dayName": "Thursday - Preparation for Proper 13 / Ordinary Time 18",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 51:1-12"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Exodus 32:19-26a"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Corinthians 11:17-22"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-30",
+      "dayName": "Friday - Preparation for Proper 13 / Ordinary Time 18",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 51:1-12"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Joshua 23:1-16"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Corinthians 11:27-34"
+        }
+      ]
+    },
+    {
+      "date": "2027-07-31",
+      "dayName": "Saturday - Preparation for Proper 13 / Ordinary Time 18",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 51:1-12"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Judges 6:1-10"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Matthew 16:5-12"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-01",
+      "dayName": "Proper 13 / Ordinary Time 18",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "2 Samuel 11:26-12:13a"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 51:1-12"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Ephesians 4:1-16"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 6:24-35"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-08-02",
+      "dayName": "Monday - Reflection on Proper 13 / Ordinary Time 18",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 50:16-23"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 12:15-25"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Ephesians 4:17-24"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-03",
+      "dayName": "Tuesday - Reflection on Proper 13 / Ordinary Time 18",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 50:16-23"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 13:1-19"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Corinthians 12:27-31"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-04",
+      "dayName": "Wednesday - Reflection on Proper 13 / Ordinary Time 18",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 50:16-23"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 13:20-36"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 8:1-10"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-05",
+      "dayName": "Thursday - Preparation for Proper 14 / Ordinary Time 19",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 130"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 13:37-14:24"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Romans 15:1-6"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-06",
+      "dayName": "Friday - Preparation for Proper 14 / Ordinary Time 19",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 130"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 14:25-33"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Galatians 6:1-10"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-07",
+      "dayName": "Saturday - Preparation for Proper 14 / Ordinary Time 19",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 130"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 15:1-13"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Matthew 7:7-11"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-08",
+      "dayName": "Proper 14 / Ordinary Time 19",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "2 Samuel 18:5-9, 15, 31-33"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 130"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Ephesians 4:25-5:2"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 6:35, 41-51"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-08-09",
+      "dayName": "Monday - Reflection on Proper 14 / Ordinary Time 19",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 57"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 15:13-31"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Ephesians 5:1-14"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-10",
+      "dayName": "Tuesday - Reflection on Proper 14 / Ordinary Time 19",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 57"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 18:19-33"
+        },
+        {
+          "type": "New Testament",
+          "reference": "2 Peter 3:14-18"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-11",
+      "dayName": "Wednesday - Reflection on Proper 14 / Ordinary Time 19",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 57"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 19:1-18"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 6:35-40"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-12",
+      "dayName": "Thursday - Preparation for Proper 15 / Ordinary Time 20",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 111"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Kings 1:1-30"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 6:8-15"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-13",
+      "dayName": "Friday - Preparation for Proper 15 / Ordinary Time 20",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 111"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Kings 1:28-48"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Romans 16:17-20"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-14",
+      "dayName": "Saturday - Preparation for Proper 15 / Ordinary Time 20",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 111"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Kings 2:1-11"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 4:7-26"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-15",
+      "dayName": "Proper 15 / Ordinary Time 20",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "1 Kings 2:10-12; 3:3-14"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 111"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Ephesians 5:15-20"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 6:51-58"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-08-16",
+      "dayName": "Monday - Reflection on Proper 15 / Ordinary Time 20",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 101"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Kings 3:16-28"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 6:1-7"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-17",
+      "dayName": "Tuesday - Reflection on Proper 15 / Ordinary Time 20",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 101"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Kings 7:1-12"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 7:9-16"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-18",
+      "dayName": "Wednesday - Reflection on Proper 15 / Ordinary Time 20",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 101"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Kings 8:1-21"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 8:14-21"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-19",
+      "dayName": "Thursday - Preparation for Proper 16 / Ordinary Time 21",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 84"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Kings 4:20-28"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Thessalonians 5:1-11"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-20",
+      "dayName": "Friday - Preparation for Proper 16 / Ordinary Time 21",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 84"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Kings 4:29-34"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Romans 13:11-14"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-21",
+      "dayName": "Saturday - Preparation for Proper 16 / Ordinary Time 21",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 84"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Kings 5:1-12"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 11:5-13"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-22",
+      "dayName": "Proper 16 / Ordinary Time 21",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "1 Kings 8:(1,6,10-11), 22-30, 41-43"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 84"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Ephesians 6:10-20"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 6:56-69"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-08-23",
+      "dayName": "Monday - Reflection on Proper 16 / Ordinary Time 21",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 11"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Kings 5:13-18"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Ephesians 5:21-6:9"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-24",
+      "dayName": "Tuesday - Reflection on Proper 16 / Ordinary Time 21",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 11"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Kings 6:1-14"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Ephesians 6:21-24"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-25",
+      "dayName": "Wednesday - Reflection on Proper 16 / Ordinary Time 21",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 11"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Kings 6:15-38"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 15:16-25"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-26",
+      "dayName": "Thursday - Preparation for Proper 17 / Ordinary Time 22",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 45:1-2, 6-9"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Song of Solomon 1:1-17"
+        },
+        {
+          "type": "New Testament",
+          "reference": "James 1:1-8"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-27",
+      "dayName": "Friday - Preparation for Proper 17 / Ordinary Time 22",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 45:1-2, 6-9"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Song of Solomon 2:1-7"
+        },
+        {
+          "type": "New Testament",
+          "reference": "James 1:9-16"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-28",
+      "dayName": "Saturday - Preparation for Proper 17 / Ordinary Time 22",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 45:1-2, 6-9"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Hosea 3:1-5"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 18:28-32"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-29",
+      "dayName": "Proper 17 / Ordinary Time 22",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Song of Solomon 2:8-13"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 45:1-2, 6-9"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "James 1:17-27"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 7:1-8, 14-15, 21-23"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-08-30",
+      "dayName": "Monday - Reflection on Proper 17 / Ordinary Time 22",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 144:9-15"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Song of Solomon 3:6-11"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Timothy 4:6-16"
+        }
+      ]
+    },
+    {
+      "date": "2027-08-31",
+      "dayName": "Tuesday - Reflection on Proper 17 / Ordinary Time 22",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 144:9-15"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Song of Solomon 5:2-6:3"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Peter 2:19-25"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-01",
+      "dayName": "Wednesday - Reflection on Proper 17 / Ordinary Time 22",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 144:9-15"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Song of Solomon 8:5-7"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 7:9-23"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-02",
+      "dayName": "Thursday - Preparation for Proper 18 / Ordinary Time 23",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 125"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Proverbs 1:1-19"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Romans 2:1-11"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-03",
+      "dayName": "Friday - Preparation for Proper 18 / Ordinary Time 23",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 125"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Proverbs 4:10-27"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Romans 2:12-16"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-04",
+      "dayName": "Saturday - Preparation for Proper 18 / Ordinary Time 23",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 125"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Proverbs 8:1-31"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Matthew 15:21-31"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-05",
+      "dayName": "Proper 18 / Ordinary Time 23",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Proverbs 22:1-2, 8-9, 22-23"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 125"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "James 2:1-10, (11-13), 14-17"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 7:24-37"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-09-06",
+      "dayName": "Monday - Reflection on Proper 18 / Ordinary Time 23",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 73:1-20"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Proverbs 8:32-9:6"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 11:29-12:2"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-07",
+      "dayName": "Tuesday - Reflection on Proper 18 / Ordinary Time 23",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 73:1-20"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Proverbs 11:1-31"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 12:3-13"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-08",
+      "dayName": "Wednesday - Reflection on Proper 18 / Ordinary Time 23",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 73:1-20"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Proverbs 14:1-9"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Matthew 17:14-21"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-09",
+      "dayName": "Thursday - Preparation for Proper 19 / Ordinary Time 24",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 19"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Proverbs 15:1-17"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 11:17-22"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-10",
+      "dayName": "Friday - Preparation for Proper 19 / Ordinary Time 24",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 19"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "James 2:17-26"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-11",
+      "dayName": "Saturday - Preparation for Proper 19 / Ordinary Time 24",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 19"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Proverbs 21:1-17"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Matthew 21:23-32"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-12",
+      "dayName": "Proper 19 / Ordinary Time 24",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Proverbs 1:20-33"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 19"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "James 3:1-12"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 8:27-38"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-09-13",
+      "dayName": "Monday - Reflection on Proper 19 / Ordinary Time 24",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 73:21-28"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Proverbs 22:1-21"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Romans 3:9-20"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-14",
+      "dayName": "Holy Cross",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Numbers 21:4b-9"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 98:1-5"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "1 Corinthians 1:18-24"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 3:13-17"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-15",
+      "dayName": "Wednesday - Reflection on Holy Cross",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 73:21-28"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Proverbs 29:1-27"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 7:25-36"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-16",
+      "dayName": "Thursday - Preparation for Proper 20 / Ordinary Time 25",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 1"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Proverbs 30:1-10"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Corinthians 2:1-5"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-17",
+      "dayName": "Friday - Preparation for Proper 20 / Ordinary Time 25",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 1"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Proverbs 30:18-33"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Romans 11:25-32"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-18",
+      "dayName": "Saturday - Preparation for Proper 20 / Ordinary Time 25",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 1"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Ecclesiastes 1:1-18"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Matthew 23:29-39"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-19",
+      "dayName": "Proper 20 / Ordinary Time 25",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Proverbs 31:10-31"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 1"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "James 3:13-4:3, 7-8a"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 9:30-37"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-09-20",
+      "dayName": "Monday - Reflection on Proper 20 / Ordinary Time 25",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 128"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Proverbs 27:1-27"
+        },
+        {
+          "type": "New Testament",
+          "reference": "James 4:8-17"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-21",
+      "dayName": "Tuesday - Reflection on Proper 20 / Ordinary Time 25",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 128"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Ecclesiastes 4:9-16"
+        },
+        {
+          "type": "New Testament",
+          "reference": "James 5:1-6"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-22",
+      "dayName": "Wednesday - Reflection on Proper 20 / Ordinary Time 25",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 128"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Ecclesiastes 5:1-20"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 8:21-38"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-23",
+      "dayName": "Thursday - Preparation for Proper 21 / Ordinary Time 26",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 124"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Esther 1:1-21"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 4:13-31"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-24",
+      "dayName": "Friday - Preparation for Proper 21 / Ordinary Time 26",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 124"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Esther 2:1-23"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 12:20-25"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-25",
+      "dayName": "Saturday - Preparation for Proper 21 / Ordinary Time 26",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 124"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Esther 3:1-15"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Matthew 5:13-20"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-26",
+      "dayName": "Proper 21 / Ordinary Time 26",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Esther 7:1-6, 9-10; 9:20-22"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 124"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "James 5:13-20"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 9:38-50"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-09-27",
+      "dayName": "Monday - Reflection on Proper 21 / Ordinary Time 26",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 140"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Esther 4:1-17"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Peter 1:3-9"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-28",
+      "dayName": "Tuesday - Reflection on Proper 21 / Ordinary Time 26",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 140"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Esther 5:1-14"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 John 2:18-25"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-29",
+      "dayName": "Wednesday - Reflection on Proper 21 / Ordinary Time 26",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 140"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Esther 8:1-17"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Matthew 18:6-9"
+        }
+      ]
+    },
+    {
+      "date": "2027-09-30",
+      "dayName": "Thursday - Preparation for Proper 22 / Ordinary Time 27",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 26"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 2:11-3:26"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Galatians 3:23-29"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-01",
+      "dayName": "Friday - Preparation for Proper 22 / Ordinary Time 27",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 26"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 4:1-21"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Romans 8:1-11"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-02",
+      "dayName": "Saturday - Preparation for Proper 22 / Ordinary Time 27",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 26"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 7:1-21"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 16:14-18"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-03",
+      "dayName": "Proper 22 / Ordinary Time 27",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Job 1:1, 2:1-10"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 26"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Hebrews 1:1-4, 2:5-12"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 10:2-16"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-10-04",
+      "dayName": "Monday - Reflection on Proper 22 / Ordinary Time 27",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 55:1-15"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 8:1-22"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Corinthians 7:1-9"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-05",
+      "dayName": "Tuesday - Reflection on Proper 22 / Ordinary Time 27",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 55:1-15"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 11:1-20"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Corinthians 7:10-16"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-06",
+      "dayName": "Wednesday - Reflection on Proper 22 / Ordinary Time 27",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 55:1-15"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 15:1-35"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Matthew 5:27-36"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-07",
+      "dayName": "Thursday - Preparation for Proper 23 / Ordinary Time 28",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 22:1-15"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 17:1-16"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 3:7-19"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-08",
+      "dayName": "Friday - Preparation for Proper 23 / Ordinary Time 28",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 22:1-15"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 18:1-21"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 4:1-11"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-09",
+      "dayName": "Saturday - Preparation for Proper 23 / Ordinary Time 28",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 22:1-15"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 20:1-29"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Matthew 15:1-9"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-10",
+      "dayName": "Proper 23 / Ordinary Time 28",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Job 23:1-9, 16-17"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 22:1-15"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Hebrews 4:12-16"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 10:17-31"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-10-11",
+      "dayName": "Canadian Thanksgiving Day",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Joel 2:21-27"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 126"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "1 Timothy 2:1-7"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Matthew 6:25-33"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-12",
+      "dayName": "Tuesday - Reflection on Canadian Thanksgiving Day",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 39"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 28:12-29:10"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Revelation 8:1-5"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-13",
+      "dayName": "Wednesday - Reflection on Canadian Thanksgiving Day",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 39"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 32:1-22"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 16:19-31"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-14",
+      "dayName": "Thursday - Preparation for Proper 24 / Ordinary Time 29",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 104:1-9, 24, 35b"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 36:1-16"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Romans 15:7-13"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-15",
+      "dayName": "Friday - Preparation for Proper 24 / Ordinary Time 29",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 104:1-9, 24, 35b"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 37:1-24"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Revelation 17:1-18"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-16",
+      "dayName": "Saturday - Preparation for Proper 24 / Ordinary Time 29",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 104:1-9, 24, 35b"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 39:1-30"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 22:24-30"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-17",
+      "dayName": "Proper 24 / Ordinary Time 29",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Job 38:1-7, (34-41)"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 104:1-9, 24, 35c"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Hebrews 5:1-10"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 10:35-45"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-10-18",
+      "dayName": "Monday - Reflection on Proper 24 / Ordinary Time 29",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 75"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 40:1-24"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 6:1-12"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-19",
+      "dayName": "Tuesday - Reflection on Proper 24 / Ordinary Time 29",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 75"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 41:1-11"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 6:13-20"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-20",
+      "dayName": "Wednesday - Reflection on Proper 24 / Ordinary Time 29",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 75"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 41:12-34"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 13:1-17"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-21",
+      "dayName": "Thursday - Preparation for Proper 25 / Ordinary Time 30",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 34:1-8"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Kings 20:12-19"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 7:1-10"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-22",
+      "dayName": "Friday - Preparation for Proper 25 / Ordinary Time 30",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 34:1-8"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Nehemiah 1:1-11"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 7:11-22"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-23",
+      "dayName": "Saturday - Preparation for Proper 25 / Ordinary Time 30",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 34:1-8"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Job 42:7-9"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 8:22-26"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-24",
+      "dayName": "Proper 25 / Ordinary Time 30",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Job 42:1-6, 10-17"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 34:1-8, (19-22)"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Hebrews 7:23-28"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 10:46-52"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-10-25",
+      "dayName": "Monday - Reflection on Proper 25 / Ordinary Time 30",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 28"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Isaiah 59:9-19"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Peter 2:1-10"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-26",
+      "dayName": "Tuesday - Reflection on Proper 25 / Ordinary Time 30",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 28"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Ezekiel 18:1-32"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 9:32-35"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-27",
+      "dayName": "Wednesday - Reflection on Proper 25 / Ordinary Time 30",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 28"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Ezekiel 14:12-23"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Matthew 20:29-34"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-28",
+      "dayName": "Thursday - Preparation for Proper 26 / Ordinary Time 31",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 146"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Ruth 1:18-22"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 9:1-12"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-29",
+      "dayName": "Friday - Preparation for Proper 26 / Ordinary Time 31",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 146"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Ruth 2:1-9"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Romans 3:21-31"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-30",
+      "dayName": "Saturday - Preparation for Proper 26 / Ordinary Time 31",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 146"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Ruth 2:10-14"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 10:25-37"
+        }
+      ]
+    },
+    {
+      "date": "2027-10-31",
+      "dayName": "Proper 26 / Ordinary Time 31",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Ruth 1:1-18"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 146"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Hebrews 9:11-14"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 12:28-34"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-11-01",
+      "dayName": "All Saints' Day",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 24"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Revelation 21:1-6a"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 11:32-44"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-02",
+      "dayName": "Tuesday - Reflection on All Saints' Day",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 18:20-30"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Ruth 3:1-7"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 7:17-29"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-03",
+      "dayName": "Wednesday - Reflection on All Saints' Day",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 18:20-30"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Ruth 3:8-18"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 13:31-35"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-04",
+      "dayName": "Thursday - Preparation for Proper 27 / Ordinary Time 32",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 127"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Ruth 4:1-10"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Romans 5:6-11"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-05",
+      "dayName": "Friday - Preparation for Proper 27 / Ordinary Time 32",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 127"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Ruth 4:11-17"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 9:15-24"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-06",
+      "dayName": "Saturday - Preparation for Proper 27 / Ordinary Time 32",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 127"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Ruth 4:18-22"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 11:12-14, 20-24"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-07",
+      "dayName": "Proper 27 / Ordinary Time 32",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Ruth 3:1-5; 4:13-17"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 127"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Hebrews 9:24-28"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 12:38-44"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-11-08",
+      "dayName": "Monday - Reflection on Proper 27 / Ordinary Time 32",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 113"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Genesis 24:1-10"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Timothy 5:1-8"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-09",
+      "dayName": "Tuesday - Reflection on Proper 27 / Ordinary Time 32",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 113"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Genesis 24:11-27"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Timothy 5:9-16"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-10",
+      "dayName": "Wednesday - Reflection on Proper 27 / Ordinary Time 32",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 113"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Genesis 24:28-42"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 4:16-30"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-11",
+      "dayName": "Thursday - Preparation for Proper 28 / Ordinary Time 33",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "1 Samuel 2:1-10"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 1:21-28"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Timothy 6:11-21"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-12",
+      "dayName": "Friday - Preparation for Proper 28 / Ordinary Time 33",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "1 Samuel 2:1-10"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 2:18-21"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Colossians 2:6-15"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-13",
+      "dayName": "Saturday - Preparation for Proper 28 / Ordinary Time 33",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "1 Samuel 2:1-10"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 3:1-18"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 12:1-12"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-14",
+      "dayName": "Proper 28 / Ordinary Time 33",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "1 Samuel 1:4-20"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 16"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Hebrews 10:11-14, (15-18), 19-25"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Mark 13:1-8"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-11-15",
+      "dayName": "Monday - Reflection on Proper 28 / Ordinary Time 33",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 3"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 3:19-4:2"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 10:26-31"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-16",
+      "dayName": "Tuesday - Reflection on Proper 28 / Ordinary Time 33",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 3"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Deuteronomy 26:5-10"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Hebrews 10:32-39"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-17",
+      "dayName": "Wednesday - Reflection on Proper 28 / Ordinary Time 33",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 3"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Kings 8:22-30"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Mark 13:9-23"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-18",
+      "dayName": "Thursday - Preparation for Christ the King Sunday",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 132:1-12"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Kings 22:1-10"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Acts 7:54-8:1a"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-19",
+      "dayName": "Friday - Preparation for Christ the King Sunday",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 132:1-12"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Kings 22:11-20"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Corinthians 15:20-28"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-20",
+      "dayName": "Saturday - Preparation for Christ the King Sunday",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 132:1-12"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Kings 23:1-14"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 3:31-36"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-21",
+      "dayName": "Christ the King Sunday",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "2 Samuel 23:1-7"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 132:1-12, (13-18)"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "Revelation 1:4b-8"
+        },
+        {
+          "type": "Gospel",
+          "reference": "John 18:33-37"
+        }
+      ],
+      "isSunday": true
+    },
+    {
+      "date": "2027-11-22",
+      "dayName": "Monday - Reflection on Christ the King Sunday",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 63"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Kings 23:15-25"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Revelation 11:1-14"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-23",
+      "dayName": "Tuesday - Reflection on Christ the King Sunday",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 63"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "1 Samuel 17:55-18:5"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Revelation 11:15-19"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-24",
+      "dayName": "Wednesday - Reflection on Christ the King Sunday",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 63"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "2 Samuel 2:1-7"
+        },
+        {
+          "type": "New Testament",
+          "reference": "John 16:25-33"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-25",
+      "dayName": "Thanksgiving Day",
+      "readings": [
+        {
+          "type": "First Reading",
+          "reference": "Joel 2:21-27"
+        },
+        {
+          "type": "Psalm",
+          "reference": "Psalm 126"
+        },
+        {
+          "type": "Second Reading",
+          "reference": "1 Timothy 2:1-7"
+        },
+        {
+          "type": "Gospel",
+          "reference": "Matthew 6:25-33"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-26",
+      "dayName": "Friday - Preparation for First Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 25:1-10"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Nehemiah 9:16-25"
+        },
+        {
+          "type": "New Testament",
+          "reference": "1 Thessalonians 5:12-22"
+        }
+      ]
+    },
+    {
+      "date": "2027-11-27",
+      "dayName": "Saturday - Preparation for First Sunday of Advent",
+      "readings": [
+        {
+          "type": "Psalm",
+          "reference": "Psalm 25:1-10"
+        },
+        {
+          "type": "Old Testament",
+          "reference": "Nehemiah 9:26-31"
+        },
+        {
+          "type": "New Testament",
+          "reference": "Luke 21:20-24"
+        }
+      ]
+    }
+  ]
 }

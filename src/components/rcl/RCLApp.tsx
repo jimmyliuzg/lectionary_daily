@@ -6,8 +6,8 @@ import { ChapterView } from './ChapterView';
 import { SearchView } from './SearchView';
 import { CalendarView } from './CalendarView';
 import { isHydrated, hydrateBible } from '../../lib/rcl/db';
-import bibleData from '../../data/bible-bsb.json';
-import bibleStructured from '../../data/bible-structured.json';
+import { loadBibleData, loadStructuredData } from '../../lib/rcl/bibleData';
+import { parseReference } from './lib/references';
 
 type View = 'today' | 'bible' | 'chapter-view' | 'search' | 'calendar';
 export type FontSize = 'small' | 'medium' | 'large' | 'xlarge';
@@ -55,12 +55,14 @@ export function RCLApp() {
       setIsOfflineReady(hydrated);
 
       if (!hydrated) {
-        // Start hydration in background
-        // @ts-ignore
-        hydrateBible(bibleData as any, bibleStructured as any).then(() => {
-          setIsOfflineReady(true);
-          localStorage.setItem('rcl-offline-ready', 'true');
-        });
+        // Start hydration in background (lazy-loads the ~12MB Bible chunks)
+        const [bibleData, bibleStructured] = await Promise.all([
+          loadBibleData(),
+          loadStructuredData(),
+        ]);
+        await hydrateBible(bibleData, bibleStructured);
+        setIsOfflineReady(true);
+        localStorage.setItem('rcl-offline-ready', 'true');
       }
     };
 
@@ -108,17 +110,10 @@ export function RCLApp() {
   };
 
   const handleReferenceClick = (ref: string) => {
-    // Parse reference (simple implementation for now)
-    // Expected format: Book.Chapter.Verse or "Book Chapter:Verse"
-    // For now, let's just log it. Real parsing needed later.
-    console.log('Navigate to reference:', ref);
-
-    // Example: JHN.3.16 -> Book: JHN, Chapter: 3
-    const parts = ref.split('.');
-    if (parts.length >= 2) {
-      const book = parts[0];
-      const chapter = parseInt(parts[1], 10);
-      handleBibleNavigate(book, chapter);
+    // Parse "John 3:16-18", "Genesis 1:1", etc. and jump to the chapter
+    const parsed = parseReference(ref);
+    if (parsed) {
+      handleBibleNavigate(parsed.bookId, parsed.chapter);
     } else {
       // Fallback to plain bible view
       setCurrentView('bible');
@@ -138,23 +133,20 @@ export function RCLApp() {
           onReferenceClick={handleReferenceClick}
           currentDate={currentDate}
           onDateChange={setCurrentDate}
+          offlineReady={isOfflineReady}
         />;
       case 'bible':
         return (
-          // @ts-ignore - casting for dev time flexibility with imported json
           <BibleBrowser
             onNavigate={handleBibleNavigate}
-            bibleData={bibleData as any}
             initialBookId={selectedBookId}
           />
         );
       case 'chapter-view':
         return (
-          // @ts-ignore
           <ChapterView
             bookId={selectedBookId}
             chapter={selectedChapter}
-            bibleData={bibleData as any}
             onNavigate={handleBibleNavigate}
             onBack={() => setCurrentView('bible')}
           />
@@ -171,6 +163,7 @@ export function RCLApp() {
           onReferenceClick={handleReferenceClick}
           currentDate={currentDate}
           onDateChange={setCurrentDate}
+          offlineReady={isOfflineReady}
         />;
     }
   };
@@ -360,56 +353,6 @@ export function RCLApp() {
             width: 44px;
             height: 44px;
           }
-        }
-      `}</style>
-    </div>
-  );
-}
-
-// Placeholder view for features coming in later phases
-function PlaceholderView({ title, description }: { title: string; description: string }) {
-  return (
-    <div className="placeholder-view">
-      <div className="placeholder-content">
-        <h1>{title}</h1>
-        <p>{description}</p>
-      </div>
-
-      <style>{`
-        .placeholder-view {
-          min-height: 100vh;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          padding: 2rem;
-        }
-        
-        .placeholder-content {
-          text-align: center;
-          max-width: 400px;
-        }
-        
-        .placeholder-content h1 {
-          font-family: 'Newsreader', Georgia, serif;
-          font-size: 2rem;
-          font-weight: 500;
-          color: var(--text-primary, #1A1A1A);
-          margin: 0 0 1rem;
-        }
-        
-        .placeholder-content p {
-          font-family: 'Cabin', system-ui, sans-serif;
-          font-size: 1rem;
-          color: var(--text-secondary, #666666);
-          margin: 0;
-        }
-        
-        .dark .placeholder-content h1 {
-          color: #E8E8E8;
-        }
-        
-        .dark .placeholder-content p {
-          color: #999999;
         }
       `}</style>
     </div>

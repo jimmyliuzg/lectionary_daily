@@ -66,38 +66,113 @@ async function loadLectionaryYear(rclYear: 'A' | 'B' | 'C'): Promise<LectionaryD
     }
 }
 
-/**
- * Get the liturgical season for a given date
- */
-export function getLiturgicalSeason(date: Date = new Date()): string {
-    const year = date.getFullYear();
-    const month = date.getMonth();
-    const day = date.getDate();
+export type LiturgicalSeason =
+    | 'advent' | 'christmas' | 'epiphany' | 'lent'
+    | 'holy-week' | 'easter' | 'pentecost' | 'ordinary';
 
-    // Rough season detection (can be refined)
-    // Advent: ~4 weeks before Christmas
+export interface LiturgicalInfo {
+    season: LiturgicalSeason;
+    label: string;
+    color: string;
+}
+
+const SEASON_INFO: Record<LiturgicalSeason, { label: string; color: string }> = {
+    advent: { label: 'Advent', color: '#7a5c9e' },
+    christmas: { label: 'Christmas', color: '#c9a227' },
+    epiphany: { label: 'Epiphany', color: '#4a8f5c' },
+    lent: { label: 'Lent', color: '#7a5c9e' },
+    'holy-week': { label: 'Holy Week', color: '#b0413e' },
+    easter: { label: 'Easter', color: '#c9a227' },
+    pentecost: { label: 'Pentecost', color: '#b0413e' },
+    ordinary: { label: 'Ordinary Time', color: '#4a8f5c' },
+};
+
+function startOfDay(date: Date): Date {
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate());
+}
+
+function addDays(date: Date, days: number): Date {
+    const d = new Date(date);
+    d.setDate(d.getDate() + days);
+    return d;
+}
+
+/** Easter Sunday (Gregorian calendar) via the Anonymous Gregorian algorithm. */
+export function easterDate(year: number): Date {
+    const a = year % 19;
+    const b = Math.floor(year / 100);
+    const c = year % 100;
+    const d = Math.floor(b / 4);
+    const e = b % 4;
+    const f = Math.floor((b + 8) / 25);
+    const g = Math.floor((b - f + 1) / 3);
+    const h = (19 * a + b - d - g + 15) % 30;
+    const i = Math.floor(c / 4);
+    const k = c % 4;
+    const l = (32 + 2 * e + 2 * i - h - k) % 7;
+    const m = Math.floor((a + 11 * h + 22 * l) / 451);
+    const month = Math.floor((h + l - 7 * m + 114) / 31);
+    const day = ((h + l - 7 * m + 114) % 31) + 1;
+    return new Date(year, month - 1, day);
+}
+
+/** First Sunday of Advent: the Sunday 22-28 days before Christmas. */
+export function adventStartDate(year: number): Date {
     const christmas = new Date(year, 11, 25);
     const christmasDay = christmas.getDay() || 7;
-    const adventStart = new Date(year, 11, 25 - christmasDay - 21);
+    return new Date(year, 11, 25 - christmasDay - 21);
+}
 
-    if (date >= adventStart && date < christmas) return 'Advent';
+/** Baptism of the Lord: the first Sunday on or after Jan 7. */
+export function baptismDate(year: number): Date {
+    const jan7 = new Date(year, 0, 7);
+    const dow = jan7.getDay(); // 0 = Sunday
+    return addDays(jan7, dow === 0 ? 0 : 7 - dow);
+}
 
-    // Christmas: Dec 25 - Jan 6
-    const epiphany = new Date(year + (month === 11 ? 1 : 0), 0, 6);
-    if ((month === 11 && day >= 25) || (month === 0 && day <= 6)) return 'Christmas';
+/**
+ * Determine the liturgical season for a date, with a display label and a
+ * liturgical color. Correct for all seasons (uses real Easter computus).
+ */
+export function getLiturgicalInfo(date: Date = new Date()): LiturgicalInfo {
+    const d = startOfDay(date);
+    const y = d.getFullYear();
 
-    // Epiphany: Jan 6 until Ash Wednesday
-    // Easter calculation (simplified - would need proper algorithm)
-    if (month === 0 || month === 1) return 'Epiphany';
+    const easter = easterDate(y);
+    const ashWednesday = addDays(easter, -46);
+    const palmSunday = addDays(easter, -7);
+    const pentecost = addDays(easter, 49);
+    const trinity = addDays(easter, 56);
 
-    // Lent: Ash Wednesday to Easter
-    if (month === 2 || (month === 3 && day < 20)) return 'Lent';
+    let season: LiturgicalSeason;
+    if (d >= new Date(y, 11, 25)) {
+        season = 'christmas';
+    } else if (d >= adventStartDate(y)) {
+        season = 'advent';
+    } else if (d < baptismDate(y)) {
+        season = 'christmas';
+    } else if (d < ashWednesday) {
+        season = 'epiphany';
+    } else if (d < palmSunday) {
+        season = 'lent';
+    } else if (d < easter) {
+        season = 'holy-week';
+    } else if (d < pentecost) {
+        season = 'easter';
+    } else if (d < trinity) {
+        season = 'pentecost';
+    } else {
+        season = 'ordinary';
+    }
 
-    // Easter: ~7 weeks
-    if (month === 3 || (month === 4 && day < 20)) return 'Easter';
+    return { season, ...SEASON_INFO[season] };
+}
 
-    // Pentecost / Ordinary Time
-    return 'Ordinary Time';
+/**
+ * Get the liturgical season name for a given date.
+ */
+export function getLiturgicalSeason(date: Date = new Date()): string {
+    return getLiturgicalInfo(date).label;
 }
 
 /**
@@ -108,32 +183,6 @@ export async function getReadingsForDate(date: Date): Promise<DayReading | null>
     const rclYear = getRCLYear(date);
     const data = await loadLectionaryYear(rclYear);
     return data.readings.find(r => r.date === dateStr) || null;
-}
-
-/**
- * Get readings for a range of dates (for week view)
- */
-export async function getReadingsForRange(startDate: Date, days: number = 7): Promise<DayReading[]> {
-    const readings: DayReading[] = [];
-
-    for (let i = 0; i < days; i++) {
-        const date = new Date(startDate);
-        date.setDate(date.getDate() + i);
-        const dayReading = await getReadingsForDate(date);
-
-        if (dayReading) {
-            readings.push(dayReading);
-        } else {
-            // Create placeholder for missing dates
-            readings.push({
-                date: formatDateKey(date),
-                dayName: formatDisplayDate(date),
-                readings: [],
-            });
-        }
-    }
-
-    return readings;
 }
 
 /**
@@ -158,22 +207,4 @@ export function formatDisplayDate(date: Date): string {
     });
 }
 
-/**
- * Get the week containing a date (Sunday-Saturday or Monday-Sunday)
- */
-export function getWeekDates(date: Date, startOnSunday: boolean = true): Date[] {
-    const dates: Date[] = [];
-    const current = new Date(date);
 
-    // Find start of week
-    const dayOfWeek = current.getDay();
-    const startOffset = startOnSunday ? dayOfWeek : (dayOfWeek === 0 ? 6 : dayOfWeek - 1);
-    current.setDate(current.getDate() - startOffset);
-
-    for (let i = 0; i < 7; i++) {
-        dates.push(new Date(current));
-        current.setDate(current.getDate() + 1);
-    }
-
-    return dates;
-}

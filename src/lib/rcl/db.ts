@@ -23,8 +23,20 @@ export interface Book {
     chapters: number;
 }
 
+export interface RangeSpec {
+    chapter: number;
+    endChapter: number;
+    startVerse?: number;
+    endVerse?: number;
+}
+
+export interface ParsedReferenceLike {
+    bookId: string;
+    ranges: RangeSpec[];
+}
+
 const DB_NAME = 'rcl-bible-db';
-const DB_VERSION = 2; // Incremented version
+const DB_VERSION = 3; // v3: chunked hydration + typed range queries
 
 export async function initDB(): Promise<IDBPDatabase> {
     return openDB(DB_NAME, DB_VERSION, {
@@ -56,54 +68,79 @@ export async function isHydrated(): Promise<boolean> {
     return status === 'complete';
 }
 
-export async function hydrateBible(data: { verses: Verse[], books: Book[] }, structuredData?: any) {
-    const db = await initDB();
+// Guard against concurrent hydration (e.g. React StrictMode double effects).
+let hydrating: Promise<void> | null = null;
 
-    console.log('Starting Bible hydration into IndexedDB...');
+const CHUNK_SIZE = 2500;
 
-    const tx = db.transaction(['verses', 'books', 'chapters', 'metadata'], 'readwrite');
-    await tx.objectStore('verses').clear();
-    await tx.objectStore('books').clear();
-    await tx.objectStore('chapters').clear();
+/**
+ * Hydrate the Bible into IndexedDB in chunks so the main thread / transaction
+ * budget is never blocked by one giant transaction. Idempotent.
+ */
+export async function hydrateBible(data: { verses: Verse[], books: Book[] }, structuredData?: any): Promise<void> {
+    if (hydrating) return hydrating;
+    hydrating = (async () => {
+        const db = await initDB();
 
-    // Batch insert verses
-    const verseStore = tx.objectStore('verses');
-    for (const verse of data.verses) {
-        verseStore.put(verse);
-    }
+        console.log('Starting Bible hydration into IndexedDB...');
 
-    // Insert books
-    const bookStore = tx.objectStore('books');
-    for (const book of data.books) {
-        bookStore.put(book);
-    }
+        // Clear existing data first
+        const clearTx = db.transaction(['verses', 'books', 'chapters'], 'readwrite');
+        await Promise.all([
+            clearTx.objectStore('verses').clear(),
+            clearTx.objectStore('books').clear(),
+            clearTx.objectStore('chapters').clear(),
+        ]);
+        await clearTx.done;
 
-    // Insert structured chapters
-    if (structuredData) {
-        const chapterStore = tx.objectStore('chapters');
-        for (const [bookId, chapters] of Object.entries(structuredData)) {
-            for (const [chapterNum, blocks] of Object.entries(chapters as any)) {
-                chapterStore.put({
-                    id: `${bookId}_${chapterNum}`,
-                    bookId,
-                    chapterNum: parseInt(chapterNum),
-                    blocks
-                });
+        // Batch-insert verses in chunks (separate transactions)
+        for (let i = 0; i < data.verses.length; i += CHUNK_SIZE) {
+            const chunk = data.verses.slice(i, i + CHUNK_SIZE);
+            const tx = db.transaction('verses', 'readwrite');
+            for (const verse of chunk) {
+                tx.objectStore('verses').put(verse);
             }
+            await tx.done;
         }
+
+        // Books (small)
+        const booksTx = db.transaction('books', 'readwrite');
+        for (const book of data.books) {
+            booksTx.objectStore('books').put(book);
+        }
+        await booksTx.done;
+
+        // Structured chapters (small-ish)
+        if (structuredData) {
+            const chapterTx = db.transaction('chapters', 'readwrite');
+            const chapterStore = chapterTx.objectStore('chapters');
+            for (const [bookId, chapters] of Object.entries(structuredData)) {
+                for (const [chapterNum, blocks] of Object.entries(chapters as any)) {
+                    chapterStore.put({
+                        id: `${bookId}_${chapterNum}`,
+                        bookId,
+                        chapterNum: parseInt(chapterNum, 10),
+                        blocks,
+                    });
+                }
+            }
+            await chapterTx.done;
+        }
+
+        await db.put('metadata', 'complete', 'hydrationStatus');
+        console.log('Bible hydration complete!');
+    })();
+    try {
+        return await hydrating;
+    } finally {
+        hydrating = null;
     }
-
-    await tx.objectStore('metadata').put('complete', 'hydrationStatus');
-    await tx.done;
-
-    console.log('Bible hydration complete!');
 }
 
 export async function getVersesForChapter(chapterRef: string): Promise<Verse[]> {
     const db = await initDB();
-    // chapterRef format: "GEN.1"
-    // verses are stored with ref: "GEN.1.1"
-    const range = IDBKeyRange.bound(`${chapterRef}.0`, `${chapterRef}.999`);
+    // chapterRef format: "GEN.1" — verses are stored with ref "GEN.1.N"
+    const range = IDBKeyRange.bound(`${chapterRef}.`, `${chapterRef}.\uffff`);
     return db.getAllFromIndex('verses', 'ref', range);
 }
 
@@ -113,16 +150,29 @@ export async function getStructuredChapter(bookId: string, chapterNum: number): 
     return chapter ? chapter.blocks : null;
 }
 
-export async function getBlocksByParsedReference(parsed: { bookId: string, chapter: number, endChapter?: number, startVerse?: number, endVerse?: number }): Promise<ScriptureBlock[] | null> {
-    const startChapter = parsed.chapter;
-    const endChapter = parsed.endChapter || startChapter;
-    const startVerse = parsed.startVerse;
-    const endVerse = parsed.endVerse;
+/**
+ * Fetch structured blocks for a parsed reference (which may span several
+ * chapter/verse ranges). Headings are included once, only when a verse inside
+ * the reading follows them.
+ */
+export async function getBlocksByParsedReference(parsed: ParsedReferenceLike): Promise<ScriptureBlock[] | null> {
+    const all: ScriptureBlock[] = [];
+    const seenHeadings = new Set<string>();
 
-    const allFilteredBlocks: ScriptureBlock[] = [];
+    for (const range of parsed.ranges) {
+        const blocks = await getBlocksForRange(parsed.bookId, range, seenHeadings);
+        if (blocks) all.push(...blocks);
+    }
 
-    for (let c = startChapter; c <= endChapter; c++) {
-        const blocks = await getStructuredChapter(parsed.bookId, c);
+    return all.length > 0 ? all : null;
+}
+
+async function getBlocksForRange(bookId: string, range: RangeSpec, seenHeadings: Set<string>): Promise<ScriptureBlock[] | null> {
+    const out: ScriptureBlock[] = [];
+    let any = false;
+
+    for (let c = range.chapter; c <= range.endChapter; c++) {
+        const blocks = await getStructuredChapter(bookId, c);
         if (!blocks) continue;
 
         let lastHeading: ScriptureBlock | null = null;
@@ -135,42 +185,58 @@ export async function getBlocksByParsedReference(parsed: { bookId: string, chapt
             const v = block.verse || 0;
             let include = true;
 
-            // Boundary checks
-            if (c === startChapter && startVerse !== undefined && v < startVerse) include = false;
-            if (c === endChapter && endVerse !== undefined && v > endVerse) include = false;
+            if (c === range.chapter && range.startVerse !== undefined) {
+                // Include blocks that start before the range only when they
+                // visibly extend into it (paragraphs carry inline verse numbers).
+                if (v < range.startVerse && !blockTextHasVerse(block.text, range.startVerse)) {
+                    include = false;
+                }
+            }
+            if (c === range.endChapter && range.endVerse !== undefined && v > range.endVerse) {
+                include = false;
+            }
 
             if (include) {
-                if (lastHeading) {
-                    allFilteredBlocks.push(lastHeading);
-                    lastHeading = null;
+                any = true;
+                if (lastHeading && !seenHeadings.has(lastHeading.text)) {
+                    seenHeadings.add(lastHeading.text);
+                    out.push(lastHeading);
                 }
-                allFilteredBlocks.push(block);
+                lastHeading = null;
+                out.push(block);
             }
         }
     }
 
-    return allFilteredBlocks.length > 0 ? allFilteredBlocks : null;
+    return any ? out : null;
 }
 
-export async function getVersesByParsedReference(parsed: { bookId: string, chapter: number, endChapter?: number, startVerse?: number, endVerse?: number }): Promise<Verse[]> {
-    const startChapter = parsed.chapter;
-    const endChapter = parsed.endChapter || startChapter;
-    const startVerse = parsed.startVerse;
-    const endVerse = parsed.endVerse;
+// Does a structured block's text contain an inline verse marker for verse v?
+// Structured paragraphs render inline numbers as " 2<nnbsp>" etc.
+function blockTextHasVerse(text: string, v: number): boolean {
+    return new RegExp(`(^|\\s)${v}\\u202f`).test(text);
+}
 
-    const allVerses: Verse[] = [];
+/**
+ * Fetch individual verses for a parsed reference (fallback when structured
+ * blocks are unavailable).
+ */
+export async function getVersesByParsedReference(parsed: ParsedReferenceLike): Promise<Verse[]> {
+    const all: Verse[] = [];
 
-    for (let c = startChapter; c <= endChapter; c++) {
-        const chapterVerses = await getVersesForChapter(`${parsed.bookId}.${c}`);
+    for (const range of parsed.ranges) {
+        for (let c = range.chapter; c <= range.endChapter; c++) {
+            const chapterVerses = await getVersesForChapter(`${parsed.bookId}.${c}`);
 
-        const filtered = chapterVerses.filter(v => {
-            if (c === startChapter && startVerse !== undefined && v.verse < startVerse) return false;
-            if (c === endChapter && endVerse !== undefined && v.verse > endVerse) return false;
-            return true;
-        });
+            const filtered = chapterVerses.filter((v) => {
+                if (c === range.chapter && range.startVerse !== undefined && v.verse < range.startVerse) return false;
+                if (c === range.endChapter && range.endVerse !== undefined && v.verse > range.endVerse) return false;
+                return true;
+            });
 
-        allVerses.push(...filtered);
+            all.push(...filtered);
+        }
     }
 
-    return allVerses;
+    return all;
 }
